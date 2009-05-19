@@ -32,7 +32,7 @@ package org.globaltester.preferences;
 
 public class PreferenceConstants {
 
-	// working directory of current project
+	// working directory of current project (maybe null)
 	public static final String P_WORKINGDIR = "pathPreference";
 
 	// path to configuration file needed by smart card shell

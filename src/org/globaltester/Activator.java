@@ -1,5 +1,11 @@
 package org.globaltester;
 
+import java.io.IOException;
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -45,6 +51,22 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+	
+	/**
+	 * Returns the current path of GlobalTester_Plugin
+	 */
+	public static IPath getPluginDir() {
+		URL url = plugin.getBundle().getEntry("/");
+		IPath pluginDir = null;
+		try {
+			//pluginDir = new Path(Platform.asLocalURL(url).getPath());
+			pluginDir = new Path(FileLocator.toFileURL(url).getPath());
+			return pluginDir;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

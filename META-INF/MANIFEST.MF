@@ -11,7 +11,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.globaltester.logger
 DynamicImport-Package: *
-Export-Package: org.bouncycastle,
+Export-Package: org.globaltester,
+ org.globaltester.preferences,
+ org.bouncycastle,
  org.bouncycastle.asn1,
  org.bouncycastle.asn1.cmp,
  org.bouncycastle.asn1.cms,
