@@ -48,28 +48,13 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				.getPreferenceStore();
 		
 		store.setDefault(PreferenceConstants.P_WORKINGDIR, "");
-		store.setDefault(PreferenceConstants.P_REPORTDIR, "");
-		//store.setDefault(PreferenceConstants.P_CSCACERT, "");
-		//store.setDefault(PreferenceConstants.P_DSCERT, "");
-		store.setDefault(PreferenceConstants.P_PROPERTYFILE, "");
 		
 		IPath pluginDir = Activator.getPluginDir();
 		String configPath = pluginDir.toPortableString() + "config.js";;
 		
-		store.setDefault(PreferenceConstants.P_CONFIGJS, configPath); 
-		//store.setDefault(PreferenceConstants.P_USEMRZREADER, true);
-		store.setDefault(PreferenceConstants.P_REPORTDIRDATE, "");
-		store.setDefault(PreferenceConstants.P_CARDREADERNAME, "unknown");
-		store.setDefault(PreferenceConstants.P_LASTMRZSELECTION, -1);
-		//store.setDefault(PreferenceConstants.P_MRZ1, "P<UTOERIKSSON<<ANNA<MARIA<<<<<<<<<<<<<<<<<<<");
-		//store.setDefault(PreferenceConstants.P_MRZ2, "L898902C<3UTO6908061F9406236ZE184226B<<<<<14");
-		//store.setDefault(PreferenceConstants.P_READBUFFER, 223);
-		store.setDefault(PreferenceConstants.P_AUTOMATICREPORT, false);
+		store.setDefault(PreferenceConstants.P_SCSH_CONF, configPath); 
 		
-		store.setDefault(PreferenceConstants.P_CSVSAMPLEID, "12345");
-		store.setDefault(PreferenceConstants.P_CSVPLATFORMID, "00");
-		
-		//store.setDefault(PreferenceConstants.P_BUFFERREADFILEEOF, "INFINITE");
+		store.setDefault(PreferenceConstants.P_MANUAL_SCSH_CONF, false);
 	}
 
 }

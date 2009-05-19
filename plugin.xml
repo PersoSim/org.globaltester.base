@@ -17,4 +17,10 @@
             id="org.globaltester.preferences.GlobalTesterPreferencePage">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.globaltester.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>
