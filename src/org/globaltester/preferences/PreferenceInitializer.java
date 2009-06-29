@@ -32,7 +32,7 @@ import org.globaltester.Activator;
  * This class stores the properties of the plugin
  * Class used to initialize default preference values
  * 
- * @version		Release 2.1.1
+ * @version		Release 2.2.0
  * @author 		Holger Funke
  *
  */
