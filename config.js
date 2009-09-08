@@ -2,7 +2,7 @@
 //  ---------
 // |.##> <##.|  CardContact Software & System Consulting
 // |#       #|  32429 Minden, Germany (www.cardcontact.de)
-// |#       #|  Copyright (c) 1999-2005. All rights reserved
+// |#       #|  Copyright (c) 1999-2006. All rights reserved
 // |'##> <##'|  See file COPYING for details on licensing
 //  --------- 
 //
@@ -26,6 +26,7 @@ function reset() {
         card = new Card(_scsh3.reader);
             
         var atr = card.reset(Card.RESET_COLD);
+        print(atr.toByteString());
         return atr;
 }
 
@@ -39,10 +40,11 @@ function apdu(data) {
                       
         var res = card.plainApdu(new ByteString(data, HEX));
         if (card.SW != 0x9000) {
-                print("Card error " + card.SW.toString(16));
+                print("Card error SW1/SW2=" + card.SW.toString(16) + " - " + card.SWMSG);
         }
         return res;
 }
+
 
 //
 // Minimal assert() function
@@ -57,11 +59,41 @@ function assert() {
 
 
 //
+// Function used by scripts to define minimum version requirements
+//
+function requires(version) {
+	var s = version.split(".");
+	assert(s.length >= 1);
+	
+	var reqmajor = parseInt(s[0]);
+	var reqminor = (s.length >= 2) ? parseInt(s[1]) : 0;
+	var reqbuild = (s.length >= 3) ? parseInt(s[2]) : 0;
+	
+	var id = GPSystem.getSystemID();
+	var s = id.toString(OID).split(".");
+
+	var major = parseInt(s[s.length - 4]);
+	var minor = parseInt(s[s.length - 3]);
+	var build = parseInt(s[s.length - 2]);
+	
+	if ((major < reqmajor) ||
+	    ((major == reqmajor) && (minor < reqminor)) ||
+	    ((major == reqmajor) && (minor == reqminor) && (build < reqbuild))) {
+		print("This script uses features only available in version " + version + " or later.");
+		print("It may not run as expected, please update to a more current version.");
+		GPSystem.wait(1500);
+	}
+}
+
+
+
+//
 // Even shorter shortcuts
 // 
 function r()     { return reset(); };
 function a(data) { return apdu(data); };
 function q()     { quit(); };
+
 
 
 //
@@ -75,8 +107,12 @@ function help() {
         print("load(file)               Load and execute file");
         print("assert(expression, ..)   Assert that expressions are all true");
         print("defineClass(file)        Load Java class defining native objects");
+        print("restart                  Restart shell (clears all variables)\n");
         print("or any other valid ECMAScript expression.");
-        print("See doc/index.html for the complete documentation.");
+        print("See doc/index.html for the complete documentation.\n");
+        print("If this is the first time you use the Smart Card Shell and you want");
+        print("to try it out, then insert a card into your reader and enter");
+        print(" load(\"tools/explore.js\")");
 }
 
 
@@ -98,19 +134,21 @@ defineClass("de.cardcontact.scdp.gp.GPSecurityDomain");
 defineClass("de.cardcontact.scdp.gp.ApplicationFactory");
 defineClass("de.cardcontact.scdp.js.JsX509");
 defineClass("de.cardcontact.scdp.js.JsCRL");
+defineClass("de.cardcontact.scdp.js.JsCMSSignedData");
+defineClass("de.cardcontact.scdp.xmldsig.JsXMLSignature");
 defineClass("de.cardcontact.scdp.js.JsASN1");
 defineClass("de.cardcontact.scdp.js.JsKeyStore");
 defineClass("de.cardcontact.scdp.js.JsCardFile");
 defineClass("de.cardcontact.scdp.js.JsIsoSecureChannel");
 defineClass("de.cardcontact.scdp.js.JsOCSPQuery");
 defineClass("de.cardcontact.scdp.js.JsLDAP");
-defineClass("de.cardcontact.scdp.js.JsCMSSignedData");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Provider");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Session");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Object");
 
 defineClass("org.globaltester.testmanager.gp.AssertionError");
 
+defineClass("de.cardcontact.scdp.scsh3.OutlineNode");
 
 // Load persistent settings which defines the _scsh3 object
 
@@ -150,4 +188,3 @@ _scsh3.setProperty = function(property, value) {
         }
         cf.close();
 }
-
