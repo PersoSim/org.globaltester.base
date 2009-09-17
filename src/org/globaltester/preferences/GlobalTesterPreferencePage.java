@@ -19,6 +19,8 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.FileFieldEditor;
+import org.eclipse.jface.preference.IntegerFieldEditor;
+import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -43,9 +45,12 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 	// definition of field editors
 	BooleanFieldEditor bfeManualSCSHSettings;
 	FileFieldEditor ffeConfigFile;
+	IntegerFieldEditor ifeReaderBuffer;
+	RadioGroupFieldEditor rfeReadFileEOF;
 
 	//definition of groups
 	Group scshGroup;
+	Group bufferGroup;
 
 	public GlobalTesterPreferencePage() {
 		super(GRID);
@@ -94,6 +99,32 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 		}
 		addField(ffeConfigFile);
 
+		
+		bufferGroup = new Group(container, SWT.NONE);
+		bufferGroup.setText("Buffer");
+		GridData gd3 = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gd3.horizontalSpan = 2;
+		bufferGroup.setLayoutData(gd3);
+		bufferGroup.setLayout(new GridLayout(2, false));
+
+		ifeReaderBuffer = new IntegerFieldEditor(
+				PreferenceConstants.P_READBUFFER, "Read buffer size:",
+				bufferGroup);
+		ifeReaderBuffer.setValidRange(0, 255);
+		addField(ifeReaderBuffer);
+
+		rfeReadFileEOF = new RadioGroupFieldEditor(
+				PreferenceConstants.P_BUFFERREADFILEEOF,
+				"Alternative ways for JavaScript function readFileEOF()",
+				1,
+				new String[][] {
+						new String[] {
+								"Read data groups by checking header information (fast)",
+								"INFINITE" },
+						new String[] {
+								"Read data groups byte by byte (very slow)",
+								"SMALL" } }, bufferGroup, true);
+		addField(rfeReadFileEOF);
 	}
 
 	public void init(IWorkbench workbench) {

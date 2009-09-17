@@ -41,6 +41,8 @@ public class PreferenceConstants {
 	// switch to set manual directory settings
 	public static final String P_MANUAL_SCSH_CONF = "manualSCSHconf";
 	
-	
+	//readerBuffer and ReadFileEOF setting
+	public static final String P_READBUFFER = "Default read buffer size";
+	public static final String P_BUFFERREADFILEEOF = "Buffer size for function readFileEOF";
 	
 }

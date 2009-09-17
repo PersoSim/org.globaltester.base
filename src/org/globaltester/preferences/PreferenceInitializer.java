@@ -55,6 +55,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_SCSH_CONF, configPath); 
 		
 		store.setDefault(PreferenceConstants.P_MANUAL_SCSH_CONF, false);
+		
+		store.setDefault(PreferenceConstants.P_BUFFERREADFILEEOF,
+		"INFINITE");
+		store.setDefault(PreferenceConstants.P_READBUFFER, 223);
 	}
 
 }
