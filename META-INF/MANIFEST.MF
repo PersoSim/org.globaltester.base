@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester Base Plug-in
-Bundle-SymbolicName: org.globaltester;singleton:=true
+Bundle-SymbolicName: org.globaltester.base;singleton:=true
 Bundle-Version: 2.4.1
 Bundle-Activator: org.globaltester.Activator
 Bundle-Vendor: HJP Consulting GmbH
