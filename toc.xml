@@ -16,8 +16,14 @@
 	</topic>
 	
 	<topic label="Reference">
-		<anchor id="reference"/>
-	</topic>
+        <topic label="Preferences">
+            <anchor id="preferences"/>
+        </topic>
+        <topic label="Views">
+            <anchor id="views"/>
+        </topic>
+        <anchor id="reference"/>
+    </topic>
 
 	<topic label="Samples">
 		<anchor id="samples"/>
