@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester Base Plug-in
 Bundle-SymbolicName: org.globaltester.base;singleton:=true
-Bundle-Version: 2.4.1
+Bundle-Version: 2.4.2
 Bundle-Activator: org.globaltester.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
