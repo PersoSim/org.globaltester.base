@@ -11,7 +11,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.globaltester.logger
 DynamicImport-Package: *
-Export-Package: de.cardcontact.scdp.engine,
+Export-Package: de.cardcontact.scdp.cardsim,
+ de.cardcontact.scdp.cms,
+ de.cardcontact.scdp.engine,
  de.cardcontact.scdp.gp,
  de.cardcontact.scdp.gpmsg,
  de.cardcontact.scdp.js,

@@ -117,6 +117,7 @@ function help() {
 
 
 // All GP classes report errors through GPError
+defineClass("de.cardcontact.scdp.engine.Shell");
 defineClass("de.cardcontact.scdp.gp.GPError");
 defineClass("de.cardcontact.scdp.gp.GPSystem");
 defineClass("de.cardcontact.scdp.gp.ByteString");
@@ -141,13 +142,25 @@ defineClass("de.cardcontact.scdp.js.JsCardFile");
 defineClass("de.cardcontact.scdp.js.JsIsoSecureChannel");
 defineClass("de.cardcontact.scdp.js.JsOCSPQuery");
 defineClass("de.cardcontact.scdp.js.JsLDAP");
+defineClass("de.cardcontact.scdp.js.JsSOAPConnection");
+defineClass("de.cardcontact.scdp.js.JsURLConnection");
+
+defineClass("de.cardcontact.scdp.cms.JsCMSSignedData");
+defineClass("de.cardcontact.scdp.cms.JsCMSGenerator");
+
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Provider");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Session");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Object");
+defineClass("de.cardcontact.scdp.js.JsScript");
+defineClass("de.cardcontact.scdp.cardsim.JsCardSimulationAdapter");
+
+defineClass("de.cardcontact.scdp.scsh3.OutlineNode");
+defineClass("de.cardcontact.scdp.scsh3.Dialog");
 
 defineClass("org.globaltester.testmanager.gp.AssertionError");
 
-defineClass("de.cardcontact.scdp.scsh3.OutlineNode");
+ASN1.defineObjectIdentifier("CardContact", "1.3.6.1.4.1.24991");
+
 
 // Load persistent settings which defines the _scsh3 object
 
