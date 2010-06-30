@@ -50,11 +50,11 @@ function apdu(data) {
 // Minimal assert() function
 // 
 function assert() {
-    for (var i = 0; i < arguments.length; i++) {
-        if (!arguments[i]) {
-            throw new GPError("shell", GPError.USER_DEFINED, 0,"Assertion failed for argument " + (i + 1));
-        }
-    }
+	for (var i = 0; i < arguments.length; i++) {
+		if (!arguments[i]) {
+			throw new GPError("shell", GPError.USER_DEFINED, 0,"Assertion failed for argument " + (i + 1));
+		}
+	}
 }
 
 
@@ -62,27 +62,27 @@ function assert() {
 // Function used by scripts to define minimum version requirements
 //
 function requires(version) {
-    var s = version.split(".");
-    assert(s.length >= 1);
-    
-    var reqmajor = parseInt(s[0]);
-    var reqminor = (s.length >= 2) ? parseInt(s[1]) : 0;
-    var reqbuild = (s.length >= 3) ? parseInt(s[2]) : 0;
-    
-    var id = GPSystem.getSystemID();
-    var s = id.toString(OID).split(".");
+	var s = version.split(".");
+	assert(s.length >= 1);
+	
+	var reqmajor = parseInt(s[0]);
+	var reqminor = (s.length >= 2) ? parseInt(s[1]) : 0;
+	var reqbuild = (s.length >= 3) ? parseInt(s[2]) : 0;
+	
+	var id = GPSystem.getSystemID();
+	var s = id.toString(OID).split(".");
 
-    var major = parseInt(s[s.length - 4]);
-    var minor = parseInt(s[s.length - 3]);
-    var build = parseInt(s[s.length - 2]);
-    
-    if ((major < reqmajor) ||
-        ((major == reqmajor) && (minor < reqminor)) ||
-        ((major == reqmajor) && (minor == reqminor) && (build < reqbuild))) {
-        print("This script uses features only available in version " + version + " or later.");
-        print("It may not run as expected, please update to a more current version.");
-        GPSystem.wait(1500);
-    }
+	var major = parseInt(s[s.length - 4]);
+	var minor = parseInt(s[s.length - 3]);
+	var build = parseInt(s[s.length - 2]);
+	
+	if ((major < reqmajor) ||
+	    ((major == reqmajor) && (minor < reqminor)) ||
+	    ((major == reqmajor) && (minor == reqminor) && (build < reqbuild))) {
+		print("This script uses features only available in version " + version + " or later.");
+		print("It may not run as expected, please update to a more current version.");
+		GPSystem.wait(1500);
+	}
 }
 
 
@@ -117,7 +117,6 @@ function help() {
 
 
 // All GP classes report errors through GPError
-defineClass("de.cardcontact.scdp.engine.Shell");
 defineClass("de.cardcontact.scdp.gp.GPError");
 defineClass("de.cardcontact.scdp.gp.GPSystem");
 defineClass("de.cardcontact.scdp.gp.ByteString");
@@ -142,25 +141,13 @@ defineClass("de.cardcontact.scdp.js.JsCardFile");
 defineClass("de.cardcontact.scdp.js.JsIsoSecureChannel");
 defineClass("de.cardcontact.scdp.js.JsOCSPQuery");
 defineClass("de.cardcontact.scdp.js.JsLDAP");
-defineClass("de.cardcontact.scdp.js.JsSOAPConnection");
-defineClass("de.cardcontact.scdp.js.JsURLConnection");
-
-defineClass("de.cardcontact.scdp.cms.JsCMSSignedData");
-defineClass("de.cardcontact.scdp.cms.JsCMSGenerator");
-
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Provider");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Session");
 defineClass("de.cardcontact.scdp.pkcs11.JsPKCS11Object");
-defineClass("de.cardcontact.scdp.js.JsScript");
-defineClass("de.cardcontact.scdp.cardsim.JsCardSimulationAdapter");
-
-defineClass("de.cardcontact.scdp.scsh3.OutlineNode");
-defineClass("de.cardcontact.scdp.scsh3.Dialog");
 
 defineClass("org.globaltester.testmanager.gp.AssertionError");
 
-ASN1.defineObjectIdentifier("CardContact", "1.3.6.1.4.1.24991");
-
+defineClass("de.cardcontact.scdp.scsh3.OutlineNode");
 
 // Load persistent settings which defines the _scsh3 object
 
