@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: org.globaltester.logger
+Import-Package: org.globaltester.logger,
+ org.globaltester.logging.preferences
 DynamicImport-Package: *
 Export-Package: de.cardcontact.scdp.cardsim,
  de.cardcontact.scdp.cms,
