@@ -18,7 +18,7 @@ package org.globaltester.preferences;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.preference.FileFieldEditor;
+import org.globaltester.preferences.ValidateFileFieldEditor;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.swt.SWT;
@@ -44,7 +44,7 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 
 	// definition of field editors
 	BooleanFieldEditor bfeManualSCSHSettings;
-	FileFieldEditor ffeConfigFile;
+	ValidateFileFieldEditor ffeConfigFile;
 	IntegerFieldEditor ifeReaderBuffer;
 	RadioGroupFieldEditor rfeReadFileEOF;
 
@@ -90,7 +90,7 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 		addField(bfeManualSCSHSettings);
 
 		// configuration file for smart card shell
-		ffeConfigFile = new FileFieldEditor(PreferenceConstants.P_SCSH_CONF,
+		ffeConfigFile = new ValidateFileFieldEditor(PreferenceConstants.P_SCSH_CONF,
 				"SCSH Config file:", scshGroup);
 
 		if (!Activator.getDefault().getPreferenceStore().getBoolean(
