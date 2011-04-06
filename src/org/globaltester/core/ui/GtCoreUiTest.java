@@ -11,6 +11,7 @@ public class GtCoreUiTest {
 
 	@Test
 	public void testApplicationWindow() throws Exception {
+		Thread.sleep(5000);
 		assertNotNull(bot.shell(""));
 	}
 }
