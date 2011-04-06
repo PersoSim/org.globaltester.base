@@ -12,7 +12,6 @@ public class ActivatorTest {
 	 */
 	@Test
 	public void testGetContext() {
-		System.out.println("abab");
 		BundleContext context = Activator.getContext();
 		assertNotNull("BundleContext of org.globaltester.core is null", context);
 	}
