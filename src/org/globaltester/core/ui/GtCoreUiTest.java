@@ -13,6 +13,6 @@ public class GtCoreUiTest {
 	public void testApplicationWindow() throws Exception {
 		Thread.sleep(5000);
 		bot.captureScreenshot("MainWindow.png");
-		assertNotNull(bot.shell(""));
+		assertNotNull(bot.shell("GlobalTester"));
 	}
 }
