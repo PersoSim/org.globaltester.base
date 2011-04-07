@@ -3,33 +3,12 @@
 <plugin>
 
    <extension
-         id="application"
-         point="org.eclipse.core.runtime.applications">
-      <application>
-         <run
-               class="org.globaltester.core.ui.Application">
-         </run>
-      </application>
-   </extension>
-   <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="RCP Perspective"
-            class="org.globaltester.core.ui.Perspective"
-            id="org.globaltester.core.ui.perspective">
+            name="GlobalTester Perspective"
+            class="org.globaltester.core.ui.perspective.GlobalTesterPerspective"
+            id="org.globaltester.core.ui.perspective.GlobalTesterPerspective">
       </perspective>
    </extension>
-   <extension
-         id="product"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.globaltester.core.ui.application"
-            name="GlobalTester">
-         <property
-               name="windowImages"
-               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
-         </property>
-      </product>
-   </extension>
-
+   
 </plugin>
