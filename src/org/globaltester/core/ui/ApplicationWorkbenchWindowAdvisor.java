@@ -1,5 +1,8 @@
 package org.globaltester.core.ui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
@@ -18,7 +21,13 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-        configurer.setInitialSize(new Point(400, 300));
+        
+        //set initial size to maximum
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        configurer.setInitialSize(new Point(screenSize.width, screenSize.height));
+        
+        configurer.setTitle("GlobalTester");
+        
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
     }
