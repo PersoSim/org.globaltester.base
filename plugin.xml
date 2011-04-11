@@ -10,5 +10,14 @@
             id="org.globaltester.core.ui.perspective.GlobalTesterPerspective">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+         <view
+         id="org.globaltester.core.ui.navigator"
+         name="GlobalTester Navigator"
+         class="org.globaltester.core.ui.views.GlobalTesterNavigator"
+         >
+         </view>
+   </extension>
    
 </plugin>
