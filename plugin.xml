@@ -13,11 +13,10 @@
    <extension
          point="org.eclipse.ui.views">
          <view
-         id="org.globaltester.core.ui.navigator"
+         id="org.globaltester.core.ui.views.GlobalTesterNavigator"
          name="GlobalTester Navigator"
          class="org.globaltester.core.ui.views.GlobalTesterNavigator"
          >
          </view>
    </extension>
-   
 </plugin>
