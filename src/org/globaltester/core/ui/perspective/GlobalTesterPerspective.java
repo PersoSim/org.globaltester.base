@@ -15,6 +15,7 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
 		
+		
 		 // Top left: GlobalTesterNavigator view and Bookmarks view placeholder
 		 IFolderLayout topLeft = layout.createFolder(ID_FOLDER_TOPLEFT, IPageLayout.LEFT, 0.25f,
 		    editorArea);
@@ -35,8 +36,6 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		// Right: SCSH, TestLayouts etc.
 		 IPlaceholderFolderLayout right = layout.createPlaceholderFolder(ID_FOLDER_RIGHT, IPageLayout.RIGHT, 0.66f,
 	 	   editorArea);
-		 right.addPlaceholder("org.globaltester.smartcardshell.ui.views.SmartCardShellView");
- 
-		 
+		 right.addPlaceholder("org.globaltester.smartcardshell.ui.views.SmartCardShellView"); 
 	}
 }
