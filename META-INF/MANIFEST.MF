@@ -8,9 +8,4 @@ Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- lib/bcmail-jdk15-143-CC.jar,
- lib/bcprov-jdk16-145-CC.jar,
- lib/js.jar,
- lib/xmldsig.jar
-Export-Package: org.mozilla.javascript
+Bundle-ClassPath: .
