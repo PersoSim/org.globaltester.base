@@ -19,4 +19,12 @@
          >
          </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.globaltester.core.ui.preferences.GlobalTesterPreferencePage"
+            id="org.globaltester.core.ui.preferences.GlobalTesterPreferencePage"
+            name="GlobalTester">
+      </page>
+   </extension>
 </plugin>
