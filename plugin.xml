@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc/user/toc.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="toc/user/concepts.xml">
+      </toc>
+      <toc
+            file="toc/user/gettingstarted.xml">
+      </toc>
+      <toc
+            file="toc/user/reference.xml">
+      </toc>
+      <toc
+            file="toc/user/samples.xml">
+      </toc>
+      <toc
+            file="toc/user/tasks.xml">
+      </toc>
+      <toc
+            file="toc/developer/toc.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="toc/developer/concepts.xml">
+      </toc>
+      <toc
+            file="toc/developer/gettingstarted.xml">
+      </toc>
+      <toc
+            file="toc/developer/reference.xml">
+      </toc>
+      <toc
+            file="toc/developer/samples.xml">
+      </toc>
+      <toc
+            file="toc/developer/tasks.xml">
+      </toc>
+   </extension>
+
+</plugin>
