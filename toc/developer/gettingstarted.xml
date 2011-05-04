@@ -2,10 +2,8 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Getting Started" link_to="toc/developer/toc.xml#gettingstarted"> 
-	<topic label="Main Topic"  href="html/developer/gettingstarted/maintopic.html"> 
-		<topic label="Sub Topic" href="html/developer/gettingstarted/subtopic.html" /> 
-	</topic>
-	<topic label="Main Topic 2">
-		<topic label="Sub Topic 2" href="html/developer/gettingstarted/subtopic2.html" />
+	<topic label="Set up the environment"> 
+		<topic label="Get an IDE" href="html/developer/gettingstarted/ide.html" /> 
+		<topic label="Get the code" href="html/developer/gettingstarted/checkout.html" />
 	</topic> 
 </toc>
