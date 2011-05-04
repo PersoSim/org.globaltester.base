@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.globaltester.core
 Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.globaltester.core.Activator
 Bundle-Vendor: HJP Consulting GmbH
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.globaltester.core.doc;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
