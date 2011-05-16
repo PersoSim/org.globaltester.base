@@ -12,20 +12,47 @@
 		After you created a new plugin to implement new functionality within
 		GlobalTester you most certainly want to implement a test fragment
 		also. As detailed in our <a href="concepts/devGuidelines.html">development
-			guidelines</a> a test fragment is required for each plugin that exists in
+			guidelines</a> a test fragment is required for most plugin that exists in
 		GlobalTester repository.
 	</p>
 
-	<h2>Create test fragment</h2>
+	<h2>Create test fragment and code</h2>
+	<p>To create a new feature project from scratch start the "New
+		Project" wizard. Select in Eclipse "Package Explorer" view "New >
+		Project" and there use "Fragment Project" and click "Next".</p>
+	<p>
+		Now fill in the project name, fragment ID, related data and the
+		required host plugin. Again you will find several hints regarding the
+		values to use here in our <a href="concepts/devGuidelines.html">development
+			guidelines</a>.
+	</p>
+	<p>When the basic fragment structure is created you can start to
+		implement the code and testcases. CI builds on Jenkins require tests
+		to be implemented as JUnit-Tests optionally using SWTBot for
+		GUI-Testing. You can define as much test cases and test suites as you
+		want. For integration in CI builds you should define at least two
+		suites one full test suite containing alls available tests and one
+		smoke test suite that contains only a minimal set of tests to verify
+		overall functionality.</p>
+	<p>For your fragment code to be available during execution and
+		buckminster provisioning the fragment must be added to a test feature
+		that is referenced from the buckminster entry point.</p>
 
 	<h2>Configure required launch configurations</h2>
+	TODO
+	<p>at least full and smoke</p>
+	<p>launch configs in project under version control</p>
+	<p>fragmentname.[full/smoke].launch</p>
+	<p>all available workspace and taragetplatform plugins</p>
+	<p></p>
 
 	<h2>Add launch configurations to buckminster scripts</h2>
 	<p>
 		Currently the scripts executed during the CI-Builds on Jenkins are
 		still maintained manually. They are located in
 		<code>com.hjp.globaltester.releng</code>
-		and you need to add lines like the following to them (somewhere after the build command):
+		and you need to add lines like the following to them (somewhere after
+		the build command):
 	</p>
 	<p>
 		<code>junit -l
