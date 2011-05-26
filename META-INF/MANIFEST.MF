@@ -144,7 +144,7 @@ Export-Package: de.cardcontact.scdp.cardsim,
  org.mozilla.javascript.xml,
  org.mozilla.javascript.xml.impl.xmlbeans,
  org.mozilla.javascript.xmlimpl
-Bundle-ClassPath: lib/bcprov-jdk16-147b02.jar,
+Bundle-ClassPath: lib/bcprov-jdk15-146p.jar,
  lib/bcmail-jdk16-146.jar,
  lib/js.jar,
  lib/scsh3.jar,
