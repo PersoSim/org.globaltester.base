@@ -17,7 +17,7 @@
 	</p>
 
 	<h2>Create test fragment and code</h2>
-	<p>To create a new feature project from scratch start the "New
+	<p>To create a new fragment project from scratch start the "New
 		Project" wizard. Select in Eclipse "Package Explorer" view "New >
 		Project" and there use "Fragment Project" and click "Next".</p>
 	<p>
@@ -46,7 +46,8 @@
 	<p>all available workspace and taragetplatform plugins</p>
 	<p></p>
 
-	<h2>Add launch configurations to buckminster scripts</h2>
+	<h2>Add launch configurations to buckminster scripts and integrate
+		projects in CI</h2>
 	<p>
 		Currently the scripts executed during the CI-Builds on Jenkins are
 		still maintained manually. They are located in
@@ -59,6 +60,12 @@
 			org.globaltester.core.test/org.globaltester.core.test.full.launch
 			--flatXML -o junit/org.globaltester.core.xml</code>
 	</p>
+	<p>After the fragment is referenced from a feature used by
+		buckminster it will be materialized in the corresponding CI-workspaces
+		autmatically. In order to rebuild CI-Projects also on changes in the
+		test fragments these fragments need to be referenced from the
+		CI-Projects configuration. This step is similar for fragments as for
+		plugins and is described in <a href="addPlugin.html">"Add a new plugin"</a>.</p>
 	<p>Sometime in the future we plan to replace those scripts by
 		automatically generated ones so that this step will become needless.</p>
 </body>
