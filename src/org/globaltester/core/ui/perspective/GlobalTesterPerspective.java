@@ -20,6 +20,7 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 IFolderLayout topLeft = layout.createFolder(ID_FOLDER_TOPLEFT, IPageLayout.LEFT, 0.25f,
 		    editorArea);
 		 topLeft.addView("org.globaltester.core.ui.views.GlobalTesterNavigator");
+		 topLeft.addView(IPageLayout.ID_RES_NAV);
 		 topLeft.addPlaceholder(IPageLayout.ID_BOOKMARKS);
 		 
 
