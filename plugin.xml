@@ -37,9 +37,6 @@
             file="toc/developer/reference.xml">
       </toc>
       <toc
-            file="toc/developer/samples.xml">
-      </toc>
-      <toc
             file="toc/developer/tasks.xml">
       </toc>
    </extension>
