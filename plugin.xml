@@ -27,4 +27,11 @@
             name="GlobalTester">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.globaltester.core.ui.newWizards.category"
+            name="GlobalTester">
+      </category>
+   </extension>
 </plugin>
