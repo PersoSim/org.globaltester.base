@@ -3,6 +3,7 @@ package org.globaltester.core.ui.editors;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.MultiLineRule;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * MultiLineRule that matches XML Tags
@@ -13,7 +14,7 @@ public class XMLTagRule extends MultiLineRule {
 	
 
 	public XMLTagRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(XMLScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public XMLTagRule(IToken token) {

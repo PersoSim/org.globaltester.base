@@ -1,6 +1,7 @@
 package org.globaltester.core.ui.editors;
 
 import org.eclipse.jface.text.rules.*;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * EndOfLineRule that matches JavaScript single line comments
@@ -10,7 +11,7 @@ import org.eclipse.jface.text.rules.*;
 public class JSSingleLineCommentRule extends EndOfLineRule {
 	
 	public JSSingleLineCommentRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(JSScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public JSSingleLineCommentRule(IToken token) {

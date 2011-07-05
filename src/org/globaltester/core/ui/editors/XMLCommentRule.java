@@ -1,6 +1,7 @@
 package org.globaltester.core.ui.editors;
 
 import org.eclipse.jface.text.rules.*;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * MultiLineRule that matches XML comments
@@ -10,7 +11,7 @@ import org.eclipse.jface.text.rules.*;
 public class XMLCommentRule extends MultiLineRule {
 	
 	public XMLCommentRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(XMLScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public XMLCommentRule(IToken token) {

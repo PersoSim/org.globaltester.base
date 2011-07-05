@@ -1,6 +1,7 @@
 package org.globaltester.core.ui.editors;
 
 import org.eclipse.jface.text.rules.*;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * MultiLineRule that matches JavaScript multi-line comments
@@ -11,7 +12,7 @@ import org.eclipse.jface.text.rules.*;
 public class JSMultiLineCommentRule extends MultiLineRule {
 
 	public JSMultiLineCommentRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(JSScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public JSMultiLineCommentRule(IToken token) {

@@ -1,6 +1,7 @@
 package org.globaltester.core.ui.editors;
 
 import org.eclipse.jface.text.rules.*;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * SingleLineRule that matches single quoted strings
@@ -10,7 +11,7 @@ import org.eclipse.jface.text.rules.*;
 public class XMLStringSingleQuotedRule extends SingleLineRule {
 	
 	public XMLStringSingleQuotedRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(XMLScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public XMLStringSingleQuotedRule(IToken token) {

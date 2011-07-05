@@ -2,6 +2,7 @@ package org.globaltester.core.ui.editors;
 
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.MultiLineRule;
+import org.globaltester.core.ui.editors.GtScanner.TokenType;
 
 /**
  * MultiLineRule that matches XML Processing Instuctions
@@ -12,7 +13,7 @@ public class XMLProcInstrRule extends MultiLineRule {
 	
 
 	public XMLProcInstrRule(String contentType) {
-		this(ContentTypeAppearanceManager.getContentTypeToken(contentType));
+		this(XMLScanner.getTokenForContentType(contentType, TokenType.CONTENT_TYPE));
 	}
 	
 	public XMLProcInstrRule(IToken token) {
