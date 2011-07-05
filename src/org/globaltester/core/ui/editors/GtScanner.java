@@ -1,7 +1,6 @@
 package org.globaltester.core.ui.editors;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -85,34 +84,15 @@ public class GtScanner extends RuleBasedPartitionScanner {
 		this.setDefaultReturnToken(defaultToken);
 	}
 
-	protected ArrayList<IPredicateRule> rules = new ArrayList<IPredicateRule>();
+	protected HashMap<String, IPredicateRule> rules = new HashMap<String, IPredicateRule>();
 
 	public String[] getLegalContentTypes() {
-		IPredicateRule[] ruleArray = rules.toArray(new IPredicateRule[]{});
-		String[] contentTypes = new String[ruleArray.length];
-		
-		for (int i = 0; i < ruleArray.length; i++) {
-			Object o = null;
-			
-			try {
-				o = ruleArray[i].getSuccessToken().getData();
-			} catch (NullPointerException npe) {
-				//ignore, this content type will be added as CT_DEFAULT
-			}
-			if (o instanceof String) {
-				contentTypes[i] = (String) o;	
-			} else {
-				contentTypes[i] = null; //GtScanner.CT_DEFAULT;
-			}
-			
-		}
-		
-		return contentTypes;
+		return rules.keySet().toArray(new String[]{});
 	}
 
-	public void addPredicateRule(IPredicateRule ruleForContentType) {
-		rules.add(ruleForContentType);
-		setPredicateRules(rules.toArray(new IPredicateRule[]{}));
+	public void addPredicateRule(String contentType, IPredicateRule ruleForContentType) {
+		rules.put(contentType, ruleForContentType);
+		setPredicateRules(rules.values().toArray(new IPredicateRule[]{}));
 	}
 
 }

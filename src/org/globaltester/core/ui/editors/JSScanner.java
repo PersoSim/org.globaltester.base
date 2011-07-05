@@ -77,7 +77,7 @@ public class JSScanner extends GtScanner {
 			IPredicateRule curRule = getRuleForContentType(curContentType,
 					tokenType);
 			if (curRule != null) {
-				scanner.addPredicateRule(curRule);
+				scanner.addPredicateRule(curContentType, curRule);
 			}
 		}
 	}
