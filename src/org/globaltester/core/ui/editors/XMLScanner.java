@@ -1,14 +1,10 @@
 package org.globaltester.core.ui.editors;
 
-import java.lang.reflect.Constructor;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IPredicateRule;
-import org.eclipse.jface.text.rules.IToken;
-import org.eclipse.jface.text.rules.Token;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
@@ -19,14 +15,13 @@ import org.eclipse.swt.widgets.Display;
  * @author amay
  * 
  */
-public class XMLScanner extends GTRuleBasedPartitionScanner {
+public class XMLScanner extends GtScanner {
 	public final static String CT_XML_PROC_INSTR = "__XML_PROC_INSTR";
 	public final static String CT_XML_COMMENT = "__XML_COMMENT";
 	public final static String CT_XML_TAG = "__XML_TAG";
 	public final static String CT_XML_STRING_SINGLE_QUOTED = "__XML_STRING_SINGLE_QUOTED";
 	public final static String CT_XML_STRING_DOUBLE_QUOTED = "__XML_STRING_DOUBLE_QUOTED";
 
-	public static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 	static {
 		// add required data for content type XML_PROC_INSTR
 		EnumMap<TokenType, Object> eMap = new EnumMap<TokenType, Object>(TokenType.class);
@@ -65,46 +60,8 @@ public class XMLScanner extends GTRuleBasedPartitionScanner {
 	}
 
 	public XMLScanner(TokenType tokenType) {
+		super(tokenType);
 		XMLScanner.addAllPredicateRules(this, tokenType);
-	}
-
-	private static IPredicateRule getRuleForContentType(String contentType,
-			TokenType tokenType) {
-		Object ruleInstance = null;
-		if (contentTypes.containsKey(contentType)) {
-			IToken token = getTokenForContentType(contentType, tokenType);
-			Class<?> paramTypes[] = new Class<?>[1];
-			paramTypes[0] = IToken.class;
-
-			Class<?> ruleClass = (Class<?>) contentTypes.get(contentType).get(TokenType.CONTENT_TYPE);
-			try {
-				Constructor<?> c = ruleClass.getConstructor(IToken.class);
-				ruleInstance = c.newInstance(new Object[] { token });
-			} catch (Exception e) {
-				// ignore rule if it can not be instantiated
-			}
-		}
-
-		if ((ruleInstance != null) && (ruleInstance instanceof IPredicateRule)) {
-			return (IPredicateRule) ruleInstance;
-		} else {
-			return null;
-		}
-
-	}
-
-	private static IToken getTokenForContentType(String contentType,
-			TokenType tokenType) {
-		switch (tokenType) {
-		case CONTENT_TYPE:
-			return new Token(contentType);
-		case TEXT_ATTRIBUTES:
-			return new Token(contentTypes.get(contentType).get(TokenType.TEXT_ATTRIBUTES));
-
-		default:
-			return null;
-		}
-
 	}
 
 	public String[] getSupportedContentTypes() {
@@ -117,13 +74,16 @@ public class XMLScanner extends GTRuleBasedPartitionScanner {
 	 * @param scanner scanner to add the rules to
 	 * @param tokenType EnumType of GTRuleBasedPartitionScanner.TokenType that represents the type of token to be added
 	 */
-	public static void addAllPredicateRules(
-			GTRuleBasedPartitionScanner scanner, TokenType tokenType) {
+	public static void addAllPredicateRules(GtScanner scanner,
+			TokenType tokenType) {
 		for (Iterator<String> contentTypesIter = contentTypes.keySet()
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
-			scanner.addPredicateRule(getRuleForContentType(curContentType,
-					tokenType));
+			IPredicateRule curRule = getRuleForContentType(curContentType,
+					tokenType);
+			if (curRule != null) {
+				scanner.addPredicateRule(curRule);
+			}
 		}
 	}
 

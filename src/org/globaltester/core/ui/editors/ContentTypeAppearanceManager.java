@@ -114,7 +114,7 @@ public class ContentTypeAppearanceManager {
 			contentTypeAppearanceTable.put(contentType, token);
 		} else if (CONTENT_TYPE_JS.equals(contentType)) {
 			token = new Token(new TextAttribute(
-					getColor(ColorConstants.JS_CODE)));
+					getColor(ColorConstants.JS_KEYWORD)));
 			contentTypeAppearanceTable.put(contentType, token);
 		} else {
 			//FIXME remove the print statement below 
