@@ -1,5 +1,6 @@
 package org.globaltester.core.ui.editors;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
 
@@ -72,6 +73,32 @@ public class JSScanner extends GtScanner {
 	public static void addAllPredicateRules(GtScanner scanner,
 			TokenType tokenType) {
 		for (Iterator<String> contentTypesIter = contentTypes.keySet()
+				.iterator(); contentTypesIter.hasNext();) {
+			String curContentType = contentTypesIter.next();
+			IPredicateRule curRule = getRuleForContentType(curContentType,
+					tokenType);
+			if (curRule != null) {
+				scanner.addPredicateRule(curContentType, curRule);
+			}
+		}
+	}
+
+	/**
+	 * Adds all JSs related predicate rules that define document partitions to
+	 * the given scanner
+	 * 
+	 * @param scanner
+	 *            scanner to add the rules to
+	 * @param tokenType
+	 *            EnumType of GTRuleBasedPartitionScanner.TokenType that
+	 *            represents the type of token to be added
+	 */
+	public static void addAllPartitionRules(GtScanner scanner,
+			TokenType tokenType) {
+		ArrayList<String> partitionContentTypes = new ArrayList<String>();
+		partitionContentTypes.add(CT_JS_MULTILINE_COMMENT);
+		
+		for (Iterator<String> contentTypesIter = partitionContentTypes
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,

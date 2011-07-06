@@ -22,16 +22,6 @@ public class GtScanner extends RuleBasedPartitionScanner {
 	public static final String CT_DEFAULT = "__DEFAULT";
 
 	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
-	//init supported content types
-	static {
-		// add required data for default content type
-//		EnumMap<TokenType, Object> eMap = new EnumMap<TokenType, Object>(TokenType.class);
-//		eMap.put(TokenType.CONTENT_TYPE, null); //no rule required for default content type
-//		eMap.put(TokenType.TEXT_ATTRIBUTES, new TextAttribute(new Color(Display.getCurrent(),
-//				ColorConstants.DEFAULT)));
-//		contentTypes.put(ContentTypeAppearanceManager.CONTENT_TYPE_DEFAULT, eMap);
-
-	}
 	
 	protected static IPredicateRule getRuleForContentType(String contentType,
 			TokenType tokenType) {
