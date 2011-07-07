@@ -4,6 +4,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 public class GlobalTesterNavigator extends CommonNavigator {
+	public static final String VIEW_ID = "org.globaltester.core.ui.views.GlobalTesterNavigator";
 
 	@Override
 	protected Object getInitialInput() {
