@@ -13,6 +13,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/jdom.jar
 Export-Package: org.globaltester.core,
+ org.globaltester.core.resources,
  org.globaltester.core.xml,
  org.jdom,
  org.jdom.adapters,
