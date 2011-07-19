@@ -17,14 +17,11 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		String editorArea = layout.getEditorArea();
 		
 		
-		 // Top left: GlobalTesterNavigator view and Bookmarks view placeholder
+		 // Top left: GlobalTesterNavigator view
 		 IFolderLayout topLeft = layout.createFolder(ID_FOLDER_TOPLEFT, IPageLayout.LEFT, 0.25f,
 		    editorArea);
 		 topLeft.addView(GlobalTesterNavigator.VIEW_ID);
-		 topLeft.addView(IPageLayout.ID_RES_NAV);
-		 topLeft.addPlaceholder(IPageLayout.ID_BOOKMARKS);
 		 
-
 		 // Bottom left: Outline view and Property Sheet view
 		 IFolderLayout bottomLeft = layout.createFolder(ID_FOLDER_BOTTOMLEFT, IPageLayout.BOTTOM, 0.50f,
 		 	   ID_FOLDER_TOPLEFT);
