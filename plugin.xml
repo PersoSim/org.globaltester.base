@@ -51,6 +51,7 @@
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
+            inheritBindingsFromViewer="org.eclipse.ui.navigator.ProjectExplorer"
             popupMenuId="org.globaltester.core.ui.views.GlobalTesterNavigator.PopupMenu"
             viewerId="org.globaltester.core.ui.views.GlobalTesterNavigator">
       </viewer>
@@ -63,13 +64,5 @@
             </contentExtension>
          </includes>
       </viewerContentBinding>
-      <viewerActionBinding
-            viewerId="org.globaltester.core.ui.views.GlobalTesterNavigator">
-         <includes>
-            <actionExtension
-                  pattern="org.eclipse.ui.navigator.resources.*">
-            </actionExtension>
-         </includes>
-      </viewerActionBinding>
    </extension>
 </plugin>
