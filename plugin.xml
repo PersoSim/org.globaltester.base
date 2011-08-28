@@ -35,6 +35,13 @@
       </category>
    </extension>
    <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="org.globaltester.core.ui.importWizards.category"
+            name="GlobalTester">
+      </category>
+   </extension>
+   <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="org.eclipse.ui.model.WorkbenchContentProvider"
