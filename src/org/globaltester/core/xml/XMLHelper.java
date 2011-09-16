@@ -29,16 +29,26 @@ public class XMLHelper {
 	 * 
 	 * @param iFile
 	 *            Resource that contains the XML file
+	 * @return generated Document or null if an error occurs (e.g. iFile does not exist, is not a file)
+	 */
+	public static Document readDocument(IFile iFile) {
+		return readDocument(iFile, false); //TODO enable validation by default
+	}
+	
+	/**
+	 * Build an XML document from a given IFile.
+	 * 
+	 * @param iFile
+	 *            Resource that contains the XML file
 	 * @param validate
 	 *            whather the input shall be validated by the parser or not
-	 * @return generated Document
+	 * @return generated Document or null if an error occurs (e.g. iFile does not exist, is not a file)
 	 */
 	public static Document readDocument(IFile iFile, boolean validate) {
 		Document doc = null;
 
 		File file = iFile.getLocation().toFile();
 		if (!file.exists() || !file.isFile()) {
-			// TODO handle this problem
 			return null;
 		}
 
