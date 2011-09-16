@@ -54,20 +54,16 @@ public class GtResourceHelper {
 	 * 
 	 * @param currentScriptPlugin
 	 * @param project
+	 * @throws IOException 
 	 */
 	public static void copyPluginContent2WorkspaceProject(String currentScriptPlugin,
-			IProject project) {
+			IProject project) throws IOException {
 
 		// get source path
 		Bundle curBundle = Platform.getBundle(currentScriptPlugin);
 		URL url = FileLocator.find(curBundle, new Path("/"), null);
-		IPath pluginDir = null;
-		try {
-			pluginDir = new Path(FileLocator.toFileURL(url).getPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
+		
 		// define files to be copied
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
@@ -75,15 +71,11 @@ public class GtResourceHelper {
 		String[] children = new String[] {"TestCases"};
 		
 		//copy files
-		try {
-			for (int i = 0; i < children.length; i++) {
-				copyFiles(new File(source, children[i]), new File(
-						destination, children[i]));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (int i = 0; i < children.length; i++) {
+			copyFiles(new File(source, children[i]), new File(
+					destination, children[i]));
 		}
+		
 		
 		//refresh workspace
 		
