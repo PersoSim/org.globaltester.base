@@ -2,5 +2,5 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Concepts" link_to="toc/developer/toc.xml#concepts"> 
-	<topic label="Development Guidelines" href="html/developer/concepts/devGuidellines.html"/> 
+	<topic label="Development Guidelines" href="html/developer/concepts/devGuidelines.html"/> 
 </toc>
