@@ -13,8 +13,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
@@ -86,7 +84,9 @@ public class GtResourceHelper {
 
 		if (sourceLocation.isDirectory()) {
 			if (!targetLocation.exists()) {
-				targetLocation.mkdir();
+				if (!targetLocation.mkdir()) {
+					throw new IOException("Target directory \""+targetLocation.getAbsolutePath()+"\" can not be created.");
+				}
 			}
 
 			String[] children = sourceLocation.list();
@@ -99,13 +99,16 @@ public class GtResourceHelper {
 			InputStream in = new FileInputStream(sourceLocation);
 			OutputStream out = new FileOutputStream(targetLocation);
 
+			try {
 			byte[] buf = new byte[1024];
 			int len;
 			while ((len = in.read(buf)) > 0) {
 				out.write(buf, 0, len);
 			}
-			in.close();
-			out.close();
+			} finally{
+				in.close();
+				out.close();	
+			}			
 		}
 	}
 }
