@@ -35,7 +35,7 @@ public class GtScanner extends RuleBasedPartitionScanner {
 			try {
 				Constructor<?> c = ruleClass.getConstructor(IToken.class);
 				ruleInstance = c.newInstance(new Object[] { token });
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				// ignore rule if it can not be instantiated
 			}
 		}
