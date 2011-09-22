@@ -67,6 +67,7 @@ public class GtScanner extends RuleBasedPartitionScanner {
 		switch (tokenType) {
 		case CONTENT_TYPE:
 			defaultToken =  new Token(CT_DEFAULT);
+			break;
 		case TEXT_ATTRIBUTES:
 			defaultToken = new Token(new TextAttribute(new Color(Display.getCurrent(),
 					ColorConstants.DEFAULT)));
