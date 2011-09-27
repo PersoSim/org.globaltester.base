@@ -13,11 +13,15 @@
    <extension
          point="org.eclipse.ui.views">
          <view
-         id="org.globaltester.core.ui.views.GlobalTesterNavigator"
-         name="GlobalTester Navigator"
-         class="org.globaltester.core.ui.views.GlobalTesterNavigator"
-         >
+               category="org.globaltester.core.ui.category.globaltester"
+               class="org.globaltester.core.ui.views.GlobalTesterNavigator"
+               id="org.globaltester.core.ui.views.GlobalTesterNavigator"
+               name="GlobalTester Navigator">
          </view>
+         <category
+               id="org.globaltester.core.ui.category.globaltester"
+               name="GlobalTester">
+         </category>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
