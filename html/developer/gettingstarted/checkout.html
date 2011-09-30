@@ -12,10 +12,13 @@
 		Subversion repository. Access to this repository is controlled by HJP
 		Consulting and you may get an account by sending a request via eMail
 		to support@hjp-consulting.com.</p>
-	<p>The central repository currently can be accessed using the following URL 
-	<a href="http://subversion/repo/globaltester">http://subversion/repo/globaltester</a>. 
-		This can currently only be accesed from within the HJP private network a 
-		public access for this is planned and will be listed here when available.</p>
+	<p>
+		The central repository currently can be accessed using the following
+		URL <a href="http://subversion/repo/globaltester">http://subversion/repo/globaltester</a>.
+		This can currently only be accesed from within the HJP private network
+		a public access for this is planned and will be listed here when
+		available.
+	</p>
 	<p>After you have configured your access to the server (using your
 		credentials) you will see a wide variety of plugin/feature projects.
 		Each of them represents a small part of the available GlobalTester
@@ -28,28 +31,46 @@
 		your workspace with the components you need select the according
 		CQUERY or MSPEC, right-click it, and select "Buckminster > Import...".
 		This will fire up a wizard that guides you through the process.</p>
-	<p>Below you will find a list of interesting Buckminster targets
-		and what they are used for. Depending on your subscription you might
-		not be able to import all of them (although you can see the
-		Buckminster definitions). Please make sure that the first target you
-		materialize is the target platform. This ensures that you develop
-		against the correct target definition and makes sure that no
-		non-GlobalTester components get materialized inside your workspace
-		instead of inside the targetplatform.</p>
-		<table>
-  <tr>
-    <th>File</th>
-    <th>Usage</th>
-  </tr>
-  <tr>
-    <td>targetplatform.mspec</td>
-    <td>Get the correct targetplatform downloaded and set up to develop with</td>
-  </tr>
-  <tr>
-    <td>globaltester_rcp.cquery</td>
-    <td>Component query that describes everything needed to get a minimal GlobalTester as standalone RCP application.</td>
-  </tr>
-</table>
+	<p>The first thing you need to get into your workspace is the
+		target platform. This ensures that you develop against the correct
+		target definition and makes sure that no non-GlobalTester components
+		get materialized inside your workspace instead of inside the
+		targetplatform. To get it import the targetplatform.mspec using
+		Buckminster. Double-check that you import the MSPEC not the CQUERY,
+		this ensures that your targetplatform is setup accordingly to the
+		automated build infrastructure. Please make sure that this is the
+		first target you materialize before any other CQUERY. Be aware this
+		will take a while and you will see only the Eclipse-Feature-Project
+		org.globaltester.targetplatform materialize in the workspace while the
+		plugins that make up your target platform will be materialized to a
+		hidden directory. (The hidden directory is named within the
+		targetplatform.mspec so you can take a look at what happend, but
+		please do not change anything here, as it most probalby will break the
+		build infrastructure).</p>
+	<p>In order to get the source of plug-ins to work with you will
+		need to materialize at least one other CQUERY into your workspace.
+		Below you will find a list of interesting Buckminster targets and what
+		they are used for. Depending on your subscription you might not be
+		able to import all of them (although you can see the Buckminster
+		definitions).</p>
+	<table>
+		<tr>
+			<th>File</th>
+			<th>Usage</th>
+		</tr>
+		<tr>
+			<td>targetplatform.mspec</td>
+			<td>Get the correct targetplatform downloaded and set up to
+				develop with. To materialize the targetplatform always use the MSPEC
+				as it ensures the correct setup in accordance with the build
+				infrastructure.</td>
+		</tr>
+		<tr>
+			<td>globaltester_rcp.cquery</td>
+			<td>Component query that describes everything needed to get a
+				minimal GlobalTester as standalone RCP application.</td>
+		</tr>
+	</table>
 
 </body>
 </html>
