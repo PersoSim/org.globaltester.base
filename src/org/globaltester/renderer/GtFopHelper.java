@@ -39,8 +39,9 @@ public class GtFopHelper {
 			rootLogger.addAppender(new NullAppender());
 
 			// create the fop factory
-			fopFactory = FopFactory.newInstance();
-			fopFactory.addElementMapping(new FOElementMapping());
+			FopFactory factory = FopFactory.newInstance();
+			factory.addElementMapping(new FOElementMapping());
+			fopFactory = factory;
 		}
 
 		return fopFactory;

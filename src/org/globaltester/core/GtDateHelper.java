@@ -4,9 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class GtDateHelper {
-	static SimpleDateFormat defaultSdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	static final String gtDefaultDateFormat = "yyyyMMddHHmmss"; 
 	
 	public static String getCurrentTimeString(){
+		SimpleDateFormat defaultSdf = new SimpleDateFormat(gtDefaultDateFormat);
 		return defaultSdf.format(Calendar.getInstance().getTime());
 	}
 }

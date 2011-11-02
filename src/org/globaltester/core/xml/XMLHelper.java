@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
+import org.globaltester.core.Activator;
+import org.globaltester.logging.logger.GtErrorLogger;
 import org.globaltester.logging.logger.TestLogger;
 import org.jdom.DocType;
 import org.jdom.Document;
@@ -82,13 +84,24 @@ public class XMLHelper {
 		serializer.setFormat(Format.getPrettyFormat());
 
 		// write the output to file
+		FileOutputStream fos = null;
 		try {
-			FileOutputStream fos = new FileOutputStream(file);
+			fos = new FileOutputStream(file);
 			serializer.output(doc, fos);
-			fos.close();
+			
 		} catch (IOException e) {
 			TestLogger.error(e);
 			return;
+		} finally {
+			if (fos != null) {
+				try {
+
+					fos.close();
+
+				} catch (IOException e) {
+					GtErrorLogger.log(Activator.PLUGIN_ID, e);
+				}
+			}
 		}
 	}
 

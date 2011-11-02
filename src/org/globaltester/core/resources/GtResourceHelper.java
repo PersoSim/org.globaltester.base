@@ -52,40 +52,41 @@ public class GtResourceHelper {
 	 * 
 	 * @param currentScriptPlugin
 	 * @param project
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static void copyPluginContent2WorkspaceProject(String currentScriptPlugin,
-			IProject project) throws IOException {
+	public static void copyPluginContent2WorkspaceProject(
+			String currentScriptPlugin, IProject project) throws IOException {
 
 		// get source path
 		Bundle curBundle = Platform.getBundle(currentScriptPlugin);
 		URL url = FileLocator.find(curBundle, new Path("/"), null);
 		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
-		
+
 		// define files to be copied
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
-		//TODO make sure that all contained/required files are copied
-		String[] children = new String[] {"TestCases"};
-		
-		//copy files
+		// TODO make sure that all contained/required files are copied
+		String[] children = new String[] { "TestCases" };
+
+		// copy files
 		for (int i = 0; i < children.length; i++) {
-			copyFiles(new File(source, children[i]), new File(
-					destination, children[i]));
+			copyFiles(new File(source, children[i]), new File(destination,
+					children[i]));
 		}
-		
-		
-		//refresh workspace
-		
+
+		// refresh workspace
+
 	}
-	
+
 	private static void copyFiles(File sourceLocation, File targetLocation)
 			throws IOException {
 
 		if (sourceLocation.isDirectory()) {
 			if (!targetLocation.exists()) {
 				if (!targetLocation.mkdir()) {
-					throw new IOException("Target directory \""+targetLocation.getAbsolutePath()+"\" can not be created.");
+					throw new IOException("Target directory \""
+							+ targetLocation.getAbsolutePath()
+							+ "\" can not be created.");
 				}
 			}
 
@@ -96,19 +97,29 @@ public class GtResourceHelper {
 			}
 		} else {
 
-			InputStream in = new FileInputStream(sourceLocation);
-			OutputStream out = new FileOutputStream(targetLocation);
+			InputStream in = null;
+			OutputStream out = null;
 
 			try {
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = in.read(buf)) > 0) {
-				out.write(buf, 0, len);
+				in = new FileInputStream(sourceLocation);
+				out = new FileOutputStream(targetLocation);
+
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+			} finally {
+				try {
+					if (in != null) {
+						in.close();
+					}
+				} finally {
+					if (out != null) {
+						out.close();
+					}
+				}
 			}
-			} finally{
-				in.close();
-				out.close();	
-			}			
 		}
 	}
 }
