@@ -68,12 +68,12 @@ public class XMLHelper {
 	/**
 	 * Writes the xml structure to file
 	 * 
-	 * @param iFile
+	 * @param file
 	 *            File to which the document should be written
 	 * @param doc
 	 *            Document which should be written to the file
 	 */
-	public static void saveDoc(IFile iFile, Document doc) {
+	public static void saveDoc(File file, Document doc) {
 
 		// prepare output serializer
 		Format format = Format.getRawFormat();
@@ -83,24 +83,27 @@ public class XMLHelper {
 
 		// write the output to file
 		try {
-			FileOutputStream fos = new FileOutputStream(iFile.getLocation().toFile());
+			FileOutputStream fos = new FileOutputStream(file);
 			serializer.output(doc, fos);
 			fos.close();
 		} catch (IOException e) {
 			TestLogger.error(e);
 			return;
 		}
-
 	}
 
 	public static void saveDoc(IFile iFile, Element root) {
+		saveDoc(iFile.getLocation().toFile(), root);
+	}
+
+	public static void saveDoc(File file, Element root) {
 		Document doc = new Document(root);
-		saveDoc(iFile, doc);
+		saveDoc(file, doc);
 	}
 
 	public static void saveDoc(IFile iFile, Element root, DocType docType) {
 		Document doc = new Document(root, docType);
-		saveDoc(iFile, doc);
+		saveDoc(iFile.getLocation().toFile(), doc);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -108,7 +111,7 @@ public class XMLHelper {
 		Document doc = new Document(root, docType);
 		doc.getContent().add(0, pi);
 		
-		saveDoc(iFile, doc);
+		saveDoc(iFile.getLocation().toFile(), doc);
 	}
 	
 	
