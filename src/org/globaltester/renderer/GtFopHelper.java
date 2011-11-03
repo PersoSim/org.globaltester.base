@@ -60,15 +60,14 @@ public class GtFopHelper {
 				destFile));
 
 		try {
-			String baseURL = "file:///" + destFile.getParent() +"/";
-			baseURL = destFile.getParentFile().toURI().toURL().toString();
-			baseURL = destFile.getParentFile().toURI().toURL().toExternalForm();
+			
 //			baseURL = baseURL.replaceAll("file:", "file://");
 			//org.apache.fop.configuration.Configuration.put("baseDir",baseURL);
-			getFopFactory().setBaseURL(baseURL);
+//			getFopFactory().setBaseURL(baseURL);
 			
 			FOUserAgent foUserAgent = getFopFactory().newFOUserAgent();
-			foUserAgent.setBaseURL(baseURL);
+			String baseUrlString = destFile.getParentFile().toURI().toURL().toExternalForm();
+			foUserAgent.setBaseURL(baseUrlString);
 
 			
 
@@ -87,8 +86,7 @@ public class GtFopHelper {
 			Fop fop = getFopFactory().newFop(MimeConstants.MIME_PDF, foUserAgent, out);
 			Source xslt = new StreamSource(styleSheet);
 			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer(xslt); // identity
-																	// transformer
+			Transformer transformer = factory.newTransformer(xslt);
 			transformer.setParameter("imgpath", destFile.getParent());
 
 			Result res = new SAXResult(fop.getDefaultHandler());
