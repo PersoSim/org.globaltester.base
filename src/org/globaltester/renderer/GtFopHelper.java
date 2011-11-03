@@ -60,8 +60,17 @@ public class GtFopHelper {
 				destFile));
 
 		try {
+			String baseURL = "file:///" + destFile.getParent() +"/";
+			baseURL = destFile.getParentFile().toURI().toURL().toString();
+			baseURL = destFile.getParentFile().toURI().toURL().toExternalForm();
+//			baseURL = baseURL.replaceAll("file:", "file://");
+			//org.apache.fop.configuration.Configuration.put("baseDir",baseURL);
+			getFopFactory().setBaseURL(baseURL);
+			
 			FOUserAgent foUserAgent = getFopFactory().newFOUserAgent();
-			foUserAgent.setBaseURL("file:" + destFile.getParent());
+			foUserAgent.setBaseURL(baseURL);
+
+			
 
 			// set up pdf renderer
 			GTPDFRenderer pdfRenderer = new GTPDFRenderer();

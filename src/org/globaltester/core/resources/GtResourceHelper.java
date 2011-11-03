@@ -78,7 +78,7 @@ public class GtResourceHelper {
 
 	}
 
-	private static void copyFiles(File sourceLocation, File targetLocation)
+	public static void copyFiles(File sourceLocation, File targetLocation)
 			throws IOException {
 
 		if (sourceLocation.isDirectory()) {
