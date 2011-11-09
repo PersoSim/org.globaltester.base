@@ -10,8 +10,10 @@ import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
 /**
- * IRule that tries to match the scanner against a
- * regular expression pattern.
+ * IRule that tries to match the scanner against a regular expression pattern.
+ * 
+ * Returns after the first match found in the scanner, this means only the first
+ * step of repetitive regex will be found
  * 
  * @author amay
  * 
@@ -20,7 +22,7 @@ public class RegexRule implements IRule, IPredicateRule {
 
 	IToken token;
 	Pattern pattern;
-	
+
 	public RegexRule(String pattern, IToken token) {
 
 		this.token = token;
@@ -33,7 +35,7 @@ public class RegexRule implements IRule, IPredicateRule {
 		String stream = "";
 		int curChar;
 		int count = 0;
-		
+
 		do {
 			Matcher m = pattern.matcher(stream);
 			if (m.matches()) {
@@ -44,9 +46,8 @@ public class RegexRule implements IRule, IPredicateRule {
 			count++;
 			stream += (char) curChar;
 
-
 		} while (!(curChar == '\n' || curChar == '\r' || curChar == ICharacterScanner.EOF));
-		
+
 		// if not matched unread the scanner count times
 		for (int i = 0; i < count; i++) {
 			scanner.unread();
