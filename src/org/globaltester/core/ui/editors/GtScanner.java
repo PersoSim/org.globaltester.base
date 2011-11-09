@@ -24,10 +24,10 @@ public class GtScanner extends RuleBasedPartitionScanner {
 	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 	
 	protected static IPredicateRule getRuleForContentType(String contentType,
-			TokenType tokenType) {
+			TokenType tokenType, HashMap<String, EnumMap<TokenType, Object>> contentTypes) {
 		Object ruleInstance = null;
 		if (contentTypes.containsKey(contentType)) {
-			IToken token = getTokenForContentType(contentType, tokenType);
+			IToken token = getTokenForContentType(contentType, tokenType, contentTypes);
 			Class<?> paramTypes[] = new Class<?>[1];
 			paramTypes[0] = IToken.class;
 
@@ -48,8 +48,8 @@ public class GtScanner extends RuleBasedPartitionScanner {
 
 	}
 
-	protected static IToken getTokenForContentType(String contentType,
-			TokenType tokenType) {
+	public static IToken getTokenForContentType(String contentType,
+			TokenType tokenType, HashMap<String, EnumMap<TokenType, Object>> contentTypes) {
 		switch (tokenType) {
 		case CONTENT_TYPE:
 			return new Token(contentType);

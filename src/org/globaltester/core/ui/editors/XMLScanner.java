@@ -2,10 +2,12 @@ package org.globaltester.core.ui.editors;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IPredicateRule;
+import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
@@ -17,11 +19,14 @@ import org.eclipse.swt.widgets.Display;
  * 
  */
 public class XMLScanner extends GtScanner {
+	
 	public final static String CT_XML_PROC_INSTR = "__XML_PROC_INSTR";
 	public final static String CT_XML_COMMENT = "__XML_COMMENT";
 	public final static String CT_XML_TAG = "__XML_TAG";
 	public final static String CT_XML_STRING_SINGLE_QUOTED = "__XML_STRING_SINGLE_QUOTED";
 	public final static String CT_XML_STRING_DOUBLE_QUOTED = "__XML_STRING_DOUBLE_QUOTED";
+	
+	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 
 	static {
 		// add required data for content type XML_PROC_INSTR
@@ -90,7 +95,7 @@ public class XMLScanner extends GtScanner {
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,
-					tokenType);
+					tokenType, contentTypes);
 			if (curRule != null) {
 				scanner.addPredicateRule(curContentType, curRule);
 			}
@@ -118,11 +123,16 @@ public class XMLScanner extends GtScanner {
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,
-					tokenType);
+					tokenType, contentTypes);
 			if (curRule != null) {
 				scanner.addPredicateRule(curContentType, curRule);
 			}
 		}
+	}
+
+	public static IToken getTokenForContentType(String contentType,
+			TokenType tokenType) {
+		return getTokenForContentType(contentType, tokenType, contentTypes);
 	}
 
 }

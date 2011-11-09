@@ -2,10 +2,12 @@ package org.globaltester.core.ui.editors;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IPredicateRule;
+import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
@@ -22,6 +24,8 @@ public class JSScanner extends GtScanner {
 	public final static String CT_JS_KEYWORD = "__JS_KEYWORD";
 	public final static String CT_JS_MULTILINE_COMMENT = "__JS_MULTILINE_COMMENT";
 	public final static String CT_JS_SINGLELINE_COMMENT = "__JS_SINGLELINE_COMMENT";
+	
+	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 
 	// init supported content types
 	static {
@@ -76,7 +80,7 @@ public class JSScanner extends GtScanner {
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,
-					tokenType);
+					tokenType, contentTypes);
 			if (curRule != null) {
 				scanner.addPredicateRule(curContentType, curRule);
 			}
@@ -102,11 +106,16 @@ public class JSScanner extends GtScanner {
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,
-					tokenType);
+					tokenType, contentTypes);
 			if (curRule != null) {
 				scanner.addPredicateRule(curContentType, curRule);
 			}
 		}
+	}
+
+	public static IToken getTokenForContentType(String contentType,
+			TokenType tokenType) {
+		return getTokenForContentType(contentType, tokenType, contentTypes);
 	}
 
 }
