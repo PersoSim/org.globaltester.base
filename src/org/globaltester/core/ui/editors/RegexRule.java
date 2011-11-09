@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.jface.text.rules.ICharacterScanner;
+import org.eclipse.jface.text.rules.IPredicateRule;
 import org.eclipse.jface.text.rules.IRule;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
@@ -15,7 +16,7 @@ import org.eclipse.jface.text.rules.Token;
  * @author amay
  * 
  */
-public class RegexRule implements IRule {
+public class RegexRule implements IRule, IPredicateRule {
 
 	IToken token;
 	Pattern pattern;
@@ -53,6 +54,17 @@ public class RegexRule implements IRule {
 
 		return Token.UNDEFINED;
 
+	}
+
+	@Override
+	public IToken getSuccessToken() {
+		return token;
+	}
+
+	@Override
+	public IToken evaluate(ICharacterScanner scanner, boolean resume) {
+		// resuming is not supported by this rule and therfore ignored
+		return evaluate(scanner);
 	}
 
 }
