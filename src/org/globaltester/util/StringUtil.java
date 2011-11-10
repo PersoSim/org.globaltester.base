@@ -75,7 +75,6 @@ public class StringUtil {
 			while (!curString.startsWith(commonPrefix)) {
 				commonPrefix = commonPrefix.substring(0,
 						commonPrefix.length() - 1);
-				System.out.println(commonPrefix + "*");
 			}
 			if (commonPrefix.length() <= 0)
 				break; // the other
