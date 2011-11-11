@@ -11,7 +11,7 @@ public class StringUtil {
 	 */
 	public static String formatCode(String code) {
 		String[] lines = code.split("\n");
-		//replace all leading tabs with whitespaces
+		// replace all leading tabs with whitespaces
 		for (int i = 0; i < lines.length; i++) {
 			String remainingCurrentLine = lines[i];
 			String whitesapce = "";
@@ -29,11 +29,11 @@ public class StringUtil {
 			if (remainingCurrentLine.length() > 0) {
 				lines[i] = whitesapce + remainingCurrentLine;
 			} else {
-				lines[i]  ="";
+				lines[i] = "";
 			}
 		}
-	
-		//prepare a common whitespace string
+
+		// prepare a common whitespace string
 		String whiteLine = " ";
 		for (int i = 0; i < lines.length; i++) {
 			while (whiteLine.length() < lines[i].length()) {
@@ -51,16 +51,16 @@ public class StringUtil {
 				res += "\n";
 			}
 		}
-		
-		//remove leading empty lines
+
+		// remove leading empty lines
 		while (res.startsWith("\n")) {
 			res = res.substring(1);
 		}
-		//remove trailing empty lines
+		// remove trailing empty lines
 		while (res.endsWith("\n")) {
-			res = res.substring(0, res.length()-1);
+			res = res.substring(0, res.length() - 1);
 		}
-		
+
 		return res;
 	}
 
@@ -80,5 +80,31 @@ public class StringUtil {
 				break; // the other
 		}
 		return commonPrefix;
+	}
+
+	static final String HEX_CHARS = "0123456789ABCDEF";
+
+	public static String getHex(byte[] bytes, int offset, int length) {
+		byte[] raw = new byte[length];
+		System.arraycopy(bytes, offset, raw, 0, length);
+		
+		final StringBuilder hex = new StringBuilder(2 * raw.length);
+		for (final byte b : raw) {
+			hex.append(HEX_CHARS.charAt((b & 0xF0) >> 4));
+			hex.append(HEX_CHARS.charAt((b & 0x0F)));
+			hex.append(" ");
+		}
+		return hex.toString();
+	}
+
+	public static byte[] parseHexString(String s) {
+		s = s.replaceAll(" ", "");
+		byte[] b = new byte[s.length() / 2];
+		for (int i = 0; i < b.length; i++) {
+			int index = i * 2;
+			int v = Integer.parseInt(s.substring(index, index + 2), 16);
+			b[i] = (byte) v;
+		}
+		return b;
 	}
 }
