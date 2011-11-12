@@ -84,14 +84,23 @@ public class StringUtil {
 
 	static final String HEX_CHARS = "0123456789ABCDEF";
 
+
+
+	public static String getHex(byte b) {
+		StringBuilder hex = new StringBuilder(2);
+		hex.append(HEX_CHARS.charAt((b & 0xF0) >> 4));
+		hex.append(HEX_CHARS.charAt((b & 0x0F)));
+		return hex.toString();
+		
+	}
+	
 	public static String getHex(byte[] bytes, int offset, int length) {
 		byte[] raw = new byte[length];
 		System.arraycopy(bytes, offset, raw, 0, length);
 		
-		final StringBuilder hex = new StringBuilder(2 * raw.length);
-		for (final byte b : raw) {
-			hex.append(HEX_CHARS.charAt((b & 0xF0) >> 4));
-			hex.append(HEX_CHARS.charAt((b & 0x0F)));
+		StringBuilder hex = new StringBuilder(2 * raw.length);
+		for (byte b : raw) {
+			hex.append(getHex(b));
 			hex.append(" ");
 		}
 		return hex.toString();
