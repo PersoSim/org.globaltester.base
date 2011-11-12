@@ -103,7 +103,7 @@ public class StringUtil {
 			hex.append(getHex(b));
 			hex.append(" ");
 		}
-		return hex.toString();
+		return hex.toString().trim();
 	}
 
 	public static byte[] parseHexString(String s) {
