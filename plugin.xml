@@ -5,9 +5,10 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="GlobalTester Perspective"
             class="org.globaltester.core.ui.perspective.GlobalTesterPerspective"
-            id="org.globaltester.core.ui.perspective.GlobalTesterPerspective">
+            icon="icons/globaltester.png"
+            id="org.globaltester.core.ui.perspective.GlobalTesterPerspective"
+            name="GlobalTester Perspective">
       </perspective>
    </extension>
    <extension
@@ -15,6 +16,7 @@
          <view
                category="org.globaltester.core.ui.category.globaltester"
                class="org.globaltester.core.ui.views.GlobalTesterNavigator"
+               icon="icons/globaltester.png"
                id="org.globaltester.core.ui.views.GlobalTesterNavigator"
                name="GlobalTester Navigator">
          </view>
