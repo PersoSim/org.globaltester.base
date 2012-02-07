@@ -31,7 +31,7 @@ public class XMLHelper {
 	 * 
 	 * @param iFile
 	 *            Resource that contains the XML file
-	 * @return generated Document or null if an error occurs (e.g. iFile does not exist, is not a file)
+	 * @return generated Document or null if an error occurs (e.g. iFile does not exist, is not a valid xml file)
 	 */
 	public static Document readDocument(IFile iFile) {
 		return readDocument(iFile, false); //TODO enable validation by default
