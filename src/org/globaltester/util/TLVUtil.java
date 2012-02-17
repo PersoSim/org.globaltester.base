@@ -2,64 +2,50 @@ package org.globaltester.util;
 
 public class TLVUtil {
 	
-	
-	public int checkLengthEncoding(byte[] bs) {
+	/**
+	 * Return Tag as byte array of length 2 
+	 * 
+	 * @param bs
+	 *            byte array 
+	 * @param offset
+	 *            offset in bs to get the tag
+	 */
+	public static byte[] getTag(byte[] bs, int offset) {
 		
-		System.out.println("Checking length encoding for byte buffer: " + bs.toString());
-
-		if (bs.length == 0) {
-			System.out.println("Empty byte string!");
-		}
-
-		
-		byte firstByte = bs[0];
-		
-		int length = 0;
-			
-		if (firstByte == 0x81) {
-			
-			System.out.println("Two byte length");
-			
-			if (bs.length >= 2) {
-				byte secondByte = bs[1];
-				System.out.println("secondByte: " + secondByte);
-				
-				if (128 <= secondByte && secondByte < 255)
-					System.out.println("secondByte not in range!");
-
-				length = secondByte;
-			} else {
-				System.out.println("Wrong length encoding, expecting two bytes!");
-			}
-			
-			
-		} else if (firstByte == 0x82) {
-		
-			if (bs.length >= 2) {
-				System.out.println("Three byte length");
-					
-				byte a1 = bs[1];
-				byte a2 = bs[2];
-				
-				length = (a1 << 8) | a2;
-
-			} else {
-				System.out.println("Wrong length encoding, expecting three bytes!");
-			}
-			
+		byte tagNumber = bs[offset];
+		if ((tagNumber & 0x7F) == 0x7F) {
+			return new byte[] {bs[offset], bs[offset+1]};
 		} else {
+			return new byte[] {bs[offset]};
+		}
+	
+	}
+	
+	/**
+	 * Return length of TLV structure
+	 * 
+	 * @param bs
+	 *            byte array 
+	 * @param offset
+	 *            offset in bs to get the length bytes
+	 */
+	public static int getLength(byte[] bs, int offset) {
+		//ToDo
 		
-			System.out.println("One byte length");
-			
-			if (0 <= firstByte && firstByte <= 127)
-				System.out.println("firstByte not in range!");
-			
-			length = firstByte;
-		} 
+		return 0;
+	}
+	
+	public static byte[] getValue(byte[] bs, int offset) {
 		
-		System.out.println("Encoded length: " + length);
+		return new byte[] {bs[offset], bs[offset+1]};
+	}
+	
+	public static byte getNext(byte[] bs) {
+		byte value = 0;
+		//ToDo
 		
-		return length;
+		return value;
 	}
 
 }
+
