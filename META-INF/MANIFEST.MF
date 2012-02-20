@@ -5,4 +5,8 @@ Bundle-SymbolicName: org.globaltester.core.doc; singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.help,
- org.eclipse.help.base;bundle-version="3.5.3"
+  org.eclipse.ui,
+ org.eclipse.help.base;bundle-version="3.5.3",
+ org.eclipse.ui.cheatsheets,
+ org.globaltester.core.doc;bundle-version="3.0.0"
+

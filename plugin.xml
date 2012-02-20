@@ -40,5 +40,12 @@
             file="toc/developer/tasks.xml">
       </toc>
    </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.globaltester.core.doc.userGuide"
+            name="GlobalTester User Guide">
+      </category>
+   </extension>
 
 </plugin>
