@@ -2,6 +2,13 @@ package org.globaltester.util;
 
 public class ByteUtil {
 	
+	/**
+	 * Modify byte array with increment last byte - if last last byte in array is MaxValue 0xFF or a char "<" set byte value to 0x31 = "1" 
+	 * 
+	 * @param bs
+	 * 			Byte array
+	 */
+	
 	/*
 	 * Increment the last byte of the byte array
 	 */
@@ -19,8 +26,6 @@ public class ByteUtil {
 		} else {
 			bs[index]++;
 		}
-		
-		//return bs;
 	}
 
 }
