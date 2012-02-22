@@ -4,7 +4,7 @@ package org.globaltester.util;
 public class TLVUtil {
 	
 	/**
-	 * Return Tag as byte array of length 2 
+	 * Return TAG as byte array of length 2 
 	 * 
 	 * @param bs
 	 *            byte array 
@@ -90,5 +90,21 @@ public class TLVUtil {
 
 	}
 	
+
+	/**
+	 * Return length of hex bytes necessary to code the TLV structure with given length
+	 * 
+	 * @param length
+	 * @return length
+	 */
+
+	public static int getSizeHelper(int length) {
+		int len = 0;
+		if (length >= 0 && length <= 127) len = 1;
+		if (length >= 128 && length <= 255) len = 2;
+		if (length >= 256 && length <= 65536) len = 3;
+		return len;
+	}
+
 }
 
