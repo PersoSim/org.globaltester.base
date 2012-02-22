@@ -1,5 +1,6 @@
 package org.globaltester.util;
 
+
 public class TLVUtil {
 	
 	/**
@@ -46,6 +47,48 @@ public class TLVUtil {
 		
 		return value;
 	}
+	
 
+	/**
+	 * Return length of TLV structure according to ICAO LDS TR
+	 * 
+	 * @param ba
+	 * 			Byte array
+	 * @return length
+	 */
+
+	public static int checkLengthEncoding(byte[] ba) {
+		int k, length = 0;
+		
+		if (ba.length >= 3) {
+			
+			// Three byte length
+			if (ba[1] == (byte) 0x82) {
+				length = (int) ba[3];
+				if (length < 0)
+					length += 256;
+				k = (int) ba[2];
+				if (k < 0)
+					k += 256;
+				length += (k << 8);
+				
+			// Two byte length
+			} else if (ba[1] == (byte) 0x81) {
+				length = (int) ba[2];
+				if (length < 0)
+					length += 256;
+				
+			// One byte length
+			} else {
+				length = (int) ba[1];
+					assert length < 0 : "Invalid length in TLV structure";	
+			}
+		} else {
+			assert ba.length < 3 : "Invalid TLV structure";
+		}
+		return length;
+
+	}
+	
 }
 
