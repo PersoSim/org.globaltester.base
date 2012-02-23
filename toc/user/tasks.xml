@@ -2,10 +2,4 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Tasks" link_to="toc/user/toc.xml#tasks"> 
-	<topic label="Main Topic"  href="html/user/tasks/maintopic.html"> 
-		<topic label="Sub Topic" href="html/user/tasks/subtopic.html" /> 
-	</topic>
-	<topic label="Main Topic 2">
-		<topic label="Sub Topic 2" href="html/user/tasks/subtopic2.html" /> 
-	</topic> 
 </toc>
