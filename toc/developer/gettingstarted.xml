@@ -6,6 +6,8 @@
 		<topic label="Get an IDE" href="html/developer/gettingstarted/ide.html" />
 		<topic label="Get access" href="html/developer/gettingstarted/getAccess.html" /> 
 		<topic label="Get the code" href="html/developer/gettingstarted/checkout.html" />
+  <topic href="html/developer/gettingstarted/customerAccess.html" label="Get Customer Access">
+  </topic>
 		<!--topic label="Get customer access" href="html/developer/gettingstarted/customerAccess.html" /-->
 	</topic> 
 </toc>
