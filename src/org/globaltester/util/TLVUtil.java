@@ -70,7 +70,7 @@ public class TLVUtil {
 	}
 	
 	/**
-	 * Check if byte array is a valid TLV structure.
+	 * Check recursive if byte array is a cascaded TLV.
 	 * 
 	 */
 	public static boolean isValidTLV(byte[] ba, int offset) {
