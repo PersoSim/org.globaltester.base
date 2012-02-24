@@ -152,7 +152,14 @@ public class TLVUtil {
 	 */
 	public static boolean isConstructedTLV(byte[] ba) {
 		boolean isConstructedTLV = false;
-		//ToDo 		
+
+		byte[] checkConstructedTag = getTag(ba, 0);
+		
+		if (checkConstructedTag.length == 1) 	
+			isConstructedTLV = ((checkConstructedTag[0] & 0x20) == 0x20);
+
+		assert checkConstructedTag.length > 1 : "Check constructed TLV tag must have length 1!";
+		
 		return isConstructedTLV;
 	}
 
