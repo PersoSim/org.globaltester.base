@@ -61,9 +61,11 @@ public class TLVUtil {
 			} else {
 				length = (int) ba[offset];
 				length += 2;
+					//FIXME
 					assert length < 0 : "Invalid length in TLV structure";	
 			}
 		} else {
+			//FIXME
 			assert ba.length < 3 : "Invalid TLV structure";
 		}
 		return length;
@@ -155,10 +157,9 @@ public class TLVUtil {
 
 		byte[] checkConstructedTag = getTag(ba, 0);
 		
-		if (checkConstructedTag.length == 1) 	
-			isConstructedTLV = ((checkConstructedTag[0] & 0x20) == 0x20);
+		isConstructedTLV = ((checkConstructedTag[0] & 0x20) == 0x20);
 
-		assert checkConstructedTag.length > 1 : "Check constructed TLV tag must have length 1!";
+		//FIXME The Tag byte is on offset position "0" were the constructed bit specifies the value is constructed, which means it again holds TLV values like a SET!
 		
 		return isConstructedTLV;
 	}
