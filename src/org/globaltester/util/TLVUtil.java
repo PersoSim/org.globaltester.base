@@ -4,32 +4,36 @@ package org.globaltester.util;
 public class TLVUtil {
 	
 	/**
-	 * Return tag as byte array of length 2 
+	 * Get the tag out of (T)LV structure as byte array of length two or one depending on tag found at offset
 	 * 
-	 * @param bs
+	 * @param ba
 	 *            byte array 
 	 * @param offset
-	 *            offset in bs to get the tag
+	 *            offset in ba to get the tag
+	 * @return byte array of length one or two if two byte tag found at offset position            
 	 */
-	public static byte[] getTag(byte[] bs, int offset) {
+	public static byte[] getTag(byte[] ba, int offset) {
 		
-		byte tagNumber = bs[offset];
+		byte tagNumber = ba[offset];
 		if ((tagNumber & 0x7F) == 0x7F) {
-			return new byte[] {bs[offset], bs[offset+1]};
+			return new byte[] {ba[offset], ba[offset+1]};
 		} else {
-			return new byte[] {bs[offset]};
+			return new byte[] {ba[offset]};
 		}
 	
 	}
 	
 	/**
-	 * Return length of TLV structure
+	 * Get the length out of T(L)V structure
 	 * 
-	 * @param bs
+	 * @param ba
 	 *            byte array 
 	 * @param offset
-	 *            offset in ba to get the length bytes
+	 *            offset in ba were the length encoding begins
+	 * @return
+	 * 		  length            
 	 */
+	 
 	public static int getLength(byte[] ba, int offset) {
 		int k, length = 0;
 		
@@ -65,17 +69,96 @@ public class TLVUtil {
 		return length;
 	}
 	
-	public static byte[] getValue(byte[] bs, int offset) {
-		
-		return new byte[] {bs[offset], bs[offset+1]};
+	/**
+	 * Get the value out of TL(V) structure
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @param offset
+	 *            offset in ba to get the value
+	 * @return value 
+	 * 			  as byte array at offset position in TL(V) structure           
+	 */
+
+	public static byte[] getValue(byte[] ba, int offset) {
+		//ToDo
+		return new byte[] {ba[offset], ba[offset+1]};
 	}
 	
-	public static byte getNext(byte[] bs) {
-		byte value = 0;
+	/**
+	 * Proof if byte array is a valid TLV structure
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @return 
+	 * 	      	  true or false depending of a correct TLV structure
+	 */
+	public static boolean isValidTLV(byte[] ba) {
+		boolean isValid = false;
 		//ToDo
 		
-		return value;
+		return isValid;
 	}
+	
+	/**
+	 * Get offset in the TLV structure were the value begins
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @return 
+	 * 	      	  offset 
+	 */
+	public static int getValueOffset(byte[] ba) {
+		int offset = 0;
+		//ToDo 		
+		return offset;
+	}
+	
+	/**
+	 * Get offset in the TLV structure were the length encoding of the value begins
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @return 
+	 * 	      	  offset
+	 */
+	public static int getLengthOffset(byte[] ba) {
+		int offset = 0;
+		//ToDo 		
+		return offset;
+	}
+	
+	/**
+	 * Check if given byte array of length two is a correct TwoByteTag
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @return 
+	 * 	      	  boolean
+	 */
+	public static boolean is2ByteTag(byte[] ba) {
+		boolean isTwoByteTag = false;
+		//ToDo 		
+		return isTwoByteTag;
+	}
+	
+	/**
+	 * Check if given byte array is a constructed TLV object
+	 * 
+	 * @param ba
+	 *            byte array 
+	 * @return 
+	 * 	      	  boolean
+	 */
+	public static boolean isConstructedTLV(byte[] ba) {
+		boolean isConstructedTLV = false;
+		//ToDo 		
+		return isConstructedTLV;
+	}
+
+
+
+	
 
 }
 
