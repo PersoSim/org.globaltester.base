@@ -5,7 +5,12 @@ public class TLVUtil {
 	
 	/**
 	 * Get the tag structure out of TLV structure as byte array beginning at offset.
-	 *        
+	 *
+	 * @param ba
+	 *            containing the TLV structure
+	 * @param offset
+	 *            offset in ba to get the tag
+	 * @return byte array of length one or two if two byte tag found at offset position
 	 */
 	public static byte[] getTag(byte[] ba, int offset) {
 		
@@ -20,7 +25,13 @@ public class TLVUtil {
 	
 	/**
 	 * Get the length of value bytes out of TLV structure beginning at offset position.
-	 *           
+	 *
+	 * @param ba
+	 *            containing the TLV structure
+	 * @param offset
+	 *            offset in ba were the length encoding begins
+	 * @return
+	 * 		  	  length
 	 */
 	public static int getLength(byte[] ba, int offset) {
 		int k, length = 0;
@@ -62,7 +73,13 @@ public class TLVUtil {
 	
 	/**
 	 * Get the offset position of value bytes out of TLV structure.
-	 *          
+	 * 
+	 * @param ba
+	 *            containing the TLV structure
+	 * @param offset
+	 *            offset in ba to get the value
+	 * @return value
+	 * 			  as byte array at offset position in TLV structure
 	 */
 	public static byte[] getValue(byte[] ba, int offset) {
 		//ToDo
@@ -72,6 +89,10 @@ public class TLVUtil {
 	/**
 	 * Check recursive if byte array is a cascaded TLV.
 	 * 
+	 * @param ba
+	 *            containing the TLV structure
+	 * @return
+	 * 	      	  true or false depending of a correct TLV structure
 	 */
 	public static boolean isValidTLV(byte[] ba, int offset) {
 		boolean isValid = false;
@@ -83,6 +104,10 @@ public class TLVUtil {
 	/**
 	 * Get offset in the TLV structure were the value begins.
 	 * 
+	 * @param ba
+	 *            containing the TLV structure
+	 * @return
+	 * 	      	  offset
 	 */
 	public static int getValueOffset(byte[] ba, int offset) {
 		
@@ -93,6 +118,10 @@ public class TLVUtil {
 	/**
 	 * Get offset in the TLV structure were the length encoding of the value bytes begins.
 	 * 
+	 * @param ba
+	 *            containing the TLV structure
+	 * @return
+	 * 	      	  offset
 	 */
 	public static int getLengthOffset(byte[] ba, int offset) {
 		//ToDo 		
@@ -103,6 +132,10 @@ public class TLVUtil {
 	/**
 	 * Check if given byte array is a constructed TLV object.
 	 * 
+	 * @param ba
+	 *            containing the TLV structure
+	 * @return
+	 * 	      	  true or false depending of ba is a constructed TLV object
 	 */
 	public static boolean isConstructedTLV(byte[] ba, int offset) {
 		boolean isConstructedTLV = false;
