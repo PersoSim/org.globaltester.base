@@ -3,29 +3,32 @@ package org.globaltester.util;
 public class ByteUtil {
 	
 	/**
-	 * Modify byte array with increment last byte - if last last byte in array is MaxValue 0xFF or a char "<" set byte value to 0x31 = "1" 
+	 * Modify byte array with increment byte at index position - if byte in array is MaxValue 0xFF or a char "<" set byte value to 0x31 = "1" 
 	 * 
-	 * @param bs
+	 * @param ba
 	 * 			Byte array
+	 * @param index
 	 */
 	
 	/*
-	 * Increment the last byte of the byte array
+	 * Increment byte at index position in ba
 	 */
-	public void incrementLastByte(byte[] bs) {
+	public static byte[] incrementByteAtIndex(byte[] ba, int index) {
 		
-		// get the index of the last byte in byte array
-		int index = bs.length-1;
-		
-		char c = (char) bs[index]; 
-		
-		// check if lastByte = '<'
-		if (c == '<' || bs[index] == 0xFF) {
-			// set to 1 if the char on this position is a checksum filler in the mrz string or byte MaxValue
-			bs[index] = 0x31;
+		if (index >= 0 && index <= ba.length) {
+			char c = (char) ba[index]; 
+			
+			// check if lastByte = '<'
+			if (c == '<' || ba[index] == 0xFF) {
+				// set to 1 if the char on this position is a checksum filler in the mrz string or byte MaxValue
+				ba[index] = 0x31;
+			} else {
+				ba[index]++;
+			}
 		} else {
-			bs[index]++;
+			//FIXME ERRORHANDLING
 		}
+		return ba;
 	}
 
 }
