@@ -11,20 +11,20 @@
 	<p>
 		After you created a new plug-in to implement new functionality within
 		GlobalTester you most certainly want to implement a test fragment
-		also. As detailed in our <a href="../concepts/devGuidelines.html">development
+		as well. As explained in our <a href="../concepts/devGuidelines.html">development
 			guidelines</a> a test fragment (e.g. for JUnit tests) is required for most plug-ins that exists in
 		GlobalTester repository.
 	</p>
 
 	<h2>Create test fragment and code</h2>
 	<p>To create a new fragment project from scratch start the "New
-		Project" wizard. Select in Eclipse "Package Explorer" view "New >
+		Project" wizard. In Eclipse, select "Package Explorer" view "New >
 		Project > Plug-in Development" and there use "Fragment Project" and click "Next".</p>
 	<p>
 		Now fill in the project name, fragment ID, related data and the
-		required host plug-in. Again you will find several hints regarding the
+		required host plug-in. You will find several hints regarding the
 		values to use here in our <a href="../concepts/devGuidelines.html">development
-			guidelines</a>.
+			guidelines</a> again.
 	</p>
 	<p>When the basic fragment structure is created you can start to
 		implement the code and testcases. CI builds on Jenkins require tests
@@ -35,8 +35,8 @@
 		smoke test suite that contains only a minimal set of tests to verify
 		overall functionality.</p>
 	<p>For your fragment code to be available during execution and
-		buckminster provisioning the fragment it must be added to a test feature
-		that is referenced from the buckminster entry point.</p>
+		Buckminster provisioning the fragment it must be added to a test feature
+		that is referenced from the Buckminster entry point.</p>
 
 	<h2>Configure required launch configurations</h2>
 	TODO
@@ -46,7 +46,7 @@
 	<p>all available workspace and taragetplatform plug-ins</p>
 	<p></p>
 
-	<h2>Add launch configurations to buckminster scripts and integrate
+	<h2>Add launch configurations to Buckminster scripts and integrate
 		projects in CI</h2>
 	<p>
 		Currently the scripts executed during the CI-Builds on Jenkins are
@@ -61,7 +61,7 @@
 			--flatXML -o junit/org.globaltester.core.xml</code>
 	</p>
 	<p>After the fragment is referenced from a feature used by
-		buckminster it will be materialized in the corresponding CI-workspaces
+		Buckminster it will be materialized in the corresponding CI-workspaces
 		autmatically. In order to rebuild CI-Projects also on changes in the
 		test fragments these fragments need to be referenced from the
 		CI-Projects configuration. This step is similar for fragments as for

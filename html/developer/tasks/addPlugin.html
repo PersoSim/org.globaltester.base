@@ -15,34 +15,38 @@
 		new plug-in and when to add to an existing one in our <a
 			href="../concepts/devGuidelines.html">development guidelines</a>.
 	</p>
+	
 	<h2>Create plug-in project</h2>
 	<p>To create a new plug-in project from scratch start the "New
-		Project" wizard. Select in Eclipse "Package Explorer" view "New >
+		Project" wizard. In Eclipse, select "Package Explorer" view "New >
 		Project" and there use "Plug-in Project" and click "Next".</p>
 	<p>
 		In the following screens fill in the project name, plug-in ID and
-		related data. Again you will find several hints regarding the values
+		related data.
+		You will find several hints regarding the values
 		to use here in our <a href="../concepts/devGuidelines.html">development
-			guidelines</a>.
+			guidelines</a> Again.
 	</p>
 	<p>When the basic plug-in structure is created you can start to
 		implement the code just as ordinary Eclipse plug-in development.
-		Remeber to add a second plug-in project containing a fragment to your plug-in
+		Remember to add a second plug-in project containing a fragment to your plug-in
 		which includes all your tests.</p>
 	<p>
-		For your plug-in to be available during execution and buckminster
-		provisioning it must be added to a feature that is referenced from the
-		buckminster entry point. Add it to the features where your plug-in fits
+		For your plug-in to be available during execution and Buckminster
+		provisioning it, it  must be added to a feature that is referenced from the
+		Buckminster entry point. Add it to the features where your plug-in fits
 		or <a href="../tasks/addFeature.html">add a new feature</a> if none
 		fits.
 	</p>
+	
 	<h2>Integrate plug-in in source control and build processes</h2>
 	<p>TODO</p>
-	<p>Integration will be handled mostly by buckminster, but for 
+	<p>Integration will be handled mostly by Buckminster, but for 
 		Jenkins / Buckminster to update included plug-ins they need to be 
 		configured in the relevant jenkins builds as used SVN source.</p>
+		
 	<h2>Consider UI dependencies</h2>
-	At the moment, we have UI dependencies in our *.doc projects for online help.
+	At the moment, we have UI dependencies in our *.doc projects for our online help.
 	If you implement a non-UI plug-in, please make sure it has no dependency on any *.doc project. 
 </body>
 </html>
