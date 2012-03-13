@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -22,6 +24,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.globaltester.core.Activator;
+import org.globaltester.logging.logger.GtErrorLogger;
 import org.osgi.framework.Bundle;
 
 public class GtResourceHelper {
@@ -209,10 +213,38 @@ public class GtResourceHelper {
 					newProject.open(null);
 				}
 			} catch (CoreException e) {
-				e.printStackTrace();
+				GtErrorLogger.log(Activator.PLUGIN_ID, e);
 			}
 		}
 
 		return newProject;
+	}
+
+	/**
+	 * Create an empty project
+	 * 
+	 * @param projectName
+	 *            name of the project to be created
+	 * @param location
+	 *            location where the project shall be created. If empty the
+	 *            default workspace location will be used.
+	 * 
+	 */
+	public static Set<String> getProjectNamesWithNature(String natureId) {
+		IProject[] availableProjects = ResourcesPlugin.getWorkspace().getRoot()
+				.getProjects();
+		HashSet<String> returnSet = new HashSet<String>();
+		
+		for (IProject curProject : availableProjects) {
+			try {
+				if (curProject.hasNature(natureId)){
+					returnSet.add(curProject.getName());
+				}
+			} catch (CoreException e) {
+				GtErrorLogger.log(Activator.PLUGIN_ID, e);
+			}
+		}
+		
+		return returnSet;
 	}
 }
