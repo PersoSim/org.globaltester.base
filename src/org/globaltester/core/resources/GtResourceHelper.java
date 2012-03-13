@@ -6,16 +6,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.net.URL;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
@@ -121,5 +125,94 @@ public class GtResourceHelper {
 				}
 			}
 		}
+	}
+
+	public static void createFolder(IFolder folder) throws CoreException {
+		IContainer parent = folder.getParent();
+		if (parent instanceof IFolder) {
+			createFolder((IFolder) parent);
+		}
+		if (!folder.exists()) {
+			folder.create(false, true, null);
+		}
+	}
+
+	/**
+	 * Create a folder structure from given paths.
+	 * 
+	 * @param project
+	 *            project to create the folders inside
+	 * @param paths
+	 *            array of relative paths of the folders to be created
+	 * @throws CoreException
+	 */
+	public static void addToProjectStructure(IProject project, String[] paths)
+			throws CoreException {
+		for (String currentPath : paths) {
+			IFolder currentFolder = project.getFolder(currentPath);
+			createFolder(currentFolder);
+		}
+	}
+
+	/**
+	 * Add the given nature to the project.
+	 * 
+	 * @param project
+	 *            project to add the nature to
+	 * @param natureID
+	 *            Id of nature to add
+	 * @throws CoreException
+	 */
+	public static void addNature(IProject project, String natureID)
+			throws CoreException {
+		if (!project.hasNature(natureID)) {
+			IProjectDescription description = project.getDescription();
+			String[] prevNatures = description.getNatureIds();
+			String[] newNatures = new String[prevNatures.length + 1];
+			System.arraycopy(prevNatures, 0, newNatures, 0, prevNatures.length);
+			newNatures[prevNatures.length] = natureID;
+			description.setNatureIds(newNatures);
+
+			IProgressMonitor monitor = null;
+			project.setDescription(description, monitor);
+		}
+	}
+
+	/**
+	 * Create an empty project
+	 * 
+	 * @param projectName
+	 *            name of the project to be created
+	 * @param location
+	 *            location where the project shall be created. If empty the
+	 *            default workspace location will be used.
+	 * 
+	 */
+	public static IProject createEmptyProject(String projectName, URI location) {
+		IProject newProject = ResourcesPlugin.getWorkspace().getRoot()
+				.getProject(projectName);
+
+		if (!newProject.exists()) {
+			URI projectLocation = location;
+			IProjectDescription desc = newProject.getWorkspace()
+					.newProjectDescription(newProject.getName());
+			if (location != null
+					&& ResourcesPlugin.getWorkspace().getRoot()
+							.getLocationURI().equals(location)) {
+				projectLocation = null;
+			}
+
+			desc.setLocationURI(projectLocation);
+			try {
+				newProject.create(desc, null);
+				if (!newProject.isOpen()) {
+					newProject.open(null);
+				}
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return newProject;
 	}
 }
