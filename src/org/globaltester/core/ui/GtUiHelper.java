@@ -5,12 +5,17 @@ import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.wizards.IWizardDescriptor;
+import org.eclipse.ui.wizards.IWizardRegistry;
 import org.globaltester.logging.logger.GtErrorLogger;
 
 public class GtUiHelper {
@@ -43,8 +48,8 @@ public class GtUiHelper {
 	 *         but won't be null
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends IResource> LinkedList<T> getSelectedIResource(ISelection iSel,
-			Class<T> type) {
+	public static <T extends IResource> LinkedList<T> getSelectedIResource(
+			ISelection iSel, Class<T> type) {
 		LinkedList<T> selectedResources = new LinkedList<T>();
 
 		// check type of selection
@@ -60,6 +65,55 @@ public class GtUiHelper {
 		}
 
 		return selectedResources;
+	}
+
+	/**
+	 * Searches all wizard registries to find a wizard matching the given ID and
+	 * opens it.
+	 * 
+	 * @param string
+	 * @throws CoreException
+	 */
+	public static void openWizard(String wizardId) throws CoreException {
+		IWizardDescriptor descriptor = findNewWizard(wizardId);
+		if (descriptor == null) {
+			descriptor = findImportWizard(wizardId);
+		}
+		if (descriptor == null) {
+			descriptor = findExportWizard(wizardId);
+		}
+
+		openWizard(descriptor);
+
+	}
+
+	private static IWizardDescriptor findNewWizard(String wizardId) {
+		IWizardRegistry registry = PlatformUI.getWorkbench()
+				.getNewWizardRegistry();
+		return registry.findWizard(wizardId);
+	}
+
+	private static IWizardDescriptor findImportWizard(String wizardId) {
+		IWizardRegistry registry = PlatformUI.getWorkbench()
+				.getImportWizardRegistry();
+		return registry.findWizard(wizardId);
+	}
+
+	private static IWizardDescriptor findExportWizard(String wizardId) {
+		IWizardRegistry registry = PlatformUI.getWorkbench()
+				.getExportWizardRegistry();
+		return registry.findWizard(wizardId);
+	}
+
+	private static void openWizard(IWizardDescriptor descriptor)
+			throws CoreException {
+		if (descriptor != null) {
+			IWizard wizard = descriptor.createWizard();
+			WizardDialog wd = new WizardDialog(PlatformUI.getWorkbench()
+					.getDisplay().getActiveShell(), wizard);
+			wd.setTitle(wizard.getWindowTitle());
+			wd.open();
+		}
 	}
 
 }
