@@ -10,6 +10,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -114,6 +117,13 @@ public class GtUiHelper {
 			wd.setTitle(wizard.getWindowTitle());
 			wd.open();
 		}
+	}
+
+	public static void openErrorDialog(Shell shell, String msg) {
+		MessageBox dialog = new MessageBox(shell, SWT.APPLICATION_MODAL | SWT.ICON_ERROR);
+		dialog.setMessage(msg);
+		dialog.open();
+		
 	}
 
 }
