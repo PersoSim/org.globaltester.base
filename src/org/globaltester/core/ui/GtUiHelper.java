@@ -115,6 +115,7 @@ public class GtUiHelper {
 			WizardDialog wd = new WizardDialog(PlatformUI.getWorkbench()
 					.getDisplay().getActiveShell(), wizard);
 			wd.setTitle(wizard.getWindowTitle());
+			wd.setBlockOnOpen(true);
 			wd.open();
 		}
 	}
