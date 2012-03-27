@@ -2,10 +2,4 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Samples" link_to="toc/user/toc.xml#samples"> 
-	<topic label="Main Topic"  href="html/user/samples/maintopic.html"> 
-		<topic label="Sub Topic" href="html/user/samples/subtopic.html" /> 
-	</topic>
-	<topic label="Main Topic 2">
-		<topic label="Sub Topic 2" href="html/user/samples/subtopic2.html" /> 
-	</topic> 
 </toc>
