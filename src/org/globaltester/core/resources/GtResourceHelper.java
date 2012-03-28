@@ -56,7 +56,7 @@ public class GtResourceHelper {
 	}
 
 	/**
-	 * copy all files needed for specification export
+	 * copy all files from an installed plugin into a new project
 	 * 
 	 * @param currentScriptPlugin
 	 * @param project
@@ -74,7 +74,7 @@ public class GtResourceHelper {
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
 		// TODO make sure that all contained/required files are copied
-		String[] children = new String[] { "TestCases", "testSpecification.xml" };
+		String[] children = new String[] { "TestCases" };
 
 		// copy files
 		for (int i = 0; i < children.length; i++) {
@@ -84,26 +84,6 @@ public class GtResourceHelper {
 
 		// refresh workspace
 
-	}
-	
-	public static void copyPluginContent2TempLocation(String plugin, File tempfolder) throws IOException{
-		// get source path
-		Bundle curBundle = Platform.getBundle(plugin);
-		URL url = FileLocator.find(curBundle, new Path("/"), null);
-		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
-
-		// define files to be copied
-		File source = pluginDir.toFile();
-		// TODO make sure that all contained/required files are copied
-		
-		String[] children = new String[] { "OO_sources" + File.separator,"stylesheets" + File.separator, "build.xml"};
-
-		// copy files
-		for (int i = 0; i < children.length; i++) {
-			copyFiles(new File(source, children[i]), new File(tempfolder,
-					children[i]));
-		}
-		
 	}
 
 	public static void copyFiles(File sourceLocation, File targetLocation)
@@ -158,6 +138,23 @@ public class GtResourceHelper {
 		}
 		if (!folder.exists()) {
 			folder.create(false, true, null);
+		}
+	}
+
+	/**
+	 * Create a folder structure from given paths.
+	 * 
+	 * @param project
+	 *            project to create the folders inside
+	 * @param paths
+	 *            array of relative paths of the folders to be created
+	 * @throws CoreException
+	 */
+	public static void addToProjectStructure(IProject project, String[] paths)
+			throws CoreException {
+		for (String currentPath : paths) {
+			IFolder currentFolder = project.getFolder(currentPath);
+			createFolder(currentFolder);
 		}
 	}
 
