@@ -16,9 +16,9 @@
 		quality and guarantees a common understanding of how much work is
 		still left to particular tasks.</p>
 	<p>As the development process evolves this definition should
-		evolves too. So whenever their are any inconsistencies or other issues
+		evolve too. So whenever there are any inconsistencies or other issues
 		regarding fulfillment of these definitions, please don't hesitate to
-		discuss them on the next developer meeting or by eMail. As a rule of
+		discuss them on the next developer meeting or by e-mail. As a rule of
 		thumb before breaking one of these rules it should be discussed and
 		either the rule or the users workflow should be changed (remember that
 		changing this definition still requires consensus among the
@@ -31,7 +31,7 @@
 		them are not very precise.</p>
 
 	<h2>Commit</h2>
-	<p>The smallest working part of work that adds a new functionality
+	<p>A commit is the smallest part of work that adds a new functionality
 		or a bugfix to the existing codebase. The goal for each commit should
 		be a new working functionality, while not breaking anything available
 		before.</p>
@@ -68,7 +68,7 @@
 			commited code should be assigned to the commiter and just a forecast
 			to the upcomming commits. (This means Tasks in the code should not be
 			used for long-term reminders but just for very short periods.)</li>
-		<li>The <b>Boyscout rule</b> states that every part of code that
+		<li>The <b>Boy Scout rule</b> states that every part of code that
 			is touched should be commited to the repository in better state than
 			it was checked out from the repository. This especially implies that
 			if understanding some part of the code was difficult this part should
@@ -81,9 +81,9 @@
 	</ul>
 	<h2>Feature</h2>
 	<p>The definition of a feature to be done requires all contained
-		commits to be done according to the definition above. Also does it
-		include several additional requirements. Most of these are easier met
-		when completed already in early state of development (e.g. test should
+		commits to be done according to the definition above. It also
+		includes several additional requirements. Most of these are easier met
+		when completed already in an early state of development (e.g. the test should
 		be written as early as possible) so the following list should be
 		referenced throughout the whole implementation process and some of the
 		concerns should be addressed by commits as early as possible.</p>
@@ -100,15 +100,15 @@
 			good shape.</li>
 		<li><b>Acceptance tests</b> should exist and pass. Currently we
 			use SWTBot and JUnit as only test frameworks. Therefore the tests
-			itself need to be accepted and it needs to be checked that those
+			itself needs to be accepted and it needs to be checked that those
 			tests cover all aspects of the current feature.</li>
 		<li><b>Test coverage</b> should be as high as possible. In
 			contrast to the requirements for a commit this means that now JUnit
 			tests for all Non-UI-Classes and SWTBotTests for all parts of the UI
 			should exist and should be integrated in the automatic build. This
-			ensures, that the new feature stays working throughout the following
+			ensures that the new feature stays working throughout the following
 			development.</li>
-		<li><b>Documentation and UserAssitance</b> needs to be completely
+		<li><b>Documentation and UserAssistance</b> needs to be completely
 			written and all required screenshots should come from the appropriate
 			GUI tests so that they can easily regenerated upon modification.</li>
 
@@ -122,12 +122,12 @@
 	<ul>
 		<li><b>Version numbers and version history</b> should be updated
 			properly and be reviewed by at least one other developer. The version
-			number of for a given bundle is only increased during actual release
+			number for a given bundle is only increased during actual release
 			process. Declaration of features as done does not justify version
 			changes until the actual release is declared!</li>
 		<li><b>Integration tests</b> need to be performed. This should be
 			a manual test suite which ensures correct version numbers, correct
-			user assistance and documentation and all aspects that are not
+			user assistance and documentation, and all aspects that are not
 			covered by the tests defined for the features. Also all included
 			features should be roughly rechecked to make sure that no
 			functionality got broken during release build. In order to make sure
