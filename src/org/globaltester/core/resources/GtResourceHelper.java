@@ -74,7 +74,7 @@ public class GtResourceHelper {
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
 		// TODO make sure that all contained/required files are copied
-		String[] children = new String[] { "TestCases", "testSpecification.xml" };
+		String[] children = new String[] { "TestCases", "testSpecification.xml", "schema" };
 
 		// copy files
 		for (int i = 0; i < children.length; i++) {
@@ -83,35 +83,32 @@ public class GtResourceHelper {
 		}
 
 		// refresh workspace
-
 	}
-	/**
-	 * copy all files needed for specification export
-	 * 
-	 * @param currentScriptPlugin
-	 * @param project
-	 * @throws IOException
-	 */
-	public static void copyPluginContent2TempLocation(String plugin, File tempfolder) throws IOException{
-		// get source path
-		Bundle curBundle = Platform.getBundle(plugin);
-		URL url = FileLocator.find(curBundle, new Path("/"), null);
-		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
 
-		// define files to be copied
-		File source = pluginDir.toFile();
-		// TODO make sure that all contained/required files are copied
-		
-		String[] children = new String[] { "OO_sources" + File.separator,"stylesheets" + File.separator, "build.xml"};
-
-		// copy files
-		for (int i = 0; i < children.length; i++) {
-			copyFiles(new File(source, children[i]), new File(tempfolder,
-					children[i]));
+    /**
+     * Copy from an input to an output stream.
+     * @param input
+     * @param output
+     * @throws IOException
+     */
+    public static void copyStream(InputStream input, OutputStream output) throws IOException {
+        int bytesRead;
+        byte [] buffer = new byte [1024 * 1024];
+        while ((bytesRead = input.read(buffer))!= -1) {
+            output.write(buffer, 0, bytesRead);
+        }
+    }
+	
+	public static void copyFile(InputStream source, File targetLocation) throws IOException{
+		if (!targetLocation.exists()){
+			targetLocation.createNewFile();
 		}
-		
+		if (targetLocation.isFile() && targetLocation.canWrite()){
+			FileOutputStream output = new FileOutputStream(targetLocation);
+			copyStream(source, output);
+		}
 	}
-
+	
 	public static void copyFiles(File sourceLocation, File targetLocation)
 			throws IOException {
 
@@ -260,17 +257,17 @@ public class GtResourceHelper {
 		IProject[] availableProjects = ResourcesPlugin.getWorkspace().getRoot()
 				.getProjects();
 		HashSet<String> returnSet = new HashSet<String>();
-		
+
 		for (IProject curProject : availableProjects) {
 			try {
-				if (curProject.hasNature(natureId)){
+				if (curProject.hasNature(natureId)) {
 					returnSet.add(curProject.getName());
 				}
 			} catch (CoreException e) {
 				GtErrorLogger.log(Activator.PLUGIN_ID, e);
 			}
 		}
-		
+
 		return returnSet;
 	}
 }

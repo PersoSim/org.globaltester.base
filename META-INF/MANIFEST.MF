@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester Core
-Bundle-SymbolicName: org.globaltester.core
+Bundle-SymbolicName: org.globaltester.core;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.globaltester.core.Activator
 Bundle-Vendor: HJP Consulting GmbH
@@ -27,6 +27,7 @@ Export-Package: org.apache.fop.apps,
  org.globaltester.core,
  org.globaltester.core.resources,
  org.globaltester.core.xml,
+ org.globaltester.document.export,
  org.globaltester.interfaces,
  org.globaltester.renderer,
  org.globaltester.util,
