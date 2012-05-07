@@ -11,7 +11,7 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.junit.Test;
 
 public class GtCoreUiTest {
-public static String gtMainWindowTitle = "GlobalTester";
+public final static String gtMainWindowTitle = "GlobalTester";
 	
 	private SWTWorkbenchBot bot = new SWTWorkbenchBot();
 
