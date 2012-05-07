@@ -25,8 +25,11 @@ public class ZipHandler {
         // first, copy contents from existing zip
 		ZipEntry zipEntry = null;
 		while ((zipEntry = source.getNextEntry()) != null){
+			// if the old zipentry is used, problems with different compressed sizes occur
+			zipEntry = new ZipEntry(zipEntry.getName());
+			
 			targetStream.putNextEntry(zipEntry);
-            if (!zipEntry.isDirectory()) {
+			if (!zipEntry.isDirectory()) {
                 GtResourceHelper.copyStream(source, targetStream);
             }
             targetStream.closeEntry();
