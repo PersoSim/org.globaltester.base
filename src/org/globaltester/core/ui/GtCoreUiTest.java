@@ -29,9 +29,9 @@ public static String gtMainWindowTitle = "GlobalTester";
 	@Test
 	public void testAboutDialog() throws Exception {
 		bot.waitUntil(Conditions.shellIsActive(gtMainWindowTitle));
-		bot.menu("Help").menu("About ").click();
+		bot.menu("Help").menu("About GlobalTester RCP").click();
 		
-		String aboutShellTitle = "About ";
+		String aboutShellTitle = "About GlobalTester RCP";
 		bot.waitUntil(Conditions.shellIsActive(aboutShellTitle));
 		
 		SWTBotShell aboutDlgShell = bot.shell(aboutShellTitle);
