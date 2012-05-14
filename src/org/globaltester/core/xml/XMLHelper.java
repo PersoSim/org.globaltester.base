@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.globaltester.core.Activator;
 import org.globaltester.logging.logger.GtErrorLogger;
 import org.globaltester.logging.logger.TestLogger;
@@ -105,8 +107,13 @@ public class XMLHelper {
 		}
 	}
 
-	public static void saveDoc(IFile iFile, Element root) {
+	public static void saveDoc(IFile iFile, Element root){
 		saveDoc(iFile.getLocation().toFile(), root);
+		try {
+			iFile.refreshLocal(IFile.DEPTH_INFINITE, new NullProgressMonitor());
+		} catch (CoreException e) {
+			GtErrorLogger.log(Activator.PLUGIN_ID, e);
+		}
 	}
 
 	public static void saveDoc(File file, Element root) {
