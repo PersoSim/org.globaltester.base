@@ -22,4 +22,6 @@ Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.navigator
 Export-Package: org.globaltester.core.ui,
  org.globaltester.core.ui.editors,
+ org.globaltester.core.ui.perspective,
+ org.globaltester.core.ui.preferences,
  org.globaltester.core.ui.views
