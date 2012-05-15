@@ -2,6 +2,10 @@ package org.globaltester.core.ui.preferences;
 
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -17,6 +21,7 @@ import org.eclipse.swt.widgets.Text;
 public class PropertyFieldEditor extends FieldEditor {
 
 	private Text textField;
+	private Object oldValue;
 
 	/**
 	 * Creates a property field editor.
@@ -67,6 +72,17 @@ public class PropertyFieldEditor extends FieldEditor {
 			textField = new Text(parent, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL
 					| SWT.BORDER);
 			textField.setFont(parent.getFont());
+			
+			textField.addKeyListener(new KeyAdapter() {
+                public void keyReleased(KeyEvent e) {
+                    valueChanged();
+                }
+            });
+            textField.addFocusListener(new FocusAdapter() {
+                public void focusLost(FocusEvent e) {
+                    valueChanged();
+                }
+            });
 
 		} else {
 			checkParent(textField, parent);
@@ -74,10 +90,19 @@ public class PropertyFieldEditor extends FieldEditor {
 		return textField;
 	}
 
+	protected void valueChanged() {
+		String newValue = textField.getText();
+        if (!newValue.equals(oldValue)) {
+            fireValueChanged(VALUE, oldValue, newValue);
+            oldValue = newValue;
+        }
+	}
+
 	protected void doLoad() {
 		if (textField != null) {
 			String value = getPreferenceStore().getString(getPreferenceName());
-			textField.setText(value);
+			textField.setText(value.replaceAll(" ", "\n"));
+			oldValue = textField.getText();
 		}
 	}
 
@@ -85,7 +110,8 @@ public class PropertyFieldEditor extends FieldEditor {
 		if (textField != null) {
 			String value = getPreferenceStore().getDefaultString(
 					getPreferenceName());
-			textField.setText(value);
+			textField.setText(value.replaceAll(" ", "\n"));
+			oldValue = textField.getText();
 		}
 	}
 
@@ -108,4 +134,10 @@ public class PropertyFieldEditor extends FieldEditor {
 	protected Text getTextControl() {
 		return textField;
 	}
+	
+	@Override
+	public void setEnabled(boolean enabled, Composite parent) {
+        super.setEnabled(enabled, parent);
+        getTextControl(parent).setEnabled(enabled);
+    }
 }
