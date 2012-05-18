@@ -74,7 +74,7 @@ public class GtResourceHelper {
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
 		// TODO make sure that all contained/required files are copied
-		String[] children = new String[] { "TestCases", "testSpecification.xml", "schema" };
+		String[] children = new String[] { "TestCases", "testSpecification.xml"};
 
 		// copy files
 		for (int i = 0; i < children.length; i++) {
