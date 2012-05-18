@@ -270,4 +270,8 @@ public class GtResourceHelper {
 
 		return returnSet;
 	}
+
+	public static IFile getIFileForLocation(String fileName) {
+		return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(fileName));
+	}
 }
