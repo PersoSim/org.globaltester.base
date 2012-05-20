@@ -51,7 +51,7 @@ public class GtUiHelper {
 	 *         but won't be null
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends IResource> LinkedList<T> getSelectedIResource(
+	public static <T extends IResource> LinkedList<T> getSelectedIResources(
 			ISelection iSel, Class<T> type) {
 		LinkedList<T> selectedResources = new LinkedList<T>();
 
