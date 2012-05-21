@@ -23,7 +23,7 @@
       <toc
             file="toc/user/tasks.xml">
       </toc>
-      <toc
+      <!--toc
             file="toc/developer/toc.xml"
             primary="true">
       </toc>
@@ -38,7 +38,7 @@
       </toc>
       <toc
             file="toc/developer/tasks.xml">
-      </toc>
+      </toc-->
    </extension>
    <extension
          point="org.eclipse.ui.cheatsheets.cheatSheetContent">
