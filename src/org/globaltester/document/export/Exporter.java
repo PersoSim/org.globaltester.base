@@ -41,7 +41,7 @@ public class Exporter{
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void export(File target, File testSpecification, InputStream stylesheet, InputStream sourceZip) throws IOException, CoreException{
+	public static void export(File target, File testSpecification, InputStream stylesheet, InputStream sourceZip, XslParameter... params) throws IOException, CoreException{
 
 		// for more sophisticated zip management TrueZip could be used
 		ZipOutputStream zipOut = ZipHandler.append(new ZipInputStream(sourceZip), new FileOutputStream(target));
@@ -65,7 +65,10 @@ public class Exporter{
 			// work with the specified stylesheet. This method call also processes the
 			// stylesheet into a compiled Templates object.
 			transformer = tFactory.newTransformer(streamSource);
-			
+
+			for(XslParameter param : params){
+				transformer.setParameter(param.getName(), param.getValue());
+			}
 			// Use the Transformer to apply the associated Templates object to
 			// a XML document and write the output to a file .
 			StreamSource specStreamSource = new StreamSource(testSpecification);
