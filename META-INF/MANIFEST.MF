@@ -3,9 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester Core Documentation
 Bundle-SymbolicName: org.globaltester.core.doc; singleton:=true
 Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: org.globaltester.core.doc.Activator
 Bundle-Vendor: HJP Consulting GmbH
-Require-Bundle: org.eclipse.help,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.help,
  org.eclipse.ui,
  org.eclipse.help.base;bundle-version="3.5.3",
  org.eclipse.ui.cheatsheets
-
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.globaltester.core.doc
