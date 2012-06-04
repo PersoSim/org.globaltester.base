@@ -50,7 +50,7 @@ public class ExportTest {
 		File tempTestSpec = new File(tempDir, "testSpecification.xml");
 		GtResourceHelper.copyFile(testSpec, tempTestSpec);
 		File target = new File(tempDir, "target.odt");
-		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip);
+		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip, null);
 		
 		ZipFile result = new ZipFile(target);
 		ZipEntry entry = result.getEntry("content.xml");
