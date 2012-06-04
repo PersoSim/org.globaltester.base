@@ -38,12 +38,22 @@
 		<code>&lt;globaltester executable&gt; -application
 			org.eclipse.e quinox.p2.director -repository &lt;URL of the repo&gt;
 			-installIU &lt;bundle id&gt;</code><br/>
-		To install the ePassport BAC sample testscripts on a Windows machine
-		for example use the following command:<br/>
+		To install the ePassport BAC sample testscripts on a Windows machine using
+		GlobalTester as a RCP application for example use the following command:<br/>
 		<code>globaltester.exe -application
 			org.eclipse.equinox.p2.director -repository
 			jar:file:/C:/develop/org.globaltester.testspec.icao.bac.sample.p2.zip!/
-			-installIU org.globaltester.testspec.icao.bac.sample</code>
+			-installIU org.globaltester.testspec.icao.bac.sample</code><br/>
+		To install the ePassport BAC sample testscripts on a Windows machine using
+		GlobalTester as a plugin for example use the following command:<br/>
+		<code>eclipse.exe -application
+			org.eclipse.equinox.p2.director -repository
+			jar:file:/C:/develop/org.globaltester.testspec.icao.bac.sample.p2.zip!/
+			-installIU org.globaltester.testspec.icao.bac.sample</code><br/>
+	</p>
+	<p>	
+		When the installation performed successfully restart Eclipse to use the new
+		plug-ins.	
 	</p>
 </body>
 </html>
