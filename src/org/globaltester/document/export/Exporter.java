@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -41,7 +43,7 @@ public class Exporter{
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void export(File target, File testSpecification, InputStream stylesheet, InputStream sourceZip, XslParameter... params) throws IOException, CoreException{
+	public static void export(File target, File testSpecification, InputStream stylesheet, InputStream sourceZip, HashMap<String, Object> xslParams) throws IOException, CoreException{
 
 		// for more sophisticated zip management TrueZip could be used
 		ZipOutputStream zipOut = ZipHandler.append(new ZipInputStream(sourceZip), new FileOutputStream(target));
@@ -66,8 +68,10 @@ public class Exporter{
 			// stylesheet into a compiled Templates object.
 			transformer = tFactory.newTransformer(streamSource);
 
-			for(XslParameter param : params){
-				transformer.setParameter(param.getName(), param.getValue());
+			if (xslParams != null) {
+				for (Entry<String, Object> param : xslParams.entrySet()) {
+					transformer.setParameter(param.getKey(), param.getValue());
+				}
 			}
 			// Use the Transformer to apply the associated Templates object to
 			// a XML document and write the output to a file .
