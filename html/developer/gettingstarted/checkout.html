@@ -79,6 +79,14 @@
 		commit and merge as you need. When updating sources introduces new
 		dependencies you can invoke Buckminster again and it will fetch the
 		required projects for you.</p>
-
+	<h2>Troubleshooting</h2>
+	<p>If you experience problems while materializing a CQUERY, check the used
+		repository location and the line </br>
+		&lt;rm:uri format=&quot;http://{0}subversion/repo/globaltester/{1}/trunk/?moduleBeforeTag&amp;amp;moduleBeforeBranch&quot;&gt;.
+		</br> in the globaltester.rmap file.
+		The repository location and the format have to match, because the automatically
+		inserted authentication is bound to the url of the repository. You can adjust the
+		format to your repository location, just preserve the {0}.
+	</p>
 </body>
 </html>
