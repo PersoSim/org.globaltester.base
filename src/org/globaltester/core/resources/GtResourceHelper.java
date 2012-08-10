@@ -54,35 +54,31 @@ public class GtResourceHelper {
 		}
 
 	}
-
+	
 	/**
-	 * copy all files from an installed plugin into a new project
+	 * copy files from an installed plugin into a new project
 	 * 
 	 * @param currentScriptPlugin
 	 * @param project
+	 * @param pathToFiles
+	 * @param toCopy
 	 * @throws IOException
 	 */
-	public static void copyPluginContent2WorkspaceProject(
-			String currentScriptPlugin, IProject project) throws IOException {
-
+	public static void copyPluginFilesToWorkspaceProject(String currentScriptPlugin, IProject project, String pathToFiles, String ... toCopy) throws IOException{
 		// get source path
 		Bundle curBundle = Platform.getBundle(currentScriptPlugin);
-		URL url = FileLocator.find(curBundle, new Path("/"), null);
+		URL url = FileLocator.find(curBundle, new Path(pathToFiles), null);
 		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
-
+		
 		// define files to be copied
 		File source = pluginDir.toFile();
 		File destination = project.getLocation().toFile();
-		// TODO make sure that all contained/required files are copied
-		String[] children = new String[] { "TestCases", "testSpecification.xml"};
-
+		
 		// copy files
-		for (int i = 0; i < children.length; i++) {
-			copyFiles(new File(source, children[i]), new File(destination,
-					children[i]));
+		
+		for (String filename : toCopy){
+			copyFiles(new File(source, filename), new File(destination, filename));
 		}
-
-		// refresh workspace
 	}
 
     /**
