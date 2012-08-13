@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Testing Guidelines</title>
+</head>
+
+<body>
+	<h1>Testing Guidelines</h1>
+	
+	<p>Testing is an essential part of the GlobalTester development process. Currently JUnit and SWTBot are used as testing frameworks to ensure appropriate code quality.
+	To facilitate the development of tests the plugins org.globaltester.junit and org.globaltester.swtbot provide convenience methods and wrappers.</p>
+	
+	<h2>JUnit</h2>
+	
+	<p>The class JUnitHelper, provided by the plugin org.globaltester.junit, contains methods for workspace manipulation. With these methods a consistent workspace content for tests can be ensured.
+	It also provides simple default projects (Test Campaign, Test Specification and Card Config).</p>
+	
+	<h2>SWTBot</h2>
+	
+	<p>The class SWTBotHelper, provided by the plugin org.globaltester.swtbot, contains methods for workbench manipulation and other convenience functions.</p>
+	
+	<p>As the GlobalTester user interface is subject to development and the direct use of the interface widgets by tests through SWTBot is prone to error, wrappers for functionality are used.
+	These wrappers (UiHelpers) are similar to the objects used by the page object pattern. They provide a set of methods to manipulate the user interface not in terms of single widgets but 
+	in functional units. For example while creating a project there is a possibility to set a name for the new project. Details like
+	the exact type of the used widget or its position are abstracted by the UiHelper objects to seperate the tests from the design.
+	Simple changes in the design (for instance moving or renaming widgets) can easily be adapted to inside the according UiHelper.</p>
+	
+	<h3>Writing SWTBot tests using UiHelpers</h3>
+	
+	<p>The starting point for using UiHelpers is the class GlobalTesterUiHelper. It provides static methods to initialize testing and get UiHelpers. Most of these methods return a UiHelper for a specific part
+	of the user interface. If such a method is called, the neccessary steps to open up the wanted part of the user interface are executed and the UiHelper is returned. It can then be used for manipulating the
+	UI. Normally there are methods to execute actions, for instance the setting of a text or selecting something. There can also be methods to get information like the number of displayed elements of some kind.</p>
+	
+	<h3>Writing an UiHelper</h3>
+	
+	<p>While writing UiHelpers there are some points to consider:</p>
+	
+	<ul>
+		<li>No widgets are returned. If additional use of the UI is required at some point, an fitting UiHelper should be returned.</li>
+		<li>Other than UiHelper objects only non UI objects or collections of those should be returned.</li>
+		<li>Before a UiHelper is returned, the returning method must wait for the used UI elements to be visible.</li>
+		<li>UiHelpers do not contain any asserts used for testing.</li>
+	</ul>
+
+</body>
+</html>
