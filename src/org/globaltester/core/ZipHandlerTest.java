@@ -31,25 +31,6 @@ public class ZipHandlerTest {
 	}
 	
 	@Test
-	public void testWithEmptyZipFile() throws IOException {
-		FileOutputStream out = new FileOutputStream(tempFile);
-		Bundle curBundle = Platform.getBundle("org.globaltester.core.test");
-		URL url = FileLocator.find(curBundle,
-				new Path("files/testArchiveEmpty.zip"), null);
-		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
-
-		File source = pluginDir.toFile();
-		ZipInputStream input = new ZipInputStream(new FileInputStream(source));
-		ZipOutputStream zipOut = ZipHandler.append(input, out);
-		zipOut.close();
-		input.close();
-		out.close();
-		
-		ZipFile zip = new ZipFile(tempFile);
-		assertTrue("Zip should be empty", !zip.entries().hasMoreElements());
-	}
-	
-	@Test
 	public void testWithZipFile() throws IOException{
 		FileOutputStream out = new FileOutputStream(tempFile);
 		Bundle curBundle = Platform.getBundle("org.globaltester.core.test");
