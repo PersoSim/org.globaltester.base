@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -14,6 +15,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.globaltester.core.resources.GtResourceHelper;
 import org.globaltester.document.export.Exporter;
+import org.globaltester.junit.JUnitHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,11 @@ import org.junit.Test;
 public class ExportTest {
 
 	private File tempDir;
+	private InputStream stylesheet;
+	private InputStream sourcesZip;
+	private InputStream testSpec;
+	private File target;
+	private File tempTestSpec;
 	
 	@Before
 	public void createFolders() throws IOException{
@@ -30,28 +37,53 @@ public class ExportTest {
 		// directly
 		tempDir.delete();
 		tempDir.mkdir();
-	}
-	
-	@Test
-	public void testExportedFileHasContentXml() throws IOException, CoreException {
+		
 		String folder = "files" + File.separator + "SuccessfullExportFiles" + File.separator;
 
 		String plugin = "org.globaltester.core.test";
-		InputStream stylesheet = FileLocator.openStream(
+		stylesheet = FileLocator.openStream(
 				Platform.getBundle(plugin), new Path("/" + folder
 						+ "stylesheet.xsl"), false);
-		InputStream sourcesZip = FileLocator.openStream(
+		sourcesZip = FileLocator.openStream(
 				Platform.getBundle(plugin), new Path("/" + folder
 						+ "sources.zip"), false);
-		InputStream testSpec = FileLocator.openStream(
+		testSpec = FileLocator.openStream(
 				Platform.getBundle(plugin), new Path("/" + folder
 						+ "testSpecification.xml"), false);
 
-		File tempTestSpec = new File(tempDir, "testSpecification.xml");
+		tempTestSpec = new File(tempDir, "testSpecification.xml");
 		GtResourceHelper.copyFile(testSpec, tempTestSpec);
-		File target = new File(tempDir, "target.odt");
+		target = new File(tempDir, "target.odt");
+	}
+	
+	@Test
+	public void testExportedFileHasContentXmlNullParams() throws IOException, CoreException {
+
 		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip, null);
 		
+		checkZipfile();
+	}
+	
+	@Test
+	public void testExportedFileHasContentXmlZeroParams() throws IOException, CoreException {
+	
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip, params);
+		
+		checkZipfile();
+	}
+	
+	@Test
+	public void testExportedFileHasContentXmlParams() throws IOException, CoreException {
+	
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("test", new Object());
+		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip, params);
+		
+		checkZipfile();
+	}
+	
+	private void checkZipfile() throws IOException{
 		ZipFile result = new ZipFile(target);
 		ZipEntry entry = result.getEntry("content.xml");
 		
@@ -66,17 +98,6 @@ public class ExportTest {
 	
 	@After
 	public void cleanup(){
-		recursiveDelete(tempDir);
-	}
-	
-	private static void recursiveDelete(File toDelete) {
-		if (toDelete.isDirectory()) {
-			String[] files = toDelete.list();
-			for (String file : files) {
-				File current = new File(toDelete, file);
-				recursiveDelete(current);
-			}
-		}
-		toDelete.delete();
+		JUnitHelper.recursiveDelete(tempDir);
 	}
 }
