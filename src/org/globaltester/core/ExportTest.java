@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.globaltester.core.resources.GtResourceHelper;
 import org.globaltester.document.export.Exporter;
+import org.globaltester.junit.JUnitHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,17 +67,6 @@ public class ExportTest {
 	
 	@After
 	public void cleanup(){
-		recursiveDelete(tempDir);
-	}
-	
-	private static void recursiveDelete(File toDelete) {
-		if (toDelete.isDirectory()) {
-			String[] files = toDelete.list();
-			for (String file : files) {
-				File current = new File(toDelete, file);
-				recursiveDelete(current);
-			}
-		}
-		toDelete.delete();
+		JUnitHelper.recursiveDelete(tempDir);
 	}
 }
