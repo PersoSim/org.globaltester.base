@@ -1,4 +1,4 @@
-package org.globaltester.core;
+package org.globaltester.core.document.export;
 
 import static org.junit.Assert.assertTrue;
 

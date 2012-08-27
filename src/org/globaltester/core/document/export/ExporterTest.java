@@ -1,4 +1,4 @@
-package org.globaltester.core;
+package org.globaltester.core.document.export;
 
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +18,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ExportTest {
+public class ExporterTest {
 
 	private File tempDir;
 	

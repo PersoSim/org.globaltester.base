@@ -1,4 +1,4 @@
-package org.globaltester.core;
+package org.globaltester.core.util;
 
 import static org.junit.Assert.assertArrayEquals;
 
