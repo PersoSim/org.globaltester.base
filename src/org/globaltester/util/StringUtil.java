@@ -4,7 +4,7 @@ public class StringUtil {
 
 	/**
 	 * Replaces leading whitespaces (tabs to spaces) for all lines and unindents
-	 * all lines to a common level
+	 * all lines to a common level. Additionally all empty lines are removed.
 	 * 
 	 * @param code
 	 * @return
@@ -14,20 +14,20 @@ public class StringUtil {
 		// replace all leading tabs with whitespaces
 		for (int i = 0; i < lines.length; i++) {
 			String remainingCurrentLine = lines[i];
-			String whitesapce = "";
+			String whitespace = "";
 			while (remainingCurrentLine.length() > 0) {
 				if (remainingCurrentLine.startsWith(" ")) {
-					whitesapce += " ";
+					whitespace += " ";
 					remainingCurrentLine = remainingCurrentLine.substring(1);
 				} else if (remainingCurrentLine.startsWith("\t")) {
-					whitesapce += "    ";
+					whitespace += "    ";
 					remainingCurrentLine = remainingCurrentLine.substring(1);
 				} else {
 					break;
 				}
 			}
 			if (remainingCurrentLine.length() > 0) {
-				lines[i] = whitesapce + remainingCurrentLine;
+				lines[i] = whitespace + remainingCurrentLine;
 			} else {
 				lines[i] = "";
 			}
@@ -63,7 +63,14 @@ public class StringUtil {
 
 		return res;
 	}
-
+	
+	/**
+	 * Find the longest common prefix for all non-empty strings in the given array
+	 * starting the search with the given string.
+	 * @param s
+	 * @param arr
+	 * @return
+	 */
 	public static String getCommonPrefix(String s, String[] arr) {
 		if (s == null)
 			return "";
