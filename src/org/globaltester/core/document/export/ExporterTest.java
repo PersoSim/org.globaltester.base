@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.globaltester.core.resources.GtResourceHelper;
 import org.globaltester.document.export.Exporter;
+import org.globaltester.junit.JUnitHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,7 +67,6 @@ public class ExporterTest {
 	
 	@After
 	public void cleanup(){
-		//FIXME: MBK reactivate when JUnitHelper bug is fixed
-//		JUnitHelper.recursiveDelete(tempDir);
+		JUnitHelper.recursiveDelete(tempDir);
 	}
 }
