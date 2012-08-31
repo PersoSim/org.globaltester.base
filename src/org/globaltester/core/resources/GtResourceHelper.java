@@ -50,6 +50,7 @@ public class GtResourceHelper {
 				((IFolder) resource).create(false, true, null);
 			} else if (resource instanceof IProject) {
 				((IProject) resource).create(null);
+				((IProject) resource).open(null);
 			}
 		}
 
@@ -63,6 +64,7 @@ public class GtResourceHelper {
 	 * @param pathToFiles
 	 * @param toCopy
 	 * @throws IOException
+	 * @throws CoreException 
 	 */
 	public static void copyPluginFilesToWorkspaceProject(String currentScriptPlugin, IProject project, String pathToFiles, String ... toCopy) throws IOException{
 		// get source path
@@ -79,10 +81,18 @@ public class GtResourceHelper {
 		for (String filename : toCopy){
 			copyFiles(new File(source, filename), new File(destination, filename));
 		}
+		// refresh the project
+		try {
+			project.refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (CoreException e) {
+			// refresh of project failed
+			// relevant CoreException will be in the eclipse log anyhow
+			// users most probably will ignore this behavior and refresh manually 
+		}
 	}
 
     /**
-     * Copy from an input to an output stream.
+     * Copy from an input to an output stream. Both streams remain open.
      * @param input
      * @param output
      * @throws IOException
@@ -267,7 +277,13 @@ public class GtResourceHelper {
 		return returnSet;
 	}
 
-	public static IFile getIFileForLocation(String fileName) {
-		return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(fileName));
+	/**
+	 * Return an IFile if the given absolute path points to a location under any existing project.
+	 * 
+	 * @param path
+	 * @return
+	 */
+	public static IFile getIFileForLocation(String path) {
+		return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(path));
 	}
 }
