@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.Platform;
 import org.globaltester.document.export.ZipHandler;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -27,8 +26,6 @@ public class ZipHandlerTest {
 		 tempFile = File.createTempFile("zipHandlerTestFile", "zip");
 	}
 	
-	// FIXME: MBK find reason for curBundle.getEntry("files/testArchive.zip") returning null
-	@Ignore
 	@Test
 	public void testWithZipFile() throws IOException{
 		FileOutputStream out = new FileOutputStream(tempFile);
@@ -38,7 +35,6 @@ public class ZipHandlerTest {
 		ZipOutputStream zipOut = ZipHandler.append(input, out);
 		input.close();
 		zipOut.close();
-		out.close();
 
 		ZipFile zip = new ZipFile(tempFile);
 		assertTrue("Zip should contain testFile", !zip.getEntry("testFile").isDirectory());
@@ -47,7 +43,7 @@ public class ZipHandlerTest {
 	}
 	
 	@After
-	public void closeStreams() throws IOException{
+	public void cleanUp() throws IOException{
 		tempFile.delete();
 	}
 }
