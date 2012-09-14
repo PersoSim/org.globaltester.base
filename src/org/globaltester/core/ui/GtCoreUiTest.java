@@ -4,47 +4,38 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
-import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
-import org.eclipse.swtbot.swt.finder.waits.Conditions;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotButton;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
+import org.globaltester.swtbot.Strings;
+import org.globaltester.swtbot.uihelper.AboutDialogUiHelper;
+import org.globaltester.swtbot.uihelper.GlobalTesterUiHelper;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GtCoreUiTest {
-public final static String gtMainWindowTitle = "GlobalTester";
-	
-	private SWTWorkbenchBot bot = new SWTWorkbenchBot();
 
+	@Before
+	public void prepare() throws CoreException{
+		GlobalTesterUiHelper.init();
+	}
+	
 	/**
 	 * Test the presence of the main window and create a screenshot
 	 * @throws Exception
 	 */
 	@Test
 	public void testApplicationWindow() throws Exception {
-		bot.waitUntil(Conditions.shellIsActive(gtMainWindowTitle));
-		bot.captureScreenshot("screenshots"+File.separator+"MainWindow.png");
-		assertNotNull(bot.shell(gtMainWindowTitle));
+		GlobalTesterUiHelper.captureScreenshot(Strings.FILE_SCREENSHOTS_SUBFOLDER + File.separator + "MainWindow.png");
+		assertNotNull(GlobalTesterUiHelper.getBot().shell(Strings.WORKBENCH_TITLE));
 	}
 	
 	@Test
 	public void testAboutDialog() throws Exception {
-		bot.waitUntil(Conditions.shellIsActive(gtMainWindowTitle));
-		bot.menu("Help").menu("About GlobalTester RCP").click();
-		
-		String aboutShellTitle = "About GlobalTester RCP";
-		bot.waitUntil(Conditions.shellIsActive(aboutShellTitle));
-		
-		SWTBotShell aboutDlgShell = bot.shell(aboutShellTitle);
+		AboutDialogUiHelper dialog = GlobalTesterUiHelper.openAboutDialog();
+
+		SWTBotShell aboutDlgShell = dialog.getBot().shell(Strings.DIALOG_TITLE_ABOUT);
 		assertNotNull(aboutDlgShell);
-		bot.waitUntil(Conditions.shellIsActive(aboutShellTitle),5000,500);
-		bot.sleep(500);
-		bot.captureScreenshot("screenshots"+File.separator+"AboutDialog.png");
-		bot.sleep(500);
-		
-		
-		SWTBotButton okBtnBot = bot.button("OK");
-		assertNotNull(okBtnBot);
-		okBtnBot.click();
-		bot.waitUntil(Conditions.shellCloses(aboutDlgShell));
+		dialog.captureScreenshot(Strings.FILE_SCREENSHOTS_SUBFOLDER+File.separator+"AboutDialog.png");
+		dialog.close();
 	}
 }
