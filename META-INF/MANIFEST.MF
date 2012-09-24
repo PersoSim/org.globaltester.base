@@ -42,3 +42,4 @@ Export-Package: org.apache.fop.apps,
  org.jdom.output,
  org.jdom.transform,
  org.jdom.xpath
+Eclipse-ExtensibleAPI: true
