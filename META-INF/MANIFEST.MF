@@ -25,4 +25,3 @@ Export-Package: org.globaltester.core.ui,
  org.globaltester.core.ui.perspective,
  org.globaltester.core.ui.preferences,
  org.globaltester.core.ui.views
-Eclipse-ExtensibleAPI: true
