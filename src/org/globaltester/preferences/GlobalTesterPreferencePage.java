@@ -110,7 +110,7 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 		ifeReaderBuffer = new IntegerFieldEditor(
 				PreferenceConstants.P_READBUFFER, "Read buffer size:",
 				bufferGroup);
-		ifeReaderBuffer.setValidRange(0, 4096);
+		ifeReaderBuffer.setValidRange(0, 32767); // Maximum size allowed in extended Length APDU
 		addField(ifeReaderBuffer);
 
 		rfeReadFileEOF = new RadioGroupFieldEditor(
