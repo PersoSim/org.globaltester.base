@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester Base Test
 Bundle-SymbolicName: org.globaltester.base.test
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 2.6.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: .,
  mockit;uses:="mockit.internal.expectations,mockit.internal.expectations.argumentMatching",
