@@ -18,7 +18,7 @@ package org.globaltester.preferences;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.globaltester.logging.preferences.ValidateFileFieldEditor;
+import org.globaltester.preferences.ValidateFileFieldEditor;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.swt.SWT;
@@ -29,7 +29,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.globaltester.Activator;
-import org.globaltester.logger.GTLogger;
 
 /**
  * This class stores the properties of the plugin
@@ -147,7 +146,6 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 
 	protected void performDefaults() {
 		super.performDefaults();
-		GTLogger.getInstance().debug("Switched GT Preference Page back do default values");
 		boolean manualPath = Activator.getDefault().getPreferenceStore()
 				.getBoolean(PreferenceConstants.P_MANUAL_SCSH_CONF);
 
