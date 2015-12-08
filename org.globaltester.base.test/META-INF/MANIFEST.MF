@@ -5,13 +5,10 @@ Bundle-SymbolicName: org.globaltester.base.test
 Bundle-Version: 2.6.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: .,
- mockit;uses:="mockit.internal.expectations,mockit.internal.expectations.argumentMatching",
  org.globaltester.base.test
-Bundle-ClassPath: .,
- lib/jmockit-coverage.jar,
- lib/jmockit.jar
+Bundle-ClassPath: .
 Require-Bundle: org.junit,
  org.globaltester.cryptoprovider.bc,
  org.eclipse.core.runtime,
- org.globaltester.cryptoprovider;bundle-version="0.7.0"
+ org.globaltester.cryptoprovider
 Bundle-Vendor: HJP Consulting GmbH
