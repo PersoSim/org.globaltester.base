@@ -5,9 +5,8 @@ Bundle-SymbolicName: org.globaltester.base.test
 Bundle-Version: 2.6.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.globaltester.base.test
-Bundle-ClassPath: .
 Require-Bundle: org.junit,
  org.globaltester.cryptoprovider.bc,
- org.eclipse.core.runtime,
  org.globaltester.cryptoprovider
 Bundle-Vendor: HJP Consulting GmbH
+Bundle-ClassPath: .
