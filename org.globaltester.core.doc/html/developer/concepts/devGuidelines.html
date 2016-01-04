@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Development Guidelines</title>
+</head>
+
+<body>
+	<h1>Development Guidelines</h1>
+	<p>Please enter your text here.</p>
+	<p>TODO - Namingschemes, codestyle</br>
+		<ul>
+			<li>Private fields in a class can be used by this class directly, without using a corresponding getter/setter</li>
+		</ul>
+	</p>
+	<p>TODO - Default values in plug-in meta-data (HJP Consulting GmbH
+		for commercial, GlobalTester Community for community plug-ins???)</p>
+	<p>TODO - when to start a new plug-in and when to add to an existing
+		one</p>
+	<h2>Java and Eclipse Versions</h2>
+	<p>
+	GlobalTester is supposed to be able to be used with the current and preceding Eclipse and Java version.
+	Right now Eclipse 3.6 (Helios) and Java 1.6 should be used. Any new plug-ins, Bundles, Fragments, etc. should satisfy this condition.
+	Dependencies to Eclipse 3.7 (Indigo) or Java 7 should be avoided.
+	</p>
+	
+	<h2>SVN Repository Structure</h2>
+	<p>
+	The directory &quot;Trunk&quot; should be underneath the projects.
+	This way ensures that versions can be tagged for the single plug-ins and no ambiguous tags can appear in the whole repository.
+	If you share a project, please make sure you follow the intructions in our <a href=" ../tasks/shareProjectOrFragment.html">help tasks</a>.
+	</p>
+
+	<h2>Launch Configurations</h2>
+	<p>
+	The launch configuration &quot;GT3_RCP&quot; should exactly represent the state, which is in accordance with the completed Jenkins build.
+	If you want to use your own plug-ins, please use the launch configuration &quot;GT3_SDK&quot;.
+	This one starts GlobalTester with all plug-ins in your workspace enabled in a full-fledged Eclipse IDE.
+	Your own plug-in will be integrated to the product by adding it to the according feature. 
+	Please make sure you use an Eclipse target platform and not the GlobalTester target platform.
+	</p>
+
+</body>
+</html>

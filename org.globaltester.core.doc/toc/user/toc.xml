@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="GlobalTester User Guide">
+    <topic label="GlobalTester overview"  href="html/user/overview.html"> 
+    </topic>
+   <topic label="Getting Started">
+      <anchor id="gettingstarted"/>
+   </topic>
+   <topic label="Concepts">
+      <anchor id="concepts"/>
+   </topic>
+   <topic label="Tasks">
+      <anchor id="tasks"/>
+   </topic>
+   <topic label="Reference">
+      <anchor id="reference"/>
+   </topic>
+   <topic label="Samples">
+      <anchor id="samples"/>
+   </topic>
+   <topic href="html/user/whatsnew.html" label="What's new in GlobalTester">
+    <anchor id="whatsnew"/>
+   </topic>
+   <topic href="html/user/support.html" label="GlobalTester Support">
+   </topic>
+</toc>
