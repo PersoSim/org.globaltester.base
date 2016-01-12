@@ -1,0 +1,7 @@
+Version 2.6.0 (12.11.2015)
+
+* Add GT Base Test launch config
+* Removal of the working dir preference
+* Unified bouncycastle provider use
+
+
