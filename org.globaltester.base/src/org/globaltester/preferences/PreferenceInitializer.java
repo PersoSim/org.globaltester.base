@@ -48,7 +48,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				.getPreferenceStore();
 		
 		IPath pluginDir = Activator.getPluginDir();
-		String configPath = pluginDir.toPortableString() + "config.js";;
+		String configPath = pluginDir.toPortableString() + "config.js";
 		
 		store.setDefault(PreferenceConstants.P_SCSH_CONF, configPath); 
 		
