@@ -3,7 +3,6 @@ package org.globaltester.core.ui.perspective;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-import org.eclipse.ui.IPlaceholderFolderLayout;
 import org.globaltester.core.ui.views.GlobalTesterNavigator;
 
 public class GlobalTesterPerspective implements IPerspectiveFactory {
@@ -11,7 +10,6 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 	private static final String ID_FOLDER_TOPLEFT = "org.globaltester.core.ui.perspective.GlobalTesterPerspective.topLeft";
 	private static final String ID_FOLDER_BOTTOMLEFT = "org.globaltester.core.ui.perspective.GlobalTesterPerspective.bottomLeft";
 	private static final String ID_FOLDER_BOTTOM = "org.globaltester.core.ui.perspective.GlobalTesterPerspective.bottom";
-	private static final String ID_FOLDER_RIGHT = "org.globaltester.core.ui.perspective.GlobalTesterPerspective.right";
 
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
@@ -31,10 +29,5 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 IFolderLayout bottom = layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
 		 bottom.addView(IPageLayout.ID_PROP_SHEET);
 		 bottom.addView(IPageLayout.ID_PROGRESS_VIEW);
-		 
-		// Right: SCSH, TestLayouts etc.
-		 IPlaceholderFolderLayout right = layout.createPlaceholderFolder(ID_FOLDER_RIGHT, IPageLayout.RIGHT, 0.66f,
-	 	   editorArea);
-		 right.addPlaceholder("org.globaltester.smartcardshell.ui.views.SmartCardShellView"); 
 	}
 }
