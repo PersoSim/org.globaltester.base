@@ -2,8 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="GlobalTester User Guide">
-    <topic label="GlobalTester overview"  href="html/user/overview.html"> 
-    </topic>
+   <anchor id="overview"/>
    <topic label="Getting Started">
       <anchor id="gettingstarted"/>
    </topic>
@@ -19,9 +18,6 @@
    <topic label="Samples">
       <anchor id="samples"/>
    </topic>
-   <topic href="html/user/whatsnew.html" label="What's new in GlobalTester">
-    <anchor id="whatsnew"/>
-   </topic>
-   <topic href="html/user/support.html" label="GlobalTester Support">
-   </topic>
+   <anchor id="whatsnew"/>
+   <anchor id="support"/>
 </toc>
