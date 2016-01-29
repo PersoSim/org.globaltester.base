@@ -1,3 +1,9 @@
+Version 2.6.1 (29.01.2016)
+
+* Moved the jMockit library into its own bundle
+* Refactor Validate(File/Dir)FieldEditor to org.globaltester.base
+
+
 Version 2.6.0 (12.11.2015)
 
 * Add GT Base Test launch config
