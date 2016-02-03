@@ -54,7 +54,7 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 	public GlobalTesterPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("GlobalTester preferences page.");
+		setDescription("GlobalTester preferences page. Please choose a category on the menu on the left.");
 	}
 
 	/**
@@ -64,66 +64,6 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 	 */
 	public void createFieldEditors() {
 
-		Composite container = new Composite(this.getFieldEditorParent(),
-				SWT.NONE);
-		GridData containerData = new GridData(GridData.FILL, GridData.FILL,
-				true, false);
-		containerData.horizontalSpan = 1;
-
-		container.setLayoutData(containerData);
-		GridLayout layout = new GridLayout(1, false);
-		container.setLayout(layout);
-
-		scshGroup = new Group(container, SWT.NONE);
-		scshGroup.setText("SmartCardShell configuration");
-		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gd.horizontalSpan = 2;
-		scshGroup.setLayoutData(gd);
-		scshGroup.setLayout(new GridLayout(2, false));
-
-		// manual settings of directories
-		bfeManualSCSHSettings = new BooleanFieldEditor(
-				PreferenceConstants.P_MANUAL_SCSH_CONF,
-				"Manual select configuration file for SCSH", scshGroup);
-
-		addField(bfeManualSCSHSettings);
-
-		// configuration file for smart card shell
-		ffeConfigFile = new ValidateFileFieldEditor(PreferenceConstants.P_SCSH_CONF,
-				"SCSH Config file:", scshGroup);
-
-		if (!Activator.getDefault().getPreferenceStore().getBoolean(
-				PreferenceConstants.P_MANUAL_SCSH_CONF)) {
-			ffeConfigFile.setEnabled(false, scshGroup);
-		}
-		addField(ffeConfigFile);
-
-		
-		bufferGroup = new Group(container, SWT.NONE);
-		bufferGroup.setText("Buffer");
-		GridData gd3 = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gd3.horizontalSpan = 2;
-		bufferGroup.setLayoutData(gd3);
-		bufferGroup.setLayout(new GridLayout(2, false));
-
-		ifeReaderBuffer = new IntegerFieldEditor(
-				PreferenceConstants.P_READBUFFER, "Read buffer size:",
-				bufferGroup);
-		ifeReaderBuffer.setValidRange(0, 32767); // Maximum size allowed in extended Length APDU
-		addField(ifeReaderBuffer);
-
-		rfeReadFileEOF = new RadioGroupFieldEditor(
-				PreferenceConstants.P_BUFFERREADFILEEOF,
-				"Alternative ways for JavaScript function readFileEOF()",
-				1,
-				new String[][] {
-						new String[] {
-								"Read data groups by checking header information (fast)",
-								"INFINITE" },
-						new String[] {
-								"Read data groups byte by byte (very slow)",
-								"SMALL" } }, bufferGroup, true);
-		addField(rfeReadFileEOF);
 	}
 
 	public void init(IWorkbench workbench) {
@@ -146,10 +86,10 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 
 	protected void performDefaults() {
 		super.performDefaults();
-		boolean manualPath = Activator.getDefault().getPreferenceStore()
-				.getBoolean(PreferenceConstants.P_MANUAL_SCSH_CONF);
-
-		ffeConfigFile.setEnabled(manualPath, scshGroup);
+//		boolean manualPath = Activator.getDefault().getPreferenceStore()
+//				.getBoolean(PreferenceConstants.P_MANUAL_SCSH_CONF);
+//
+//		ffeConfigFile.setEnabled(manualPath, scshGroup);
 	}
 
 }

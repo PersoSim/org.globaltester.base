@@ -31,15 +31,5 @@ package org.globaltester.preferences;
  */
 
 public class PreferenceConstants {
-
-	// path to configuration file needed by smart card shell
-	public static final String P_SCSH_CONF = "SCSHconfFile";
-	
-	// switch to set manual directory settings
-	public static final String P_MANUAL_SCSH_CONF = "manualSCSHconf";
-	
-	//readerBuffer and ReadFileEOF setting
-	public static final String P_READBUFFER = "Default read buffer size";
-	public static final String P_BUFFERREADFILEEOF = "Buffer size for function readFileEOF";
 	
 }

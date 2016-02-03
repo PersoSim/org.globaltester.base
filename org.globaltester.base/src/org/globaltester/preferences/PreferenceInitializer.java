@@ -21,10 +21,7 @@
 
 package org.globaltester.preferences;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.globaltester.Activator;
 
 
 
@@ -44,19 +41,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 * For meaning of each preference look at PreferenceConstants.java
 	 */
 	public void initializeDefaultPreferences() {
-		IPreferenceStore store = Activator.getDefault()
-				.getPreferenceStore();
-		
-		IPath pluginDir = Activator.getPluginDir();
-		String configPath = pluginDir.toPortableString() + "config.js";;
-		
-		store.setDefault(PreferenceConstants.P_SCSH_CONF, configPath); 
-		
-		store.setDefault(PreferenceConstants.P_MANUAL_SCSH_CONF, false);
-		
-		store.setDefault(PreferenceConstants.P_BUFFERREADFILEEOF,
-		"INFINITE");
-		store.setDefault(PreferenceConstants.P_READBUFFER, 223);
+
 	}
 
 }
