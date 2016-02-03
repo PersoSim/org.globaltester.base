@@ -2,10 +2,18 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="GlobalTester User Guide">
-    <topic label="GlobalTester overview"  href="html/user/overview.html"> 
-    </topic>
+   <anchor id="overview"/>
+   <topic label="Before you begin">
+      <anchor id="before"/>
+      <topic label="System Requirements">
+         <anchor id="requirements"/>
+      </topic>
+   </topic>
    <topic label="Getting Started">
       <anchor id="gettingstarted"/>
+      <anchor id="install"/>
+      <anchor id="update"/>
+      <anchor id="cltone"/>
    </topic>
    <topic label="Concepts">
       <anchor id="concepts"/>
@@ -14,14 +22,27 @@
       <anchor id="tasks"/>
    </topic>
    <topic label="Reference">
+      <topic label="Preferences">
+         <anchor id="prefa"/>
+         <anchor id="prefc"/>
+         <anchor id="prefd"/>
+         <anchor id="prefe"/>
+         <anchor id="preff"/>
+         <anchor id="prefg"/>
+         <anchor id="prefl"/>
+         <anchor id="prefm"/>
+         <anchor id="prefs"/>
+         <anchor id="preft"/>
+      </topic>
+      <topic label="Views">
+         <anchor id="views"/>
+      </topic>
       <anchor id="reference"/>
    </topic>
    <topic label="Samples">
       <anchor id="samples"/>
    </topic>
-   <topic href="html/user/whatsnew.html" label="What's new in GlobalTester">
-    <anchor id="whatsnew"/>
-   </topic>
-   <topic href="html/user/support.html" label="GlobalTester Support">
-   </topic>
+   <anchor id="whatsnew"/>
+   <anchor id="support"/>
+   <anchor id="about"/>
 </toc>
