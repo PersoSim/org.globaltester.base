@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GlobalTester Base Plug-in
+Bundle-Name: GT Base
 Bundle-SymbolicName: org.globaltester.base;singleton:=true
 Bundle-Version: 2.6.1
 Bundle-Activator: org.globaltester.Activator
