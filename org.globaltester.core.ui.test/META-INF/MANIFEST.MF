@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GlobalTester Core UI Test
+Bundle-Name: GT Core UI Test
 Bundle-SymbolicName: org.globaltester.core.ui.test
 Bundle-Version: 3.0.3
 Bundle-Vendor: HJP Consulting GmbH
