@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<introContent>
+
+	<extensionContent id="globaltesterorg-introExtension"
+		style="css/overview.css" name="GlobalTester.org" path="overview/@">
+		<group style-id="content-group" id="content-group">
+			<link style-id="content-link" label="GlobalTester basics"
+				url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.globaltester.base.doc/html/overview.html"
+				id="gtBasics">
+				<text>Learn about basic GlobalTester concepts</text>
+			</link>
+		</group>
+	</extensionContent>
+
+</introContent>
