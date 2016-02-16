@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GlobalTester Core Documentation
+Bundle-Name: GT Core Doc
 Bundle-SymbolicName: org.globaltester.core.doc; singleton:=true
 Bundle-Version: 3.0.3
 Bundle-Activator: org.globaltester.core.doc.Activator
