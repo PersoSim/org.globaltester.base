@@ -1,3 +1,9 @@
+Version 2.6.2 (18.02.2016)
+
+* Updated Bundle-Name to match naming conventions
+* remove JavaScript exports/lib
+
+
 Version 2.6.1 (29.01.2016)
 
 * Moved the jMockit library into its own bundle
