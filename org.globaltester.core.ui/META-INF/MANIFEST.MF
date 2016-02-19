@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Core UI
 Bundle-SymbolicName: org.globaltester.core.ui; singleton:=true
-Bundle-Version: 3.0.3
+Bundle-Version: 3.0.4
 Bundle-Activator: org.globaltester.core.ui.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
