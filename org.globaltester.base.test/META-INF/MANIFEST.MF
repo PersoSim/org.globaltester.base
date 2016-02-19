@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Base Test
 Bundle-SymbolicName: org.globaltester.base.test
-Bundle-Version: 2.6.1
+Bundle-Version: 2.6.2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.globaltester.base.test
 Require-Bundle: org.junit,

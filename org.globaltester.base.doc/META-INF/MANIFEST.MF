@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Base Doc;singleton:=true;singleton:=true
 Bundle-SymbolicName: org.globaltester.base.doc;singleton:=true
-Bundle-Version: 2.6.0
+Bundle-Version: 2.6.2
 Bundle-Vendor: HJP Consulting GmbH
