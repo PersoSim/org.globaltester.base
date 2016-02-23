@@ -20,6 +20,7 @@
                id="org.globaltester.core.ui.views.GlobalTesterNavigator"
                name="GlobalTester Navigator">
          </view>
+         
          <category
                id="org.globaltester.core.ui.category.globaltester"
                name="GlobalTester">

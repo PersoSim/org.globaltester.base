@@ -46,9 +46,9 @@ public class ExporterTest {
 						+ "sources.zip"), false);
 		InputStream testSpec = FileLocator.openStream(
 				Platform.getBundle(plugin), new Path("/" + folder
-						+ "testSpecification.xml"), false);
+						+ "testSpecification.gtspec"), false);
 
-		File tempTestSpec = new File(tempDir, "testSpecification.xml");
+		File tempTestSpec = new File(tempDir, "testSpecification.gtspec");
 		GtResourceHelper.copyFile(testSpec, tempTestSpec);
 		File target = new File(tempDir, "target.odt");
 		Exporter.export(target, tempTestSpec, stylesheet, sourcesZip, null);
