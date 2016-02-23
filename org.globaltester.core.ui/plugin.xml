@@ -26,14 +26,6 @@
          </category>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.globaltester.core.ui.preferences.GlobalTesterPreferencePage"
-            id="org.globaltester.core.ui.preferences.GlobalTesterPreferencePage"
-            name="GlobalTester">
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <category
             id="org.globaltester.core.ui.newWizards.category"
