@@ -20,7 +20,7 @@ public class XmlHelperTest {
 	@Test
 	public void testReadDocument() throws IOException, CoreException{
 		IProject project =JUnitHelper.createEmptyProject("testProject");
-		String file = "testSpecification.xml";
+		String file = "testSpecification.gtspec";
 		GtResourceHelper.copyPluginFilesToWorkspaceProject("org.globaltester.core.test", project, "files/SuccessfullExportFiles", file);
 		Document doc = XMLHelper.readDocument(project.getFile(file));
 		assertTrue(doc.getRootElement().getName().equals("TestSpecification"));
