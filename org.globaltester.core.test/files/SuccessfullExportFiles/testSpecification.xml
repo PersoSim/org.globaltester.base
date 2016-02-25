@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSpecification xmlns="http://xmltest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmltest schema.xsd">
 	<Text>blablabla</Text>
-	<!-- <TestLayer>subfolder/layer.gtsuite</TestLayer> -->
+	<!-- <TestLayer>subfolder/layer.gtspec</TestLayer> -->
 </TestSpecification>
