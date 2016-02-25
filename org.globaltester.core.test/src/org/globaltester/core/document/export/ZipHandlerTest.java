@@ -31,15 +31,35 @@ public class ZipHandlerTest {
 		FileOutputStream out = new FileOutputStream(tempFile);
 		Bundle curBundle = Platform.getBundle("org.globaltester.core.test");
 		URL archive = curBundle.getEntry("files/testArchive.zip");
-		ZipInputStream input = new ZipInputStream(archive.openStream());
-		ZipOutputStream zipOut = ZipHandler.append(input, out);
+		
+		ZipInputStream input = null;
+		ZipOutputStream zipOut = null;
+		
+		try {
+			input = new ZipInputStream(archive.openStream());
+			zipOut = ZipHandler.append(input, out);
+		} finally {
+			if(input != null) {
 		input.close();
+			}
+			
+			if(zipOut != null) {
 		zipOut.close();
+			}
+		}
 
-		ZipFile zip = new ZipFile(tempFile);
+		ZipFile zip = null;
+		
+		try {
+			zip = new ZipFile(tempFile);
 		assertTrue("Zip should contain testFile", !zip.getEntry("testFile").isDirectory());
 		assertTrue("Zip should contain testFolder", zip.getEntry("testFolder/").isDirectory());
 		assertTrue("Zip should contain testFolder/testFile", !zip.getEntry("testFolder/testFile").isDirectory());
+		} finally {
+			if(zip != null) {
+				zip.close();
+			}
+		}
 	}
 	
 	@After

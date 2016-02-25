@@ -53,21 +53,50 @@ public class GtResourceHelperTest {
 		File src = File.createTempFile(testFile, "");
 		File dest = File.createTempFile(testFile, "");
 		
-		FileOutputStream os = new FileOutputStream(src);
-		byte[] fileContent = new byte [] {0,1,2,3,4,5,6,7,8};
-		os.write(fileContent );
-		os.close();
+		FileOutputStream os = null;
+		byte[] fileContent;
 		
-		FileInputStream is = new FileInputStream(src);		
+		try {
+			os = new FileOutputStream(src);
+			fileContent = new byte [] {0,1,2,3,4,5,6,7,8};
+		os.write(fileContent );
+		} finally {
+			if(os != null) {
+		os.close();
+			}
+		}
+		
+		FileInputStream is = null;
+		
+		try {
+			is = new FileInputStream(src);		
 		os = new FileOutputStream(dest);
 		
 		GtResourceHelper.copyStream(is, os);
+		} finally {
+			if(is != null) {
 		is.close();
+			}
+			
+			if(is != null) {
 		os.close();
+			}
+		}
 		
+		byte [] read;
+		int length;
+		
+		try {
 		is = new FileInputStream(dest);
-		byte [] read = new byte [fileContent.length];
-		assertEquals(fileContent.length, is.read(read));
+			read = new byte [fileContent.length];
+			length = is.read(read);
+		} finally {
+			if(is != null) {
+				is.close();
+			}
+		}
+		
+		assertEquals(fileContent.length, length);
 		assertArrayEquals(fileContent, read);
 	}
 	
@@ -77,9 +106,20 @@ public class GtResourceHelperTest {
 		File source = JUnitHelper.createTemporaryFile(content);
 		File destination = File.createTempFile("testdest", "");
 		GtResourceHelper.copyFile(new FileInputStream(source), destination);
-		FileInputStream in = new FileInputStream(destination);
-		byte [] result = new byte [content.length];
+		
+		FileInputStream in = null;
+		byte [] result;
+		
+		try {
+			in = new FileInputStream(destination);
+			result = new byte [content.length];
 		in.read(result);
+		} finally {
+			if(in != null) {
+				in.close();
+			}
+		}
+		
 		assertArrayEquals(content, result);
 	}
 	
