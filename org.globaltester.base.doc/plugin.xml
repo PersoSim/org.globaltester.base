@@ -3,7 +3,6 @@
 <plugin>
    <extension point="org.eclipse.help.toc">
       <toc file="tocprefs.xml"/>
-      <toc file="tocprefglobaltester.xml"/>
       <toc file="toclogging.xml"/>
       <toc
             file="tocgettingstarted.xml">
