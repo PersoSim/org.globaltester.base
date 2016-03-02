@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toc label="Before you begin" link_to="/org.globaltester.core.doc/toc/user/toc.xml#before">
+<toc label="Before you begin" link_to="/org.globaltester.base.doc/toc/user/toc.xml#before">
    <topic href="html/overview.html" label="GlobalTester framework overview">
    </topic>
 </toc>

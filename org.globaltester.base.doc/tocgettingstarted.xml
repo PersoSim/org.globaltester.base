@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toc label="Getting Started" link_to="/org.globaltester.core.doc/toc/user/toc.xml#gettingstarted">
+<toc label="Getting Started" link_to="/org.globaltester.base.doc/toc/user/toc.xml#gettingstarted">
    <topic href="html/gettingstarted.html" label="Getting Started">
    </topic>
 </toc>

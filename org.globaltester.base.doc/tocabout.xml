@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<toc label="About HJP Consulting" link_to="/org.globaltester.core.doc/toc/user/toc.xml#about">
+<toc label="About HJP Consulting" link_to="/org.globaltester.base.doc/toc/user/toc.xml#about">
    <topic href="html/about.html" label="About HJP Consulting">
    </topic>
 </toc>
