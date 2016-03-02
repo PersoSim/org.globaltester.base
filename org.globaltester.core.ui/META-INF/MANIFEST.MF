@@ -7,7 +7,6 @@ Bundle-Activator: org.globaltester.core.ui.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.globaltester.core,
  org.eclipse.ui.navigator,
  org.eclipse.ui.views,
  org.eclipse.ui.views.properties.tabbed,

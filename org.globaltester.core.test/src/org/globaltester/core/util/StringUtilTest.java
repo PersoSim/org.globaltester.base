@@ -3,7 +3,7 @@ package org.globaltester.core.util;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import org.globaltester.util.StringUtil;
+import org.globaltester.base.util.StringUtil;
 import org.junit.Test;
 
 public class StringUtilTest {

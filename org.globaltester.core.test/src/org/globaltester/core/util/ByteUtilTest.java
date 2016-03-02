@@ -2,7 +2,7 @@ package org.globaltester.core.util;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import org.globaltester.util.ByteUtil;
+import org.globaltester.base.util.ByteUtil;
 import org.junit.Test;
 
 public class ByteUtilTest {

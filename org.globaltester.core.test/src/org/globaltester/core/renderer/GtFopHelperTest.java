@@ -11,9 +11,8 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.globaltester.core.resources.GtResourceHelper;
+import org.globaltester.base.resources.GtResourceHelper;
 import org.globaltester.junit.JUnitHelper;
-import org.globaltester.renderer.GtFopHelper;
 import org.junit.Test;
 
 public class GtFopHelperTest {
