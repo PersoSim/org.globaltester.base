@@ -6,7 +6,9 @@ Bundle-Version: 2.6.2
 Bundle-Activator: org.globaltester.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.globaltester.lib.jdom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
@@ -115,6 +117,10 @@ Export-Package: org.apache.xml.security,
  org.bouncycastle.x509.extension,
  org.bouncycastle.x509.util,
  org.globaltester,
+ org.globaltester.base.interfaces,
+ org.globaltester.base.resources,
+ org.globaltester.base.util,
+ org.globaltester.base.xml,
  org.globaltester.crypto,
  org.globaltester.preferences,
  org.jcprev.xml.dsig.internal,
