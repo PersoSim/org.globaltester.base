@@ -1,4 +1,4 @@
-package org.globaltester.core.ui.editors;
+package org.globaltester.base.ui.editors;
 
 import java.util.ArrayList;
 import java.util.HashMap;

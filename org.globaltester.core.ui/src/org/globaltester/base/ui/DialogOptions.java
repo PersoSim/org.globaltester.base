@@ -1,4 +1,4 @@
-package org.globaltester.core.ui;
+package org.globaltester.base.ui;
 
 /**
  * Provides a means to set the possible options for File- and DirectoryDialogs,

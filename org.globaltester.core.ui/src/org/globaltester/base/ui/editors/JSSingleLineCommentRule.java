@@ -1,7 +1,7 @@
-package org.globaltester.core.ui.editors;
+package org.globaltester.base.ui.editors;
 
 import org.eclipse.jface.text.rules.*;
-import org.globaltester.core.ui.editors.GtScanner.TokenType;
+import org.globaltester.base.ui.editors.GtScanner.TokenType;
 
 /**
  * EndOfLineRule that matches JavaScript single line comments

@@ -1,4 +1,4 @@
-package org.globaltester.core.ui.editors;
+package org.globaltester.base.ui.editors;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -8,57 +8,72 @@ import java.util.Iterator;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IPredicateRule;
 import org.eclipse.jface.text.rules.IToken;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * Scanner that identifies JavaScript relevant content types and returns either
- * content type tokens or text attribute tokens
+ * Scanner that identifies XML relevant content types and returns either content
+ * type tokens or text attribute tokens
  * 
  * @author amay
  * 
  */
-public class JSScanner extends GtScanner {
-
-	public final static String CT_JS_KEYWORD = "__JS_KEYWORD";
-	public final static String CT_JS_MULTILINE_COMMENT = "__JS_MULTILINE_COMMENT";
-	public final static String CT_JS_SINGLELINE_COMMENT = "__JS_SINGLELINE_COMMENT";
+public class XMLScanner extends GtScanner {
+	
+	public final static String CT_XML_PROC_INSTR = "__XML_PROC_INSTR";
+	public final static String CT_XML_COMMENT = "__XML_COMMENT";
+	public final static String CT_XML_TAG = "__XML_TAG";
+	public final static String CT_XML_STRING_SINGLE_QUOTED = "__XML_STRING_SINGLE_QUOTED";
+	public final static String CT_XML_STRING_DOUBLE_QUOTED = "__XML_STRING_DOUBLE_QUOTED";
 	
 	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 
-	// init supported content types
 	static {
-		// add required data for content type JS_KEYWORD
+		// add required data for content type XML_PROC_INSTR
 		EnumMap<TokenType, Object> eMap = new EnumMap<TokenType, Object>(
 				TokenType.class);
-		eMap.put(TokenType.CONTENT_TYPE, JsKeyWordRule.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLProcInstrRule.class);
 		eMap.put(TokenType.TEXT_ATTRIBUTES,
 				new TextAttribute(new Color(Display.getCurrent(),
-						ColorConstants.JS_KEYWORD), null, SWT.BOLD));
-		contentTypes.put(CT_JS_KEYWORD, eMap);
+						ColorConstants.XML_PROC_INSTR)));
+		contentTypes.put(CT_XML_PROC_INSTR, eMap);
 
-		// add required data for content type JS_MULTILINE_COMMENT
+		// add required data for content type XML_COMMENT
 		eMap = new EnumMap<TokenType, Object>(TokenType.class);
-		eMap.put(TokenType.CONTENT_TYPE, JSMultiLineCommentRule.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLCommentRule.class);
 		eMap.put(TokenType.TEXT_ATTRIBUTES,
 				new TextAttribute(new Color(Display.getCurrent(),
-						ColorConstants.JS_COMMENT)));
-		contentTypes.put(CT_JS_MULTILINE_COMMENT, eMap);
+						ColorConstants.XML_COMMENT)));
+		contentTypes.put(CT_XML_COMMENT, eMap);
 
-		// add required data for content type JS_SINGLELINE_COMMENT
+		// add required data for content type XML_TAG
 		eMap = new EnumMap<TokenType, Object>(TokenType.class);
-		eMap.put(TokenType.CONTENT_TYPE, JSSingleLineCommentRule.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLTagRule.class);
 		eMap.put(TokenType.TEXT_ATTRIBUTES,
 				new TextAttribute(new Color(Display.getCurrent(),
-						ColorConstants.JS_COMMENT)));
-		contentTypes.put(CT_JS_SINGLELINE_COMMENT, eMap);
+						ColorConstants.XML_TAG)));
+		contentTypes.put(CT_XML_TAG, eMap);
 
+		// add required data for content type XML_STRING_SINGLE_QUOTED
+		eMap = new EnumMap<TokenType, Object>(TokenType.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLStringSingleQuotedRule.class);
+		eMap.put(TokenType.TEXT_ATTRIBUTES,
+				new TextAttribute(new Color(Display.getCurrent(),
+						ColorConstants.XML_STRING)));
+		contentTypes.put(CT_XML_STRING_SINGLE_QUOTED, eMap);
+
+		// add required data for content type XML_STRING_DOUBLE_QUOTED
+		eMap = new EnumMap<TokenType, Object>(TokenType.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLStringDoubleQuotedRule.class);
+		eMap.put(TokenType.TEXT_ATTRIBUTES,
+				new TextAttribute(new Color(Display.getCurrent(),
+						ColorConstants.XML_STRING)));
+		contentTypes.put(CT_XML_STRING_DOUBLE_QUOTED, eMap);
 	}
 
-	public JSScanner(TokenType tokenType) {
+	public XMLScanner(TokenType tokenType) {
 		super(tokenType);
-		JSScanner.addAllPredicateRules(this, tokenType);
+		XMLScanner.addAllPredicateRules(this, tokenType);
 	}
 
 	public String[] getSupportedContentTypes() {
@@ -66,7 +81,7 @@ public class JSScanner extends GtScanner {
 	}
 
 	/**
-	 * Adds all JS related predicate rules to the given scanner
+	 * Adds all XML related predicate rules to the given scanner
 	 * 
 	 * @param scanner
 	 *            scanner to add the rules to
@@ -88,7 +103,7 @@ public class JSScanner extends GtScanner {
 	}
 
 	/**
-	 * Adds all JSs related predicate rules that define document partitions to
+	 * Adds all XML related predicate rules that define document partitions to
 	 * the given scanner
 	 * 
 	 * @param scanner
@@ -100,7 +115,9 @@ public class JSScanner extends GtScanner {
 	public static void addAllPartitionRules(GtScanner scanner,
 			TokenType tokenType) {
 		ArrayList<String> partitionContentTypes = new ArrayList<String>();
-		partitionContentTypes.add(CT_JS_MULTILINE_COMMENT);
+		partitionContentTypes.add(CT_XML_PROC_INSTR);
+		partitionContentTypes.add(CT_XML_COMMENT);
+		partitionContentTypes.add(CT_XML_TAG);
 		
 		for (Iterator<String> contentTypesIter = partitionContentTypes
 				.iterator(); contentTypesIter.hasNext();) {

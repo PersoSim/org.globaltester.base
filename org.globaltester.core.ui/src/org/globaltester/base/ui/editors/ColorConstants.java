@@ -1,4 +1,4 @@
-package org.globaltester.core.ui.editors;
+package org.globaltester.base.ui.editors;
 
 import org.eclipse.swt.graphics.RGB;
 

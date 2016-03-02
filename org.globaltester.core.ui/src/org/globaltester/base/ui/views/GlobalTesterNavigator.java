@@ -1,10 +1,10 @@
-package org.globaltester.core.ui.views;
+package org.globaltester.base.ui.views;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 public class GlobalTesterNavigator extends CommonNavigator {
-	public static final String VIEW_ID = "org.globaltester.core.ui.views.GlobalTesterNavigator";
+	public static final String VIEW_ID = "org.globaltester.base.ui.views.GlobalTesterNavigator";
 
 	@Override
 	protected Object getInitialInput() {

@@ -1,4 +1,4 @@
-package org.globaltester.core.ui.editors;
+package org.globaltester.base.ui.editors;
 
 import java.util.HashSet;
 import java.util.Iterator;

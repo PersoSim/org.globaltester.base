@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Core UI
-Bundle-SymbolicName: org.globaltester.core.ui; singleton:=true
+Bundle-SymbolicName: org.globaltester.base.ui;singleton:=true
 Bundle-Version: 3.0.4
-Bundle-Activator: org.globaltester.core.ui.Activator
+Bundle-Activator: org.globaltester.base.ui.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -19,8 +19,8 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.navigator
-Export-Package: org.globaltester.core.ui,
- org.globaltester.core.ui.editors,
- org.globaltester.core.ui.perspective,
- org.globaltester.core.ui.preferences,
- org.globaltester.core.ui.views
+Export-Package: org.globaltester.base.ui,
+ org.globaltester.base.ui.editors,
+ org.globaltester.base.ui.perspective,
+ org.globaltester.base.ui.preferences,
+ org.globaltester.base.ui.views

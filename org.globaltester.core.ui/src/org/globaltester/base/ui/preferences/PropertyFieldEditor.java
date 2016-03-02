@@ -1,4 +1,4 @@
-package org.globaltester.core.ui.preferences;
+package org.globaltester.base.ui.preferences;
 
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.swt.SWT;

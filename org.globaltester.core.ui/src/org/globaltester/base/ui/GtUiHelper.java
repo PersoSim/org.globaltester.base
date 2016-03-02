@@ -1,4 +1,4 @@
-package org.globaltester.core.ui;
+package org.globaltester.base.ui;
 
 import java.util.Iterator;
 import java.util.LinkedList;
