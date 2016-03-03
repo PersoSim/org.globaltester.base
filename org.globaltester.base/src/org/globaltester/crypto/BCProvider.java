@@ -7,12 +7,14 @@ import org.globaltester.cryptoprovider.Crypto;
 import org.globaltester.cryptoprovider.Cryptoprovider;
 import org.osgi.framework.Constants;
 
-
-
 /**
- * Class generates new Bouncy Castle Provider instance if not already done.
+ * This class provides legacy support for all code relying on its
+ * {@link #getProvider()} method to provide a BC 1.46 {@link Cryptoprovider} for
+ * compatibility issues while most other code already relies on generic JCE API
+ * and also works with newer/latest BC versions or any {@link Provider} at all
+ * capable of providing the required cryptographic primitives.
  * 
- * @author okaethler
+ * @author slutters
  * 
  */
 public class BCProvider {
