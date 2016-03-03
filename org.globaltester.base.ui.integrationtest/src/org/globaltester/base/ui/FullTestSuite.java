@@ -1,4 +1,4 @@
-package org.globaltester.core.ui;
+package org.globaltester.base.ui;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

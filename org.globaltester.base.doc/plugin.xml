@@ -31,7 +31,7 @@
    <extension
          point="org.eclipse.ui.cheatsheets.cheatSheetContent">
       <category
-            id="org.globaltester.core.doc.userGuide"
+            id="org.globaltester.base.doc.userGuide"
             name="GlobalTester User Guide">
       </category>
    </extension>

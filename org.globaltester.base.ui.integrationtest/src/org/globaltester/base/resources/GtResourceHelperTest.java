@@ -42,7 +42,7 @@ public class GtResourceHelperTest {
 	@Test
 	public void testCopyPluginFilesToWorkspaceProject() throws IOException, CoreException{
 		IProject project = JUnitHelper.createEmptyProject(testProject);
-		GtResourceHelper.copyPluginFilesToWorkspaceProject("org.globaltester.core.test", project, "files", testFile, testFolder);
+		GtResourceHelper.copyPluginFilesToWorkspaceProject("org.globaltester.base.test", project, "files", testFile, testFolder);
 		assertTrue(project.getFolder(testFolder).exists());
 		assertTrue(project.getFolder(testFolder).getFile(testFile).exists());
 		assertTrue(project.getFile(testFile).exists());
