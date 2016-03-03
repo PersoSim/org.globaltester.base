@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.globaltester.base.resources.GtResourceHelper;
+import org.globaltester.base.xml.XMLHelper;
 import org.globaltester.junit.JUnitHelper;
 import org.jdom.Document;
 import org.jdom.Element;
