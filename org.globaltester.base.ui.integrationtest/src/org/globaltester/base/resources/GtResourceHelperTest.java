@@ -17,7 +17,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.globaltester.base.resources.GtResourceHelper;
 import org.globaltester.junit.JUnitHelper;
 import org.globaltester.junit.TestNature;
 import org.junit.After;
