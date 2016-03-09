@@ -1,11 +1,7 @@
 package org.globaltester.base.test;
-import java.security.Provider;
-import java.security.Security;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.junit.BeforeClass;
-
 import org.globaltester.cryptoprovider.Crypto;
+import org.globaltester.cryptoprovider.bc.ProviderBc;
+import org.junit.BeforeClass;
 
 /**
  * Superclass for all test cases for the GlobalTester.
@@ -15,14 +11,9 @@ import org.globaltester.cryptoprovider.Crypto;
  */
 public class GlobalTesterTestCase {
 
-	protected static Provider bcProvider;
-	
 	@BeforeClass
 	public static void setupClass(){
-		bcProvider = new BouncyCastleProvider();
-		Security.addProvider(bcProvider);
-		Crypto.setCryptoProvider(bcProvider);
-
+		Crypto.setCryptoProvider(new ProviderBc().getCryptoProviderObject());
 	}
 
 }
