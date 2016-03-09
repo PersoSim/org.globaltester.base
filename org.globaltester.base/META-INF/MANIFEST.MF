@@ -8,7 +8,7 @@ Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.globaltester.cryptoprovider;bundle-version="0.8.2",
- org.globaltester.cryptoprovider.legacy.bc;bundle-version="0.8.2"
+ org.globaltester.cryptoprovider.bc.legacy_1_46;bundle-version="0.8.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
