@@ -6,34 +6,13 @@ Bundle-Version: 2.6.3.qualifier
 Bundle-Activator: org.globaltester.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.globaltester.lib.jdom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
-Export-Package: org.apache.xml.security,
- org.apache.xml.security.algorithms,
- org.apache.xml.security.algorithms.implementations,
- org.apache.xml.security.c14n,
- org.apache.xml.security.c14n.helper,
- org.apache.xml.security.c14n.implementations,
- org.apache.xml.security.encryption,
- org.apache.xml.security.exceptions,
- org.apache.xml.security.keys,
- org.apache.xml.security.keys.content,
- org.apache.xml.security.keys.content.keyvalues,
- org.apache.xml.security.keys.content.x509,
- org.apache.xml.security.keys.keyresolver,
- org.apache.xml.security.keys.keyresolver.implementations,
- org.apache.xml.security.keys.storage,
- org.apache.xml.security.keys.storage.implementations,
- org.apache.xml.security.signature,
- org.apache.xml.security.transforms,
- org.apache.xml.security.transforms.implementations,
- org.apache.xml.security.transforms.params,
- org.apache.xml.security.utils,
- org.apache.xml.security.utils.resolver,
- org.apache.xml.security.utils.resolver.implementations,
- org.bouncycastle,
+Export-Package: org.bouncycastle,
  org.bouncycastle.asn1,
  org.bouncycastle.asn1.cmp,
  org.bouncycastle.asn1.cms,
@@ -115,11 +94,12 @@ Export-Package: org.apache.xml.security,
  org.bouncycastle.x509.extension,
  org.bouncycastle.x509.util,
  org.globaltester,
+ org.globaltester.base.interfaces,
+ org.globaltester.base.resources,
+ org.globaltester.base.util,
+ org.globaltester.base.xml,
  org.globaltester.crypto,
- org.globaltester.preferences,
- org.jcprev.xml.dsig.internal,
- org.jcprev.xml.dsig.internal.dom
+ org.globaltester.preferences
 Bundle-ClassPath: lib/bcprov-jdk15-146p.jar,
  lib/bcmail-jdk16-146.jar,
- lib/xmldsig.jar,
  .

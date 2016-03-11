@@ -1,7 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GT Base Doc;singleton:=true;singleton:=true
+Bundle-Name: GT Base Doc
 Bundle-SymbolicName: org.globaltester.base.doc;singleton:=true
 Bundle-Version: 2.6.3.qualifier
 Bundle-Vendor: HJP Consulting GmbH
-Require-Bundle: org.globaltester.core.doc;bundle-version="3.0.4"
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.help,
+ org.eclipse.ui,
+ org.eclipse.help.base;bundle-version="3.5.3",
+ org.eclipse.ui.cheatsheets
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.globaltester.base.doc.Activator
+Export-Package: org.globaltester.base.doc.help

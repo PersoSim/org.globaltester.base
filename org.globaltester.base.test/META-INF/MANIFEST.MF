@@ -4,9 +4,14 @@ Bundle-Name: GT Base Test
 Bundle-SymbolicName: org.globaltester.base.test
 Bundle-Version: 2.6.3.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.globaltester.base.test
+Export-Package: org.globaltester.base
 Require-Bundle: org.junit,
  org.globaltester.cryptoprovider.bc,
- org.globaltester.cryptoprovider
+ org.globaltester.cryptoprovider,
+ org.globaltester.lib.jdom,
+ org.eclipse.core.resources,
+ org.globaltester.base,
+ org.eclipse.osgi
 Bundle-Vendor: HJP Consulting GmbH
 Bundle-ClassPath: .
+Import-Package: org.eclipse.core.runtime

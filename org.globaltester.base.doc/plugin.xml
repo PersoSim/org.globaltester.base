@@ -16,6 +16,10 @@
       <toc
             file="tocabout.xml">
       </toc>
+      <toc
+            file="toc/user/toc.xml"
+            primary="true">
+      </toc>
    </extension>
    <extension
          point="org.eclipse.ui.intro.configExtension">
@@ -23,5 +27,12 @@
             configId="org.eclipse.ui.intro.universalConfig"
             content="intro/overview.xml">
       </configExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.globaltester.base.doc.userGuide"
+            name="GlobalTester User Guide">
+      </category>
    </extension>
 </plugin>

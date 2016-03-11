@@ -1,4 +1,4 @@
-package org.globaltester.base.test;
+package org.globaltester.base;
 import java.security.Provider;
 import java.security.Security;
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.globaltester.base.ui.perspective.GlobalTesterPerspective"
+            icon="icons/globaltester.png"
+            id="org.globaltester.base.ui.perspective.GlobalTesterPerspective"
+            name="GlobalTester Perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+         <view
+               category="org.globaltester.base.ui.category.globaltester"
+               class="org.globaltester.base.ui.views.GlobalTesterNavigator"
+               icon="icons/globaltester.png"
+               id="org.globaltester.base.ui.views.GlobalTesterNavigator"
+               name="GlobalTester Navigator">
+         </view>
+         
+         <category
+               id="org.globaltester.base.ui.category.globaltester"
+               name="GlobalTester">
+         </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.globaltester.base.ui.newWizards.category"
+            name="GlobalTester">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="org.globaltester.base.ui.importWizards.category"
+            name="GlobalTester">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="org.globaltester.base.ui.exportWizards.category"
+            name="GlobalTester">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.ui.model.WorkbenchContentProvider"
+            id="org.globaltester.base.ui.gtNavigatorContent"
+            labelProvider="org.eclipse.ui.model.WorkbenchLabelProvider"
+            name="GlobalTester Navigator Content">
+         <triggerPoints>
+            <instanceof
+                  value="org.eclipse.core.resources.IResource">
+            </instanceof>
+         </triggerPoints>
+      </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            popupMenuId="org.globaltester.base.ui.views.GlobalTesterNavigator.PopupMenu"
+            viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
+      </viewer>
+      <viewerActionBinding
+            viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
+         <includes>
+             <actionExtension pattern="org.eclipse.ui.navigator.resources.*" />
+         </includes>
+       </viewerActionBinding>
+      <viewerContentBinding
+            viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
+         <includes>
+             <contentExtension
+                   isRoot="true"
+                   pattern="org.eclipse.ui.navigator.resourceContent"/>                      
+            <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+             <contentExtension pattern="org.eclipse.ui.navigator.resources.linkHelper"/>
+             <contentExtension pattern="org.eclipse.ui.navigator.resources.workingSets"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+</plugin>
