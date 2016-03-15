@@ -24,9 +24,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.globaltester.Activator;
 import org.osgi.framework.Bundle;
-import org.osgi.service.log.LogService;
 
 public class GtResourceHelper {
 	/**

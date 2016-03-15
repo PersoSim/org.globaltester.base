@@ -97,6 +97,7 @@ Export-Package: org.bouncycastle,
  org.globaltester.base.interfaces,
  org.globaltester.base.resources,
  org.globaltester.base.util,
+ org.globaltester.base.utils,
  org.globaltester.base.xml,
  org.globaltester.crypto,
  org.globaltester.preferences
