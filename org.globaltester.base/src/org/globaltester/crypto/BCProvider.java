@@ -1,30 +1,33 @@
 package org.globaltester.crypto;
 
 import java.security.Provider;
-import java.security.Security;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.globaltester.cryptoprovider.Crypto;
+import org.globaltester.cryptoprovider.Cryptoprovider;
+import org.osgi.framework.Constants;
 
 /**
- * Class generates new Bouncy Castle Provider instance if not already done.
+ * This class provides legacy support for all code relying on its
+ * {@link #getProvider()} method to provide a BC 1.46 {@link Cryptoprovider} for
+ * compatibility issues while most other code already relies on generic JCE API
+ * and also works with newer/latest BC versions or any {@link Provider} at all
+ * capable of providing the required cryptographic primitives.
  * 
- * @author okaethler
+ * @author slutters
  * 
  */
 public class BCProvider {
 
 	private BCProvider() {
 	}
-
-	private static Provider bcProv = null;
 	
 	public static Provider getProvider() {
-		if (bcProv == null) {
-			bcProv = new BouncyCastleProvider();
-
-			Security.addProvider(bcProv);
-		}
-		return bcProv;
+		String filterString = "(&(" + Constants.OBJECTCLASS + "=" + Cryptoprovider.class.getName() + ")" +
+		"(" + Cryptoprovider.NAME + "=" + BouncyCastleProvider.PROVIDER_NAME + ")" +
+		"(" + Cryptoprovider.VERSION + "=1.46))";
+		
+		return Crypto.getCryptoProvider(filterString);
 	}
 
 }
