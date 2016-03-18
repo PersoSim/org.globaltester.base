@@ -8,9 +8,10 @@
             class="org.globaltester.base.ui.perspective.GlobalTesterPerspective"
             icon="icons/globaltester.png"
             id="org.globaltester.base.ui.perspective.GlobalTesterPerspective"
-            name="GlobalTester Perspective">
+            name="GlobalTester">
       </perspective>
    </extension>
+   
    <extension
          point="org.eclipse.ui.views">
          <view
@@ -26,6 +27,7 @@
                name="GlobalTester">
          </category>
    </extension>
+   
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -33,6 +35,7 @@
             name="GlobalTester">
       </category>
    </extension>
+   
    <extension
          point="org.eclipse.ui.importWizards">
       <category
@@ -40,6 +43,7 @@
             name="GlobalTester">
       </category>
    </extension>
+   
    <extension
          point="org.eclipse.ui.exportWizards">
       <category
@@ -47,6 +51,7 @@
             name="GlobalTester">
       </category>
    </extension>
+   
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -59,14 +64,99 @@
                   value="org.eclipse.core.resources.IResource">
             </instanceof>
          </triggerPoints>
+         
       </navigatorContent>
+      <commonFilter
+	    description="Hides files"
+	    id="org.globaltester.base.ui.hide.a32"
+	    name="*.a32 resources"
+	    activeByDefault="true">
+	    <filterExpression>
+	        <and>
+	            <adapt type="java.lang.Object">
+	                <test property="org.eclipse.core.resources.name" value="*.a32"/>
+	            </adapt>
+	        </and>
+	    </filterExpression>
+	  </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides files"
+            id="org.globaltester.base.ui.hide.xml"
+            name="*.xml resources">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="*.xml">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides files"
+            id="org.globaltester.base.ui.hide.properties"
+            name="*.properties resources">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="*.properties">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides folder"
+            id="org.globaltester.base.ui.hide.metainf"
+            name="metainf folder">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="META-INF">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides folder"
+            id="org.globaltester.base.ui.hide.target"
+            name="target folder">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="target">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
    </extension>
+   
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
             popupMenuId="org.globaltester.base.ui.views.GlobalTesterNavigator.PopupMenu"
             viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
       </viewer>
+      <dragAssistant class="org.eclipse.ui.navigator.resources.ResourceDragAdapterAssistant" viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
+      </dragAssistant>
       <viewerActionBinding
             viewerId="org.globaltester.base.ui.views.GlobalTesterNavigator">
          <includes>
@@ -78,11 +168,30 @@
          <includes>
              <contentExtension
                    isRoot="true"
-                   pattern="org.eclipse.ui.navigator.resourceContent"/>                      
-            <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+                   pattern="org.eclipse.ui.navigator.resourceContent"/>
+             <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
              <contentExtension pattern="org.eclipse.ui.navigator.resources.linkHelper"/>
              <contentExtension pattern="org.eclipse.ui.navigator.resources.workingSets"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.a32"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.xml"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.properties"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.metainf"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.target"/>
          </includes>
       </viewerContentBinding>
    </extension>
+   
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.globaltester.testmanager.views.ResultView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   
 </plugin>

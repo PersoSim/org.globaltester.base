@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.ui.navigator.resources,
  org.eclipse.ui.editors,
- org.globaltester.logging.legacy
+ org.globaltester.logging.legacy,
+ org.eclipse.ui.workbench,
+ org.globaltester.testmanager
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.navigator
