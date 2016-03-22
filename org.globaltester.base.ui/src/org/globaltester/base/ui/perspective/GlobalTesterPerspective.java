@@ -4,7 +4,6 @@ import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 import org.globaltester.base.ui.views.GlobalTesterNavigator;
-import org.globaltester.testmanager.views.ResultView;
 
 public class GlobalTesterPerspective implements IPerspectiveFactory {
 	
@@ -28,7 +27,6 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 
 		 // Bottom right: Task List view
 		 IFolderLayout bottom = layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
-		 bottom.addView(ResultView.VIEW_ID);
 		 bottom.addView(IPageLayout.ID_PROP_SHEET);
 		 bottom.addView(IPageLayout.ID_PROGRESS_VIEW);
 		 
