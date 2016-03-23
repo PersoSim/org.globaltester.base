@@ -24,12 +24,10 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 IFolderLayout bottomLeft = layout.createFolder(ID_FOLDER_BOTTOMLEFT, IPageLayout.BOTTOM, 0.50f,
 		 	   ID_FOLDER_TOPLEFT);
 		 bottomLeft.addView(IPageLayout.ID_OUTLINE);
+		 bottomLeft.addView(IPageLayout.ID_PROP_SHEET);
 		 
-		 // Bottom right: Task List view
-		 IFolderLayout bottom = layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
-		 bottom.addView(IPageLayout.ID_PROP_SHEET);
-		 bottom.addView(IPageLayout.ID_PROGRESS_VIEW);
-		 
+		 // Bottom right
+		 layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
 		 
 	}
 	
