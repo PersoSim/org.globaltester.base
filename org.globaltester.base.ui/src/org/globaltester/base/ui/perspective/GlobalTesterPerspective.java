@@ -6,14 +6,14 @@ import org.eclipse.ui.IPerspectiveFactory;
 import org.globaltester.base.ui.views.GlobalTesterNavigator;
 
 public class GlobalTesterPerspective implements IPerspectiveFactory {
-
+	
+	
 	private static final String ID_FOLDER_TOPLEFT = "org.globaltester.base.ui.perspective.GlobalTesterPerspective.topLeft";
 	private static final String ID_FOLDER_BOTTOMLEFT = "org.globaltester.base.ui.perspective.GlobalTesterPerspective.bottomLeft";
 	private static final String ID_FOLDER_BOTTOM = "org.globaltester.base.ui.perspective.GlobalTesterPerspective.bottom";
 
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();
-		
 		
 		 // Top left: GlobalTesterNavigator view
 		 IFolderLayout topLeft = layout.createFolder(ID_FOLDER_TOPLEFT, IPageLayout.LEFT, 0.25f,
@@ -29,5 +29,9 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 IFolderLayout bottom = layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
 		 bottom.addView(IPageLayout.ID_PROP_SHEET);
 		 bottom.addView(IPageLayout.ID_PROGRESS_VIEW);
+		 
+		 
 	}
+	
+	
 }

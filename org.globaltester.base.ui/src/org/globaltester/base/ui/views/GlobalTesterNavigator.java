@@ -10,5 +10,4 @@ public class GlobalTesterNavigator extends CommonNavigator {
 	protected Object getInitialInput() {
 		return ResourcesPlugin.getWorkspace().getRoot();
 	}
-
 }
