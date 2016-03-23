@@ -67,7 +67,7 @@
          
       </navigatorContent>
       <commonFilter
-	    description="Hides files"
+	    description="Hides resources that end with &quot;*.a32&quot;"
 	    id="org.globaltester.base.ui.hide.a32"
 	    name="*.a32 resources"
 	    activeByDefault="true">
@@ -81,7 +81,7 @@
 	  </commonFilter>
       <commonFilter
             activeByDefault="true"
-            description="Hides files"
+            description="Hides resources that end with &quot;*.xml&quot;"
             id="org.globaltester.base.ui.hide.xml"
             name="*.xml resources">
          <filterExpression>
@@ -98,7 +98,7 @@
       </commonFilter>
       <commonFilter
             activeByDefault="true"
-            description="Hides files"
+            description="Hides resources that end with &quot;*.properties&quot;"
             id="org.globaltester.base.ui.hide.properties"
             name="*.properties resources">
          <filterExpression>
@@ -115,7 +115,7 @@
       </commonFilter>
       <commonFilter
             activeByDefault="true"
-            description="Hides folder"
+            description="Hides metainf folder"
             id="org.globaltester.base.ui.hide.metainf"
             name="metainf folder">
          <filterExpression>
@@ -132,7 +132,7 @@
       </commonFilter>
       <commonFilter
             activeByDefault="true"
-            description="Hides folder"
+            description="Hides target folder"
             id="org.globaltester.base.ui.hide.target"
             name="target folder">
          <filterExpression>
@@ -181,17 +181,5 @@
       </viewerContentBinding>
    </extension>
    
-   <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension
-            targetID="org.eclipse.ui.resourcePerspective">
-         <view
-               ratio="0.5"
-               relative="org.eclipse.ui.views.TaskList"
-               relationship="right"
-               id="org.globaltester.testmanager.views.ResultView">
-         </view>
-      </perspectiveExtension>
-   </extension>
    
 </plugin>
