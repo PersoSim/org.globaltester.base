@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Display;
 public class JSScanner extends GtScanner {
 
 	public final static String CT_JS_KEYWORD = "__JS_KEYWORD";
+	public final static String CT_JS_SINGLE_QUOTED = "__JS_SINGLE_QUOTED";
+	public final static String CT_JS_DOUBLE_QUOTED = "__JS_DOUBLE_QUOTED";
 	public final static String CT_JS_MULTILINE_COMMENT = "__JS_MULTILINE_COMMENT";
 	public final static String CT_JS_SINGLELINE_COMMENT = "__JS_SINGLELINE_COMMENT";
 	
@@ -53,6 +55,22 @@ public class JSScanner extends GtScanner {
 				new TextAttribute(new Color(Display.getCurrent(),
 						ColorConstants.JS_COMMENT)));
 		contentTypes.put(CT_JS_SINGLELINE_COMMENT, eMap);
+
+		// add required data for content type XML_STRING_SINGLE_QUOTED
+		eMap = new EnumMap<TokenType, Object>(TokenType.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLStringSingleQuotedRule.class);
+		eMap.put(TokenType.TEXT_ATTRIBUTES,
+				new TextAttribute(new Color(Display.getCurrent(),
+						ColorConstants.XML_STRING)));
+		contentTypes.put(CT_JS_SINGLE_QUOTED, eMap);
+
+		// add required data for content type XML_STRING_DOUBLE_QUOTED
+		eMap = new EnumMap<TokenType, Object>(TokenType.class);
+		eMap.put(TokenType.CONTENT_TYPE, XMLStringDoubleQuotedRule.class);
+		eMap.put(TokenType.TEXT_ATTRIBUTES,
+				new TextAttribute(new Color(Display.getCurrent(),
+						ColorConstants.XML_STRING)));
+		contentTypes.put(CT_JS_DOUBLE_QUOTED, eMap);
 
 	}
 
