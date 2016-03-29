@@ -1,6 +1,5 @@
 package org.globaltester.base.ui.editors;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,8 +22,6 @@ public class XMLScanner extends GtScanner {
 	public final static String CT_XML_PROC_INSTR = "__XML_PROC_INSTR";
 	public final static String CT_XML_COMMENT = "__XML_COMMENT";
 	public final static String CT_XML_TAG = "__XML_TAG";
-	public final static String CT_XML_STRING_SINGLE_QUOTED = "__XML_STRING_SINGLE_QUOTED";
-	public final static String CT_XML_STRING_DOUBLE_QUOTED = "__XML_STRING_DOUBLE_QUOTED";
 	
 	protected static HashMap<String, EnumMap<TokenType, Object>> contentTypes = new HashMap<String, EnumMap<TokenType, Object>>();
 
@@ -53,22 +50,6 @@ public class XMLScanner extends GtScanner {
 				new TextAttribute(new Color(Display.getCurrent(),
 						ColorConstants.XML_TAG)));
 		contentTypes.put(CT_XML_TAG, eMap);
-
-		// add required data for content type XML_STRING_SINGLE_QUOTED
-		eMap = new EnumMap<TokenType, Object>(TokenType.class);
-		eMap.put(TokenType.CONTENT_TYPE, XMLStringSingleQuotedRule.class);
-		eMap.put(TokenType.TEXT_ATTRIBUTES,
-				new TextAttribute(new Color(Display.getCurrent(),
-						ColorConstants.XML_STRING)));
-		contentTypes.put(CT_XML_STRING_SINGLE_QUOTED, eMap);
-
-		// add required data for content type XML_STRING_DOUBLE_QUOTED
-		eMap = new EnumMap<TokenType, Object>(TokenType.class);
-		eMap.put(TokenType.CONTENT_TYPE, XMLStringDoubleQuotedRule.class);
-		eMap.put(TokenType.TEXT_ATTRIBUTES,
-				new TextAttribute(new Color(Display.getCurrent(),
-						ColorConstants.XML_STRING)));
-		contentTypes.put(CT_XML_STRING_DOUBLE_QUOTED, eMap);
 	}
 
 	public XMLScanner(TokenType tokenType) {
@@ -92,34 +73,6 @@ public class XMLScanner extends GtScanner {
 	public static void addAllPredicateRules(GtScanner scanner,
 			TokenType tokenType) {
 		for (Iterator<String> contentTypesIter = contentTypes.keySet()
-				.iterator(); contentTypesIter.hasNext();) {
-			String curContentType = contentTypesIter.next();
-			IPredicateRule curRule = getRuleForContentType(curContentType,
-					tokenType, contentTypes);
-			if (curRule != null) {
-				scanner.addPredicateRule(curContentType, curRule);
-			}
-		}
-	}
-
-	/**
-	 * Adds all XML related predicate rules that define document partitions to
-	 * the given scanner
-	 * 
-	 * @param scanner
-	 *            scanner to add the rules to
-	 * @param tokenType
-	 *            EnumType of GTRuleBasedPartitionScanner.TokenType that
-	 *            represents the type of token to be added
-	 */
-	public static void addAllPartitionRules(GtScanner scanner,
-			TokenType tokenType) {
-		ArrayList<String> partitionContentTypes = new ArrayList<String>();
-		partitionContentTypes.add(CT_XML_PROC_INSTR);
-		partitionContentTypes.add(CT_XML_COMMENT);
-		partitionContentTypes.add(CT_XML_TAG);
-		
-		for (Iterator<String> contentTypesIter = partitionContentTypes
 				.iterator(); contentTypesIter.hasNext();) {
 			String curContentType = contentTypesIter.next();
 			IPredicateRule curRule = getRuleForContentType(curContentType,
