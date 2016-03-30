@@ -1,8 +1,0 @@
-License
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation.
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-If you would like to include this software or parts of it in your own software and do not publish your code under the GPL, then you will need a commercial license from us (Dual-license). Please contact info@cardcontact.de to inquire the terms and conditions for commercial usage of the code. We also provide support and consulting services in case you need something not yet found in the product.
-
-© Copyright 2003 - 2006 CardContact Software & System Consulting, Minden, Germany
-
