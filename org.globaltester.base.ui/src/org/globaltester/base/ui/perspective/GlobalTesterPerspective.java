@@ -30,6 +30,7 @@ public class GlobalTesterPerspective implements IPerspectiveFactory {
 		 IFolderLayout bottom = layout.createFolder(ID_FOLDER_BOTTOM, IPageLayout.BOTTOM, 0.66f, editorArea);
 		 bottom.addPlaceholder(IPageLayout.ID_PROBLEM_VIEW);
 		 bottom.addPlaceholder(IPageLayout.ID_PROGRESS_VIEW);
+		 bottom.addPlaceholder("org.globaltester.service.ui.views.ServiceDashboardView");
 		 
 	}
 	
