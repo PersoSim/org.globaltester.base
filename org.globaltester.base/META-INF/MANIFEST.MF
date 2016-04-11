@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.globaltester.cryptoprovider,
  org.globaltester.cryptoprovider.bc.legacy_1_46,
  org.globaltester.base.doc;resolution:=optional
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
 Export-Package: org.globaltester,
