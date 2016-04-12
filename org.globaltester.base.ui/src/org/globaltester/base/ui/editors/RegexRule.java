@@ -15,6 +15,10 @@ import org.eclipse.jface.text.rules.Token;
  * Returns after the first match found in the scanner, this means only the first
  * step of repetitive regex will be found
  * 
+ * !!! WARNING !!!
+ * Matching regular expressions is highly expensive.
+ * Use this rule only if you know what you are doing.
+ * 
  * @author amay
  * 
  */
@@ -24,37 +28,41 @@ public class RegexRule implements IRule, IPredicateRule {
 	Pattern pattern;
 
 	public RegexRule(String pattern, IToken token) {
-
 		this.token = token;
 		this.pattern = Pattern.compile(pattern);
-
 	}
 
+	@Override
 	public IToken evaluate(ICharacterScanner scanner) {
-
-		String stream = "";
+		StringBuilder stream = new StringBuilder();
+		
 		int curChar;
 		int count = 0;
-
+		
+		Matcher m;
 		do {
-			Matcher m = pattern.matcher(stream);
+			m = pattern.matcher(stream);
 			if (m.matches()) {
 				return token;
 			}
-
+			
+			//suggestion for performance improvement:
+			//read several characters as block in advance, e.g. 10, then match and either unread
+			//surplus chars or read next block - saves on executions of matching
 			curChar = scanner.read();
 			count++;
-			stream += (char) curChar;
-
+			
+			stream.append((char) curChar);
+			
 		} while (!(curChar == '\n' || curChar == '\r' || curChar == ICharacterScanner.EOF));
-
+		
 		// if not matched unread the scanner count times
 		for (int i = 0; i < count; i++) {
 			scanner.unread();
 		}
-
+		
 		return Token.UNDEFINED;
-
+		
 	}
 
 	@Override
