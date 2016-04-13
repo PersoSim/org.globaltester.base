@@ -21,7 +21,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 import org.eclipse.ui.wizards.IWizardRegistry;
-import org.globaltester.logging.logger.GtErrorLogger;
+import org.globaltester.logging.legacy.logger.GtErrorLogger;
 
 public class GtUiHelper {
 
