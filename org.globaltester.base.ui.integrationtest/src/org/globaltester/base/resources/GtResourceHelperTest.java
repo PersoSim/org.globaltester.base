@@ -144,7 +144,7 @@ public class GtResourceHelperTest {
 	
 	@Test
 	public void testCreateFolder() throws CoreException, IOException{
-		IProject project = JUnitHelper.createDefaultCardConfig();
+		IProject project = JUnitHelper.createDefaultSampleConfig();
 		IFolder folder = project.getFolder("test");
 		assertFalse(folder.exists());
 		GtResourceHelper.createFolder(folder);
