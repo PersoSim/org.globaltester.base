@@ -34,6 +34,7 @@ public class OrRule implements IRule, IPredicateRule {
 		this.rules = new HashSet<IPredicateRule>();
 	}
 
+	@Override
 	public IToken evaluate(ICharacterScanner scanner) {
 		return evaluate(scanner, false);
 	}

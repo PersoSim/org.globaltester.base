@@ -71,9 +71,12 @@ public class JsKeyWordRule extends WordRule implements IPredicateRule {
 }
 
 class JsKeyWordDetector implements IWordDetector {
+	@Override
 	public boolean isWordPart(char c){
 		return c == '-' || Character.isLetter(c) || Character.isDigit(c);
 	}
+	
+	@Override
 	public boolean isWordStart(char c){
 		return c == '-' || Character.isLetter(c);
 	}

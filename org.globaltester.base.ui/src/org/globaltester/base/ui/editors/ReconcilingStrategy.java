@@ -52,6 +52,7 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 	 * org.eclipse.jface.text.reconciler.IReconcilingStrategy#setDocument(org
 	 * .eclipse.jface.text.IDocument)
 	 */
+	@Override
 	public void setDocument(IDocument document) {
 		this.fDocument = document;
 
@@ -61,6 +62,7 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension#
 	 * initialReconcile()
 	 */
+	@Override
 	public void initialReconcile() {
 		reconcile(new Region(0, fDocument.getLength()));
 	}
@@ -70,6 +72,7 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 	 * org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.
 	 * eclipse.jface.text.reconciler.DirtyRegion,org.eclipse.jface.text.IRegion)
 	 */
+	@Override
 	public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
 		try {
 			IRegion startLineInfo = fDocument
@@ -96,6 +99,7 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 	 * org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.
 	 * eclipse.jface.text.IRegion)
 	 */
+	@Override
 	public void reconcile(IRegion region) {
 		fPositions.clear();
 		int entOffset = region.getOffset() + region.getLength();
@@ -127,12 +131,14 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension#
 	 * setProgressMonitor(org.eclipse.core.runtime.IProgressMonitor)
 	 */
+	@Override
 	public void setProgressMonitor(IProgressMonitor monitor) {
 		progresMonitor = monitor;
 	}
 
 	protected void updateFoldingStructure() {
 		Display.getDefault().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				editor.updateFoldingStructure(fPositions);
 			}
