@@ -8,7 +8,7 @@ Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.globaltester.lib.jdom,
+ org.globaltester.lib.domparser,
  org.globaltester.cryptoprovider,
  org.globaltester.cryptoprovider.bc.legacy_1_46,
  org.globaltester.base.doc;resolution:=optional
