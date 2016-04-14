@@ -21,6 +21,7 @@ public class XMLTagRule extends MultiLineRule {
 		super("<", ">", token);
 	}
 
+	@Override
 	protected boolean sequenceDetected(ICharacterScanner scanner,
 			char[] sequence, boolean eofAllowed) {
 		int c = scanner.read();
