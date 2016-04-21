@@ -89,19 +89,19 @@ public class GtResourceHelper {
 		}
 	}
 
-    /**
-     * Copy from an input to an output stream. Both streams remain open.
-     * @param input
-     * @param output
-     * @throws IOException
-     */
-    public static void copyStream(InputStream input, OutputStream output) throws IOException {
-        int bytesRead;
-        byte [] buffer = new byte [1024 * 1024];
-        while ((bytesRead = input.read(buffer))!= -1) {
-            output.write(buffer, 0, bytesRead);
-        }
-    }
+	/**
+	 * Copy from an input to an output stream. Both streams remain open.
+	 * @param input
+	 * @param output
+	 * @throws IOException
+	 */
+	public static void copyStream(InputStream input, OutputStream output) throws IOException {
+		int bytesRead;
+		byte [] buffer = new byte [1024 * 1024];
+		while ((bytesRead = input.read(buffer))!= -1) {
+			output.write(buffer, 0, bytesRead);
+		}
+	}
 	
 	public static void copyFile(InputStream source, File targetLocation) throws IOException{
 		if (!targetLocation.exists()){
@@ -115,7 +115,11 @@ public class GtResourceHelper {
 	
 	public static void copyFiles(File sourceLocation, File targetLocation)
 			throws IOException {
-
+		
+		if(!sourceLocation.exists()) {
+			return; // prevents FileNotFoundException if dir/file does not exist
+		}
+		
 		if (sourceLocation.isDirectory()) {
 			if (!targetLocation.exists()) {
 				if (!targetLocation.mkdir()) {
