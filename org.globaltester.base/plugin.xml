@@ -2,14 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="org.globaltester.base.document.export.exportData" name="Document Export Data" schema="schema/org.globaltester.base.document.export.exporters.exsd"/>
-   <extension
-         point="org.eclipse.ui.views">
-         <category
-            id="org.globaltester"
-            name="GlobalTester"
-            >
-      </category>
-   </extension>
       <extension
          point="org.eclipse.ui.preferencePages">
       <page
