@@ -2,4 +2,19 @@
 <toc label="Getting Started" link_to="/org.globaltester.base.doc/toc/user/toc.xml#gettingstarted">
    <topic href="html/gettingstarted.html" label="Getting Started">
    </topic>
+   <topic label="Setup GT">
+      <anchor id="setup"/>
+   </topic>
+ <topic label="About Tests">
+    <anchor id="abouttests"/>
+   <topic label="Creation">
+      <anchor id="creation"/>
+   </topic>
+   <topic label="Execution">
+      <anchor id="execution"/>
+   </topic>
+   <topic label="Analyzing Results">
+      <anchor id="analyzing"/>
+   </topic>
+  </topic>
 </toc>
