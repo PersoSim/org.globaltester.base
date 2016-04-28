@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.ui.views">
          <view
-               category="org.globaltester.base.ui.category.globaltester"
+               category="org.globaltester.base.ui.views.category"
                class="org.globaltester.base.ui.views.GlobalTesterNavigator"
                icon="icons/globaltester.png"
                id="org.globaltester.base.ui.views.GlobalTesterNavigator"
@@ -23,7 +23,7 @@
          </view>
          
          <category
-               id="org.globaltester.base.ui.category.globaltester"
+               id="org.globaltester.base.ui.views.category"
                name="GlobalTester">
          </category>
    </extension>
