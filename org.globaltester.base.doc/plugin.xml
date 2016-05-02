@@ -20,6 +20,18 @@
             file="toc/user/toc.xml"
             primary="true">
       </toc>
+      <toc
+            file="tocupdate.xml">
+      </toc>
+      <toc
+            file="tocinstall.xml">
+      </toc>
+      <toc
+            file="tocrequirements.xml">
+      </toc>
+      <toc
+            file="tocrequirements.xml">
+      </toc>
    </extension>
    <extension
          point="org.eclipse.ui.cheatsheets.cheatSheetContent">

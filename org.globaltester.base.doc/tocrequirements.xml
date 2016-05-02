@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Requirements" link_to="/org.globaltester.base.doc/toc/user/toc.xml#requirements">
+   <topic href="html/req_software.html" label="Software Requirements">
+   </topic>
+   <topic href="html/req_hardware.html" label="Hardware Requirements">
+   </topic>
+</toc>
