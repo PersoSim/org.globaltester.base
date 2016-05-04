@@ -4,6 +4,7 @@
 <toc label="GlobalTester User Guide">
    <anchor id="overview"/>
    <topic label="Before you begin">
+      <anchor id="before_early"/>
       <anchor id="before"/>
       <topic label="System Requirements">
          <anchor id="requirements"/>
