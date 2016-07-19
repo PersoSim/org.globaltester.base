@@ -16,6 +16,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
 Export-Package: org.globaltester,
+ org.globaltester.base,
  org.globaltester.base.interfaces,
  org.globaltester.base.resources,
  org.globaltester.base.util,
