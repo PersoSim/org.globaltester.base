@@ -92,7 +92,7 @@ public class XMLHelper {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-			// TODO #833 Use proper logging mechanism
+			// #833 Use proper logging mechanism
 			//TestLogger.error(e);
 			return;
 		} finally {
@@ -103,7 +103,7 @@ public class XMLHelper {
 
 				} catch (IOException e) {
 					e.printStackTrace();
-					// TODO #833 Use proper logging mechanism
+					// #833 Use proper logging mechanism
 					//GtErrorLogger.log(Activator.PLUGIN_ID, e);
 
 				}
@@ -116,7 +116,7 @@ public class XMLHelper {
 		try {
 			iFile.refreshLocal(IFile.DEPTH_INFINITE, new NullProgressMonitor());
 		} catch (CoreException e) {
-			// TODO #833 Use proper logging mechanism
+			// #833 Use proper logging mechanism
 			//GtErrorLogger.log(Activator.PLUGIN_ID, e);
 		}
 	}
