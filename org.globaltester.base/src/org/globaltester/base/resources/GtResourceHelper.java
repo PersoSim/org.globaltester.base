@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -307,4 +308,61 @@ public class GtResourceHelper {
 	public static IFile getIFileForLocation(String path) {
 		return ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(path));
 	}
+	
+	/**
+	 * This method recursively prints the structure of the provided IResource
+	 * 
+	 * @param iResource the IResource to be printed
+	 */
+	public static void listContentOfIresource(IResource iResource) {
+		listContentOfIresource(iResource, "");
+	}
+	
+	/**
+	 * This method recursively prints the structure of the provided IResource
+	 * 
+	 * @param iResource the IResource to be printed
+	 * @param prefix the prefix to add to each new sub level
+	 */
+	private static void listContentOfIresource(IResource iResource, String prefix) {
+		
+		IResource[] members = null;
+		
+		try {
+			switch (iResource.getType()) {
+			case IResource.ROOT:
+				IWorkspaceRoot root = (IWorkspaceRoot) iResource;
+				System.out.println(prefix + "root: " + root.getName());
+				members = root.members();
+				break;
+			case IResource.PROJECT:
+				IProject iProject = (IProject) iResource;
+				System.out.println(prefix + "project: " + iProject.getName());
+				members = iProject.members();
+				break;
+			case IResource.FOLDER:
+				IFolder iFolder = (IFolder) iResource;
+				System.out.println(prefix + "folder: " + iFolder.getName());
+				members = iFolder.members();
+				break;
+			case IResource.FILE:
+				IFile iFile = (IFile) iResource;
+				System.out.println(prefix + "file: " + iFile.getName());
+				return;
+			default:
+				break;
+			}
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(members != null) {
+			prefix += "   ";
+			for(IResource currentIResource : members) {
+				listContentOfIresource(currentIResource, prefix);
+			}
+		}
+	}
+	
 }
