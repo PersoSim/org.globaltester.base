@@ -57,31 +57,31 @@ public class GtResourceHelper {
 	/**
 	 * copy files from an installed plugin into a new project
 	 * 
-	 * @param currentScriptPlugin the Bundle Symbolic Name of the source bundle
-	 * @param project the IProject of the destination project
-	 * @param pathToFiles the absolute path to the source files
-	 * @param toCopy the source file names (without path)
+	 * @param sourceBundleSymbolicName the Bundle Symbolic Name of the source bundle
+	 * @param destinationProject the IProject of the destination project
+	 * @param pathRelativeToSourceBundleRoot the absolute path to the source files
+	 * @param filesToCopy the source file names (without path)
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void copyPluginFilesToWorkspaceProject(String currentScriptPlugin, IProject project, String pathToFiles, String ... toCopy) throws IOException{
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
 		// get source path
-		Bundle curBundle = Platform.getBundle(currentScriptPlugin);
-		URL url = FileLocator.find(curBundle, new Path(pathToFiles), null);
-		IPath pluginDir = new Path(FileLocator.toFileURL(url).getPath());
+		Bundle sourceBundle = Platform.getBundle(sourceBundleSymbolicName);
+		URL sourceBundleUrl = FileLocator.find(sourceBundle, new Path(pathRelativeToSourceBundleRoot), null);
+		IPath sourceBundlePath = new Path(FileLocator.toFileURL(sourceBundleUrl).getPath());
 		
 		// define files to be copied
-		File source = pluginDir.toFile();
-		File destination = project.getLocation().toFile();
+		File sourceBundleRoot = sourceBundlePath.toFile();
+		File destinationBundleRoot = destinationProject.getLocation().toFile();
 		
 		// copy files
 		
-		for (String filename : toCopy){
-			copyFiles(new File(source, filename), new File(destination, filename));
+		for (String currentFilename : filesToCopy){
+			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
 		}
 		// refresh the project
 		try {
-			project.refreshLocal(IResource.DEPTH_INFINITE, null);
+			destinationProject.refreshLocal(IResource.DEPTH_INFINITE, null);
 		} catch (CoreException e) {
 			// refresh of project failed
 			// relevant CoreException will be in the eclipse log anyhow
