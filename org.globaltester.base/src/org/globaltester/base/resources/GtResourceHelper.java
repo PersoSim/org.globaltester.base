@@ -55,6 +55,33 @@ public class GtResourceHelper {
 	}
 	
 	/**
+	 * copy files from a given source to a given project
+	 * 
+	 * @param destinationProject the IProject of the destination project
+	 * @param sourceBundleRoot the (absolute) root of the source
+	 * @param filesToCopy the source file names (without path)
+	 * @throws IOException
+	 * @throws CoreException 
+	 */
+	public static void copyFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, String ... filesToCopy) throws IOException{
+		File destinationBundleRoot = destinationProject.getLocation().toFile();
+		
+		// copy files
+		
+		for (String currentFilename : filesToCopy){
+			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
+		}
+		// refresh the project
+		try {
+			destinationProject.refreshLocal(IResource.DEPTH_INFINITE, null);
+		} catch (CoreException e) {
+			// refresh of project failed
+			// relevant CoreException will be in the eclipse log anyhow
+			// users most probably will ignore this behavior and refresh manually 
+		}
+	}
+	
+	/**
 	 * copy files from an installed plugin into a new project
 	 * 
 	 * @param sourceBundleSymbolicName the Bundle Symbolic Name of the source bundle
@@ -72,21 +99,8 @@ public class GtResourceHelper {
 		
 		// define files to be copied
 		File sourceBundleRoot = sourceBundlePath.toFile();
-		File destinationBundleRoot = destinationProject.getLocation().toFile();
 		
-		// copy files
-		
-		for (String currentFilename : filesToCopy){
-			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
-		}
-		// refresh the project
-		try {
-			destinationProject.refreshLocal(IResource.DEPTH_INFINITE, null);
-		} catch (CoreException e) {
-			// refresh of project failed
-			// relevant CoreException will be in the eclipse log anyhow
-			// users most probably will ignore this behavior and refresh manually 
-		}
+		copyFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filesToCopy);
 	}
 
 	/**
