@@ -57,10 +57,10 @@ public class GtResourceHelper {
 	/**
 	 * copy files from an installed plugin into a new project
 	 * 
-	 * @param currentScriptPlugin
-	 * @param project
-	 * @param pathToFiles
-	 * @param toCopy
+	 * @param currentScriptPlugin the Bundle Symbolic Name of the source bundle
+	 * @param project the IProject of the destination project
+	 * @param pathToFiles the absolute path to the source files
+	 * @param toCopy the source file names (without path)
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
