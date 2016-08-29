@@ -35,7 +35,7 @@ public class XMLHelper {
 	 * @return generated Document or null if an error occurs (e.g. iFile does not exist, is not a valid xml file)
 	 */
 	public static Document readDocument(IFile iFile) {
-		return readDocument(iFile, false); //TODO enable validation by default
+		return readDocument(iFile, false); //IMPL enable validation by default
 	}
 	
 	/**
@@ -58,10 +58,8 @@ public class XMLHelper {
 		try {
 			SAXBuilder b = new SAXBuilder(validate);
 			doc = b.build(file);
-		} catch (JDOMException jdomEx) {
-			// TODO handle this exception
-		} catch (IOException e) {
-			// TODO handle this exception
+		} catch (JDOMException | IOException e) {
+			// return null document
 		}
 
 		return doc;

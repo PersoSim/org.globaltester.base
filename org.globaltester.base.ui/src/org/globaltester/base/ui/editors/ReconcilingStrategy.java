@@ -117,8 +117,7 @@ public class ReconcilingStrategy implements IReconcilingStrategy,
 					lastPartion = curPartition;
 				}
 			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// simply don't reconcile BadLocations
 			}
 
 		}
