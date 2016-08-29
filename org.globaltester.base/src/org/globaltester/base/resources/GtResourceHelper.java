@@ -64,7 +64,7 @@ public class GtResourceHelper {
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void copyFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, String ... filesToCopy) throws IOException{
+	public static void copySelectedFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, String ... filesToCopy) throws IOException{
 		File destinationBundleRoot = destinationProject.getLocation().toFile();
 		
 		// copy files
@@ -101,7 +101,7 @@ public class GtResourceHelper {
 		// define files to be copied
 		File sourceBundleRoot = sourceBundlePath.toFile();
 		
-		copyFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filesToCopy);
+		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filesToCopy);
 	}
 
 	/**
