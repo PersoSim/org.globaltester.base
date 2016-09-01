@@ -14,7 +14,7 @@ public class TLVUtil {
 	 */
 	public static byte[] getTag(byte[] ba, int offset) {
 		
-		//FIXME more other conditions are possible - Tag lengths are not bounded
+		//IMPL more other conditions are possible - Tag lengths are not bounded
 		if ((ba[offset] & 0x1F) == 0x1F) {
 			return new byte[] {ba[offset], ba[offset+1]};
 		} else {
@@ -61,11 +61,12 @@ public class TLVUtil {
 			} else {
 				length = (int) ba[offset];
 				length += 2;
-					//FIXME Not allowed values in calculate the length out of HexByteArray must fix
+					
+				// Not allowed values in calculate the length out of HexByteArray must fix
 					
 			}
 		} else {
-			//FIXME Not allowed values in calculate the length out of HexByteArray must fix
+			// Not allowed values in calculate the length out of HexByteArray must fix
 			
 		}
 		return length;
@@ -143,8 +144,6 @@ public class TLVUtil {
 		byte[] checkConstructedTag = getTag(ba, offset);
 		
 		isConstructedTLV = ((checkConstructedTag[0] & 0x20) == 0x20);
-
-		//FIXME The Tag byte is on offset position "0" were the constructed bit specifies the value is constructed, which means it again holds TLV values like a SET!
 		
 		return isConstructedTLV;
 	}

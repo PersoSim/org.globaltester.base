@@ -26,7 +26,7 @@ public class ByteUtil {
 				ba[index]++;
 			}
 		} else {
-			//FIXME ERRORHANDLING
+			//if index outside array, do nothing
 		}
 		return ba;
 	}

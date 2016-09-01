@@ -265,7 +265,7 @@ public class GtResourceHelper {
 				}
 			} catch (CoreException e) {
 					e.printStackTrace();
-					// TODO #833 Use proper logging mechanism
+					// #833 Use proper logging mechanism
 					//log(LogService.LOG_ERROR, "CoreException in "+Activator.PLUGIN_ID, e);
 				
 			}
@@ -296,7 +296,7 @@ public class GtResourceHelper {
 				}
 			} catch (CoreException e) {
 				e.printStackTrace();
-				// TODO #833 Use proper logging mechanism
+				// #833 Use proper logging mechanism
 				//log(LogService.LOG_ERROR, "CoreException in "+Activator.PLUGIN_ID, e);
 			}
 		}
