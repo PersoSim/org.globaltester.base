@@ -69,9 +69,14 @@ public class GtResourceHelper {
 		
 		// copy files
 		
+		if((filesToCopy == null) || (filesToCopy.length == 0)) {
+			filesToCopy = sourceBundleRoot.list();
+		}
+		
 		for (String currentFilename : filesToCopy){
 			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
 		}
+		
 		// refresh the project
 		try {
 			destinationProject.refreshLocal(IResource.DEPTH_INFINITE, null);
