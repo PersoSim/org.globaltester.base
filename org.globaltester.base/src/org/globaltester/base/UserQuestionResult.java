@@ -7,15 +7,12 @@ package org.globaltester.base;
  *
  */
 public enum UserQuestionResult {
-	OK, CANCEL;
+	OK, CANCEL, RESUME, SKIP;
 
 	/**
 	 * @return true, iff the result encodes a positive result in a generic sense
 	 */
 	public boolean isPositive() {
-		if (this.equals(OK)) {
-			return true;
-		}
-		return false;
+		return this.equals(OK) || this.equals(RESUME);
 	}
 }
