@@ -22,7 +22,9 @@ public interface UserInteraction {
 	 * 
 	 * @param message
 	 *            the question to as
+	 * @param possibleAnswers
+	 * 			the allowed results of the user interaction, if none given the default is {@link UserQuestionResult#OK}, {@link UserQuestionResult#CANCEL}
 	 * @return the result of the interaction
 	 */
-	public UserQuestionResult askUser(String message);
+	public UserQuestionResult askUser(String message, UserQuestionResult ... possibleAnswers );
 }
