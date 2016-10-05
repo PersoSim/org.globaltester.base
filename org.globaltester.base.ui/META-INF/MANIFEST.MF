@@ -4,7 +4,7 @@ Bundle-Name: GT Core UI
 Bundle-SymbolicName: org.globaltester.base.ui;singleton:=true
 Bundle-Version: 2.7.0.qualifier
 Bundle-Activator: org.globaltester.base.ui.Activator
-Bundle-Vendor: HJP Consulting GmbH
+Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator,
