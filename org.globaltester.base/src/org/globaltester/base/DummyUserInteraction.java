@@ -8,8 +8,7 @@ public class DummyUserInteraction implements UserInteraction {
 	}
 
 	@Override
-	public UserQuestionResult askUser(String message) {
-		return UserQuestionResult.OK;
+	public int askUser(String message, String... allowedResults) {
+		return 0;
 	}
-
 }

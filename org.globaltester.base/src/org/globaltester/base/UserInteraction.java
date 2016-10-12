@@ -22,7 +22,7 @@ public interface UserInteraction {
 	 * 
 	 * @param message
 	 *            the question to as
-	 * @return the result of the interaction
+	 * @return the index of the result of the interaction
 	 */
-	public UserQuestionResult askUser(String message);
+	public int askUser(String message, String ... allowedResults);
 }
