@@ -14,15 +14,7 @@ public class PlatformHelper {
 	 */
 	public static void startBundle(String bundleId, BundleContext bundleContext) {
 
-		Bundle bundle = null;
-		Bundle[] bundles = bundleContext.getBundles();
-
-		for (int i = 0; i < bundles.length; i++) {
-			if (bundles[i].getSymbolicName().equals(bundleId)) {
-				bundle = bundles[i];
-				break;
-			}
-		}
+		Bundle bundle = getBundle(bundleId, bundleContext);
 
 		try {
 			if ((bundle != null) && (bundle.getState() != Bundle.ACTIVE)) {
@@ -34,5 +26,26 @@ public class PlatformHelper {
 			throw new RuntimeException(
 					"The startup procedure could not be completed correctly with message: " + e.getMessage());
 		}
+	}
+	
+	public static boolean isBundleActive(String bundleId, BundleContext bundleContext){
+		Bundle bundle = getBundle(bundleId, bundleContext);
+		if (bundle != null){
+			return bundle.getState() == Bundle.ACTIVE;
+		}
+		return false;
+	}
+	
+	public static Bundle getBundle(String bundleId, BundleContext bundleContext){
+		Bundle bundle = null;
+		Bundle[] bundles = bundleContext.getBundles();
+
+		for (int i = 0; i < bundles.length; i++) {
+			if (bundles[i].getSymbolicName().equals(bundleId)) {
+				bundle = bundles[i];
+				break;
+			}
+		}
+		return bundle;
 	}
 }
