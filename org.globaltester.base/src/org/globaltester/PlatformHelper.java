@@ -28,6 +28,14 @@ public class PlatformHelper {
 		}
 	}
 	
+	/**
+	 * @param bundleId
+	 *            the id of the searched bundle
+	 * @param bundleContext
+	 *            context to use for searching the bundle
+	 * @return true, iff the bundle for the given id could be found and has
+	 *         state {@link Bundle#ACTIVE}
+	 */
 	public static boolean isBundleActive(String bundleId, BundleContext bundleContext){
 		Bundle bundle = getBundle(bundleId, bundleContext);
 		if (bundle != null){
@@ -35,7 +43,15 @@ public class PlatformHelper {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * @param bundleId
+	 *            the id of the searched bundle
+	 * @param bundleContext
+	 *            context to use for searching the bundle
+	 * @return the bundle with the given bundleId or null if no matching bundle
+	 *         is found in the given context
+	 */
 	public static Bundle getBundle(String bundleId, BundleContext bundleContext){
 		Bundle bundle = null;
 		Bundle[] bundles = bundleContext.getBundles();
