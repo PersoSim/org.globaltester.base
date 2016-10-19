@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2009 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Baltasar Belyavsky - fix for 300539 - Add ability to specify filter-path     
  *******************************************************************************/
 package org.globaltester.preferences;
 
@@ -29,6 +30,11 @@ public class ValidateFileFieldEditor extends FileFieldEditor {
      * for system defaults.
      */
     private String[] extensions = null;
+
+    /**
+     * Initial path for the Browse dialog.
+     */
+    private File filterPath = null;
 
     /**
      * Indicates whether the path must be absolute;
@@ -114,40 +120,43 @@ public class ValidateFileFieldEditor extends FileFieldEditor {
     protected boolean checkState() {
 
         String msg = null;
-        Boolean all_okay = true;
 
         String path = getTextControl().getText();
         if (path != null) {
 			path = path.trim();
 		} else {
-			all_okay = false;
 			path = "";//$NON-NLS-1$
 		}
         if (path.length() == 0) {
             if (!isEmptyStringAllowed()) {
 				msg = getErrorMessage();
-				all_okay = false;
 			}
         } else {
             File file = new File(path);
             if (file.isFile()) {
                 if (enforceAbsolute && !file.isAbsolute()) {
 					msg = JFaceResources
-                            .getString("ValidateFileFieldEditor.errorMessage2");//$NON-NLS-1$
+                            .getString("FileFieldEditor.errorMessage2");//$NON-NLS-1$
 				}
             } else {
                 msg = getErrorMessage();
-                all_okay = false;
             }
         }
 
         if (msg != null) { // error
             showErrorMessage(msg);
-            all_okay = false;
+            return false;
         }
 
-        if (all_okay) clearErrorMessage();
-        return all_okay;
+        if(doCheckState()) { // OK!
+	        clearErrorMessage();
+	        return true;
+        }
+        msg = getErrorMessage(); // subclass might have changed it in the #doCheckState()
+        if (msg != null) {
+            showErrorMessage(msg);
+        }
+    	return false;
     }
 
     /**
@@ -162,6 +171,9 @@ public class ValidateFileFieldEditor extends FileFieldEditor {
         if (startingDirectory != null) {
 			dialog.setFileName(startingDirectory.getPath());
 		}
+        else if (filterPath != null) {
+        	dialog.setFilterPath(filterPath.getPath());
+        }
         if (extensions != null) {
 			dialog.setFilterExtensions(extensions);
 		}
@@ -185,4 +197,14 @@ public class ValidateFileFieldEditor extends FileFieldEditor {
     public void setFileExtensions(String[] extensions) {
         this.extensions = extensions;
     }
+
+    /**
+     * Sets the initial path for the Browse dialog.
+     * @param path initial path for the Browse dialog
+     * @since 3.6
+     */
+    public void setFilterPath(File path) {
+    	filterPath = path;
+    }
+
 }
