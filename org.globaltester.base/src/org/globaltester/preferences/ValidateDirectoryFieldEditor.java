@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2009 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Baltasar Belyavsky - fix for 300539 - Add ability to specify filter-path     
  *******************************************************************************/
 package org.globaltester.preferences;
 
@@ -23,6 +24,11 @@ import org.eclipse.swt.widgets.DirectoryDialog;
  * dialog appears when the user presses the change button.
  */
 public class ValidateDirectoryFieldEditor extends DirectoryFieldEditor {
+    /**
+     * Initial path for the Browse dialog.
+     */
+    private File filterPath = null;
+
     /**
      * Creates a new directory field editor 
      */
@@ -68,14 +74,12 @@ public class ValidateDirectoryFieldEditor extends DirectoryFieldEditor {
      */
     protected boolean doCheckState() {
         String fileName = getTextControl().getText();
-        Boolean fileIsDirectory;
         fileName = fileName.trim();
         if (fileName.length() == 0 && isEmptyStringAllowed()) {
 			return true;
 		}
         File file = new File(fileName);
-        fileIsDirectory = file.isDirectory();
-        return fileIsDirectory;
+        return file.isDirectory();
     }
 
     /**
@@ -90,6 +94,9 @@ public class ValidateDirectoryFieldEditor extends DirectoryFieldEditor {
         if (startingDirectory != null) {
 			fileDialog.setFilterPath(startingDirectory.getPath());
 		}
+        else if (filterPath != null) {
+        	fileDialog.setFilterPath(filterPath.getPath());
+        }
         String dir = fileDialog.open();
         if (dir != null) {
             dir = dir.trim();
@@ -100,4 +107,14 @@ public class ValidateDirectoryFieldEditor extends DirectoryFieldEditor {
 
         return null;
     }
+
+    /**
+     * Sets the initial path for the Browse dialog.
+     * @param path initial path for the Browse dialog
+     * @since 3.6
+     */
+    public void setFilterPath(File path) {
+    	filterPath = path;
+    }
+    
 }
