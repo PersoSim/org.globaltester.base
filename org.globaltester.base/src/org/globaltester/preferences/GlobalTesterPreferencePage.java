@@ -3,6 +3,7 @@ package org.globaltester.preferences;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.swt.widgets.Group;
@@ -23,7 +24,7 @@ public class GlobalTesterPreferencePage extends FieldEditorPreferencePage
 
 	// definition of field editors
 	BooleanFieldEditor bfeManualSCSHSettings;
-	ValidateFileFieldEditor ffeConfigFile;
+	FileFieldEditor ffeConfigFile;
 	IntegerFieldEditor ifeReaderBuffer;
 	RadioGroupFieldEditor rfeReadFileEOF;
 
