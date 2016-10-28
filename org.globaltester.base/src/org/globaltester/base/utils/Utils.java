@@ -1,11 +1,12 @@
 package org.globaltester.base.utils;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,21 +34,21 @@ public class Utils {
 
 	
 	/**
-	 * Method for checking files for differences at byte level.
-	 * @param expected the {@link File} which contains the expected content
-	 * @param fileToCheck the {@link File} which should be checked for differences
+	 * Method for reading and checking input streams for differences at byte level.
+	 * @param expected the {@link InputStream} which contains the expected content
+	 * @param fileToCheck the {@link InputStream} which should be checked for differences
 	 * @param contextSize the number of bytes to store as context before differences
 	 * @param expectedContext context buffer for the expected file
 	 * @param fileToCheckContext context buffer for the file to be checked
 	 * @return the position of the first differing byte or -1 if no differences found
 	 * @throws IOException
 	 */
-	public static long checkFilesForDifferences(File expected, File fileToCheck, int contextSize, LinkedList<Byte> expectedContext,
+	public static long checkFilesForDifferences(InputStream expected, InputStream fileToCheck, int contextSize, LinkedList<Byte> expectedContext,
 			LinkedList<Byte> fileToCheckContext) throws IOException {
 		try (InputStreamReader currentlyMarshalledFileInputStreamReader = new InputStreamReader(
-				new FileInputStream(fileToCheck));
+				fileToCheck);
 				InputStreamReader previousFileInputStreamReader = new InputStreamReader(
-						new FileInputStream(expected));) {
+						expected);) {
 
 			int fileToCheckReadByte = 0;
 			int expectedReadByte = 0;
@@ -88,5 +89,30 @@ public class Utils {
 			builder.append((char)(byte)b);
 		}
 		return builder.toString();
+	}
+	
+	/**
+	 * This method makes a quick check if the given Socket is already in use or
+	 * not.
+	 * 
+	 * @param host as String
+	 * @param port number as int
+	 * @return true if it already exists or false
+	 */
+	public static boolean isSocketAvailable(String host, int port) {
+		InetSocketAddress inetSocketAddress = new InetSocketAddress(host, port);
+		if (inetSocketAddress.getAddress() != null && (inetSocketAddress.getAddress().isAnyLocalAddress() || inetSocketAddress.getAddress().isLoopbackAddress())){
+			try{
+			ServerSocket socketTester = new ServerSocket();
+			socketTester.setSoTimeout(180);
+			socketTester.bind(inetSocketAddress);
+			socketTester.close();
+			return true;
+			} catch (IOException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }
