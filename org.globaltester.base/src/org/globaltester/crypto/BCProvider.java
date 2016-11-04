@@ -2,7 +2,6 @@ package org.globaltester.crypto;
 
 import java.security.Provider;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.globaltester.cryptoprovider.Crypto;
 import org.globaltester.cryptoprovider.Cryptoprovider;
 import org.osgi.framework.Constants;
@@ -24,7 +23,7 @@ public class BCProvider {
 	
 	public static Provider getProvider() {
 		String filterString = "(&(" + Constants.OBJECTCLASS + "=" + Cryptoprovider.class.getName() + ")" +
-		"(" + Cryptoprovider.NAME + "=" + BouncyCastleProvider.PROVIDER_NAME + ")" +
+		"(" + Cryptoprovider.NAME + "=" + "BC" + ")" +
 		"(" + Cryptoprovider.VERSION + "=1.46))";
 		
 		return Crypto.getCryptoProvider(filterString);
