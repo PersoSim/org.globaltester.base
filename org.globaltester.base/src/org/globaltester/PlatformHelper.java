@@ -29,6 +29,28 @@ public class PlatformHelper {
 	}
 	
 	/**
+	 * Stops a bundle
+	 * @param bundleContext 
+	 * @param bundleId: the Identifier (String) of the bundle to stop
+	 * @throws BundleException 
+	 */
+	public static void stopBundle(String bundleId, BundleContext bundleContext) {
+
+		Bundle bundle = getBundle(bundleId, bundleContext);
+
+		try {
+			if (bundle != null) {
+				bundle.stop();
+			} else if (bundle == null) {
+				throw new BundleException("Bundle " + bundleId + " not found. Therefore it can't be stopped");
+			}
+		} catch (BundleException e) {
+			throw new RuntimeException(
+					"The stop procedure could not be completed correctly with message: " + e.getMessage());
+		}
+	}
+	
+	/**
 	 * @param bundleId
 	 *            the id of the searched bundle
 	 * @param bundleContext
