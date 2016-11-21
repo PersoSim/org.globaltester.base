@@ -1,5 +1,7 @@
 package org.globaltester.base;
 
+import java.util.List;
+
 /**
  * Dummy implementation doing nothing. 
  * 
@@ -9,12 +11,12 @@ package org.globaltester.base;
 public class DummyUserInteraction implements UserInteraction {
 
 	@Override
-	public void notifyUser(SeverityLevel level, String message) {
+	public void notify(SeverityLevel level, String message) {
 		//intentionally ignore
 	}
 
 	@Override
-	public int askUser(String message, String... allowedResults) {
+	public int select(String message, List<PropertyElement> properties, String... allowedResults) {
 		return 0;
 	}
 }
