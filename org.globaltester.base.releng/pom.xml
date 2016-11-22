@@ -65,7 +65,7 @@
     <module>../../org.globaltester.testspecification/org.globaltester.testspecification</module>
     <module>../../org.globaltester.testspecification/org.globaltester.testspecification.test</module>
     <module>../../org.globaltester.testspecification/org.globaltester.testspecification.doc</module>
-    <module>../../org.globaltester.testspecification/org.globaltester.testspecification.export.hjp</module>
+    <module>../../org.globaltester.testspecification/org.globaltester.testspecification.export.secunet</module>
     <module>../../org.globaltester.testspecification/org.globaltester.testspecification.ui</module>
     <module>../../org.globaltester.scriptrunner/org.globaltester.scriptrunner</module>
     <module>../../org.globaltester.scriptrunner/org.globaltester.scriptrunner.ui</module>
