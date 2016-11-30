@@ -1,5 +1,12 @@
 package org.globaltester;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -86,4 +93,27 @@ public class PlatformHelper {
 		}
 		return bundle;
 	}
+	
+	/**
+	 * This method retrieves a file identifiable by a provided bundle-name and relative path
+	 * @param bundleName the bundle-id of the bundle to retrieve the file from
+	 * @param fileName the bundle-relative path of the file to retrieve
+	 * @param bundleContext the bundle context to use
+	 * @return the retrieved file
+	 */
+	public static File getFileFromBundle(String bundleName, String fileName, BundleContext bundleContext) {
+		Bundle bundle = getBundle(bundleName, bundleContext);
+		
+		URL sourceBundleUrl = FileLocator.find(bundle, new Path(fileName), null);
+		IPath sourceBundlePath;
+		try {
+			sourceBundlePath = new Path(FileLocator.toFileURL(sourceBundleUrl).getPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return sourceBundlePath.toFile();
+	}
+	
 }
