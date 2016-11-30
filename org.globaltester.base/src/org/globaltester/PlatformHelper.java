@@ -1,7 +1,9 @@
 package org.globaltester;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.net.URL;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -114,6 +116,89 @@ public class PlatformHelper {
 		}
 		
 		return sourceBundlePath.toFile();
+	}
+	
+	/**
+	 * This method returns the contents of the provided file as byte array.
+	 * Null is returned iff file can not be found or is longer than Integer.MAX_VALUE. 
+	 * @param fileName the file to be read
+	 * @return the contents of the file to be read
+	 */
+	public static byte[] readFromFile(String fileName) {
+		RandomAccessFile raf = null;
+		
+		try {
+			raf = new RandomAccessFile(fileName, "r");
+			int length;
+			long lengthLong = raf.length();
+			if (lengthLong > Integer.MAX_VALUE) {
+				raf.close();
+				return null;
+			} else{
+				length = (int) lengthLong;
+			}
+			
+			byte[] file = new byte[length];
+			
+			raf.readFully(file);
+			raf.close();
+			
+			return file;
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}catch (IOException e) {
+			return null;
+		} finally{
+			if(raf != null) {
+				try {
+					raf.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+			}
+		}
+	}
+	
+	/**
+	 * This method writes the content of the provided byte array to the specified file.
+	 * <p\>
+	 * If file already exists it gets overwritten.
+	 * @param fileName the file to write the provided data to
+	 * @param data the data to write to the specified file
+	 * @return true iff write command was successful, false otherwise
+	 */
+	public static boolean writeToFile(String fileName, byte[] data) {
+		RandomAccessFile raf = null;
+		
+		File file = new File(fileName);
+		File parent = file.getParentFile();
+		if(parent != null) {
+			parent.mkdirs();
+		}
+		
+		if (file.exists()) {
+			file.delete();
+		}
+		
+		try {
+			raf = new RandomAccessFile(file, "rw");
+			raf.write(data);
+			raf.close();
+			return true;
+		} catch (FileNotFoundException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		}finally{
+			if(raf != null) {
+				try {
+					raf.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+			}
+		}
 	}
 	
 }
