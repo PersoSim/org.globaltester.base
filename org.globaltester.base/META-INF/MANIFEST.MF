@@ -3,14 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: GT Base
 Bundle-SymbolicName: org.globaltester.base;singleton:=true
 Bundle-Version: 2.7.0.qualifier
-Bundle-Activator: org.globaltester.Activator
 Bundle-Vendor: secunet Security Networks AG
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.runtime,
  org.globaltester.lib.domparser,
  org.globaltester.cryptoprovider,
- org.globaltester.base.doc;resolution:=optional
+ org.globaltester.base.doc;resolution:=optional,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
@@ -21,6 +19,5 @@ Export-Package: org.globaltester,
  org.globaltester.base.util,
  org.globaltester.base.utils,
  org.globaltester.base.xml,
- org.globaltester.crypto,
- org.globaltester.preferences
+ org.globaltester.crypto
 Bundle-ClassPath: .

@@ -180,6 +180,20 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.globaltester.base.ui.preferences.GlobalTesterPreferencePage"
+            id="org.globaltester.preferences.GlobalTesterPreferencePage"
+            name="GlobalTester">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.globaltester.base.ui.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
    
    
 </plugin>

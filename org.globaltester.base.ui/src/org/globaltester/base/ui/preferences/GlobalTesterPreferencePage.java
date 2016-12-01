@@ -1,4 +1,4 @@
-package org.globaltester.preferences;
+package org.globaltester.base.ui.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
@@ -9,7 +9,7 @@ import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.globaltester.Activator;
+import org.globaltester.base.ui.Activator;
 
 /**
  * This class stores the properties of the plugin
