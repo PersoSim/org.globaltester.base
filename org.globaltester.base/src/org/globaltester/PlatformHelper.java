@@ -119,6 +119,26 @@ public class PlatformHelper {
 	}
 	
 	/**
+	 * This method retrieves the file that can be identified by the given parameters on the local file system.
+	 * @param repoName the name of the repository
+	 * @param projectName the name of the project
+	 * @param fileName the path of the file relative to the project
+	 * @return the identified file
+	 */
+	public static File getFileFromPseudoBundle(String repoName, String projectName, String fileName) {
+		String absoluteRootPath = (new File("")).getAbsolutePath();
+		
+		int lastLineSeparatorIndex = absoluteRootPath.lastIndexOf(File.separator);
+		absoluteRootPath = absoluteRootPath.substring(0, lastLineSeparatorIndex);
+		lastLineSeparatorIndex = absoluteRootPath.lastIndexOf(File.separator);
+		absoluteRootPath = absoluteRootPath.substring(0, lastLineSeparatorIndex);
+		
+		String relativePathToFile = (new File(fileName)).getPath();
+		String absolutePathToFile = absoluteRootPath + File.separator + repoName + File.separator + projectName + File.separator + relativePathToFile;
+		return new File(absolutePathToFile);
+	}
+	
+	/**
 	 * This method returns the contents of the provided file as byte array.
 	 * Null is returned iff file can not be found or is longer than Integer.MAX_VALUE. 
 	 * @param fileName the file to be read
