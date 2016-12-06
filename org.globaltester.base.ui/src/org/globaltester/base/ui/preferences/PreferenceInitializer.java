@@ -1,4 +1,4 @@
-package org.globaltester.preferences;
+package org.globaltester.base.ui.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 

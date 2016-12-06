@@ -1,4 +1,4 @@
-package org.globaltester.preferences;
+package org.globaltester.base.ui.preferences;
 
 /**
  * This class stores the properties of the plugin
