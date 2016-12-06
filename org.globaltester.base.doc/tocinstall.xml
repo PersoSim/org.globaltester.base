@@ -4,9 +4,7 @@
    </topic>
    <topic href="html/install_gt.html" label="Install GlobalTester">
    </topic>
-   <topic href="html/install_gtoffline.html" label="Install GlobalTester (offline)">
-   </topic>
-   <topic href="html/install_scripts_manually.html" label="Install GT Scripts">
+   <topic href="html/install_scripts.html" label="Install GT Scripts">
    </topic>
    <topic href="html/getstarted_checkinstall.html" label="Checking installation">
    </topic>
