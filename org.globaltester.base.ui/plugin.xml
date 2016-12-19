@@ -98,6 +98,40 @@
       </commonFilter>
       <commonFilter
             activeByDefault="true"
+            description="Hides resources that end with &quot;*.xsl&quot;"
+            id="org.globaltester.base.ui.hide.xsl"
+            name="*.xsl resources">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="*.xsl">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides resources that end with &quot;*.dtd&quot;"
+            id="org.globaltester.base.ui.hide.dtd"
+            name="*.dtd resources">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="*.dtd">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
             description="Hides resources that end with &quot;*.properties&quot;"
             id="org.globaltester.base.ui.hide.properties"
             name="*.properties resources">
@@ -125,6 +159,23 @@
                   <test
                         property="org.eclipse.core.resources.name"
                         value="META-INF">
+                  </test>
+               </adapt>
+            </and>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="true"
+            description="Hides gtmapping files"
+            id="org.globaltester.base.ui.hide.gtmapping"
+            name="GT mappings">
+         <filterExpression>
+            <and>
+               <adapt
+                     type="java.lang.Object">
+                  <test
+                        property="org.eclipse.core.resources.name"
+                        value="*.gtmapping">
                   </test>
                </adapt>
             </and>
@@ -174,8 +225,11 @@
              <contentExtension pattern="org.eclipse.ui.navigator.resources.workingSets"/>
              <contentExtension pattern="org.globaltester.base.ui.hide.a32"/>
              <contentExtension pattern="org.globaltester.base.ui.hide.xml"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.xsl"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.dtd"/>
              <contentExtension pattern="org.globaltester.base.ui.hide.properties"/>
              <contentExtension pattern="org.globaltester.base.ui.hide.metainf"/>
+             <contentExtension pattern="org.globaltester.base.ui.hide.gtmapping"/>
              <contentExtension pattern="org.globaltester.base.ui.hide.target"/>
          </includes>
       </viewerContentBinding>
