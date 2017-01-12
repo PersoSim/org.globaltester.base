@@ -188,8 +188,9 @@ public class GtResourceHelper {
 	 * Single copy operations are performed by {@link #copyFiles(File, File)} method.
 	 * @param sourceFiles the source files to copy
 	 * @param destinationDir the destination directory
+	 * @throws IOException 
 	 */
-	public static void copyFilesToDir(List<String> sourceFiles, String destinationDir) {
+	public static void copyFilesToDir(List<String> sourceFiles, String destinationDir) throws IOException {
 		File fileFrom, fileTo;
 		for(String currentFileName:sourceFiles) {
 			fileFrom = new File(currentFileName);
@@ -200,11 +201,7 @@ public class GtResourceHelper {
 			
 			fileTo = new File(destinationDir, fileFrom.getName());
 			
-			try {
-				copyFiles(fileFrom, fileTo);
-			} catch (IOException e) {
-				// do nothing
-			}
+			copyFiles(fileFrom, fileTo);
 		}
 	}
 
