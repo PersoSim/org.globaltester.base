@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
@@ -179,6 +180,32 @@ public class GtResourceHelper {
 					}
 				}
 			}
+		}
+	}
+	
+	/**
+	 * This method performs batch copying of files to a single destination directory.
+	 * Single copy operations are performed by {@link #copyFiles(File, File)} method.
+	 * @param sourceFiles the source files to copy
+	 * @param destinationDir the destination directory
+	 * @throws IOException 
+	 */
+	public static void copyFilesToDir(List<String> sourceFiles, String destinationDir) throws IOException {
+		File fileFrom, fileTo;
+		for(String currentFileName:sourceFiles) {
+			if (currentFileName == null){
+				continue;
+			}
+			
+			fileFrom = new File(currentFileName);
+			
+			if(!(fileFrom.exists() && fileFrom.isFile())) {
+				continue;
+			}
+			
+			fileTo = new File(destinationDir, fileFrom.getName());
+			
+			copyFiles(fileFrom, fileTo);
 		}
 	}
 
