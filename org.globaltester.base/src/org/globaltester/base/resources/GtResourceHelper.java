@@ -91,17 +91,27 @@ public class GtResourceHelper {
 	/**
 	 * copy files from an installed plugin into a new project
 	 * 
-	 * @param sourceBundleSymbolicName the Bundle Symbolic Name of the source bundle
-	 * @param destinationProject the IProject of the destination project
-	 * @param pathRelativeToSourceBundleRoot the absolute path to the source files
-	 * @param filesToCopy the source file names (without path)
+	 * @param sourceBundleSymbolicName
+	 *            the Bundle Symbolic Name of the source bundle
+	 * @param destinationProject
+	 *            the IProject of the destination project
+	 * @param pathRelativeToSourceBundleRoot
+	 *            the absolute path to the source files
+	 * @param filesToCopy
+	 *            the source file names (without path)
 	 * @throws IOException
-	 * @throws CoreException 
+	 * @throws CoreException
+	 * @throws RuntimeException
+	 *             when the data to be copied can not be found in the given
+	 *             bundle
 	 */
 	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
 		// get source path
 		Bundle sourceBundle = Platform.getBundle(sourceBundleSymbolicName);
 		URL sourceBundleUrl = FileLocator.find(sourceBundle, new Path(pathRelativeToSourceBundleRoot), null);
+		if (sourceBundleUrl == null){
+			throw new RuntimeException("Files in " + pathRelativeToSourceBundleRoot + " in bundle " + sourceBundleSymbolicName + " not found. ");
+		}
 		IPath sourceBundlePath = new Path(FileLocator.toFileURL(sourceBundleUrl).getPath());
 		
 		// define files to be copied
