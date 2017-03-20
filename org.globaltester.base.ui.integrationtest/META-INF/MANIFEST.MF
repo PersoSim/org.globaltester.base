@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GT Core UI Test
+Bundle-Name: GT Base UI Integration Test
 Bundle-SymbolicName: org.globaltester.base.ui.integrationtest
 Bundle-Version: 3.2.1.qualifier
 Bundle-Vendor: secunet Security Networks AG
