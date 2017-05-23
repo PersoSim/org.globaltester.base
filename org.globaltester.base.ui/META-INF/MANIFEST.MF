@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.navigator.resources,
  org.eclipse.ui.editors,
  org.globaltester.logging.legacy,
- org.eclipse.ui.workbench
+ org.eclipse.ui.workbench,
+ org.globaltester.base
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.navigator
