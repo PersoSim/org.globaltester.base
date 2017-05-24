@@ -143,6 +143,23 @@ public class GtResourceHelperTest {
 	}
 	
 	@Test
+	public void testCopyFiles_withSkipped() throws IOException{
+		File sourceFolder = JUnitHelper.createTemporaryFolder();
+		File destinationFolder = JUnitHelper.createTemporaryFolder();
+		String SUB = "sub";
+		File subFolder = new File(sourceFolder, SUB);
+		subFolder.mkdir();
+		final String SUB_SKIP = "subSkip";
+		File subSkip = new File(sourceFolder, SUB_SKIP);
+		subSkip.mkdir();
+
+		GtResourceHelper.copyFiles(sourceFolder, destinationFolder, SUB_SKIP);
+
+		assertTrue(new File (destinationFolder, SUB).exists());
+		assertFalse(new File (destinationFolder, SUB_SKIP).exists());
+	}
+
+	@Test
 	public void testCreateFolder() throws CoreException, IOException{
 		IProject project = JUnitHelper.createDefaultSampleConfig();
 		IFolder folder = project.getFolder("test");

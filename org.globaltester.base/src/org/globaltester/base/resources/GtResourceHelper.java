@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -144,7 +145,15 @@ public class GtResourceHelper {
 		}
 	}
 	
-	public static void copyFiles(File sourceLocation, File targetLocation)
+	/**
+	 * Copies files recursively from sourceLocation to targetLocation.
+	 *
+	 * @param sourceLocation
+	 * @param targetLocation
+	 * @param skipChilds names of children to be skipped (on the first layer)
+	 * @throws IOException
+	 */
+	public static void copyFiles(File sourceLocation, File targetLocation, String... skipChilds)
 			throws IOException {
 		
 		if(!sourceLocation.exists()) {
@@ -161,9 +170,12 @@ public class GtResourceHelper {
 			}
 
 			String[] children = sourceLocation.list();
-			for (int i = 0; i < children.length; i++) {
-				copyFiles(new File(sourceLocation, children[i]), new File(
-						targetLocation, children[i]));
+			for (String curChild : children) {
+				if (Arrays.asList(skipChilds).contains(curChild)) {
+					continue;
+				}
+				copyFiles(new File(sourceLocation, curChild), new File(
+						targetLocation, curChild));
 			}
 		} else {
 
