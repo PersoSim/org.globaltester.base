@@ -1,8 +1,10 @@
 package org.globaltester.base.ui.editors;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IPredicateRule;
@@ -11,6 +13,8 @@ import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.globaltester.base.ui.Activator;
+import org.globaltester.logging.legacy.logger.GtErrorLogger;
 
 public class GtScanner extends RuleBasedPartitionScanner {
 	
@@ -28,19 +32,20 @@ public class GtScanner extends RuleBasedPartitionScanner {
 		Object ruleInstance = null;
 		if (contentTypes.containsKey(contentType)) {
 			IToken token = getTokenForContentType(contentType, tokenType, contentTypes);
-			Class<?> paramTypes[] = new Class<?>[1];
+			Class<?>[] paramTypes = new Class<?>[1];
 			paramTypes[0] = IToken.class;
 
 			Class<?> ruleClass = (Class<?>) contentTypes.get(contentType).get(TokenType.CONTENT_TYPE);
 			try {
 				Constructor<?> c = ruleClass.getConstructor(IToken.class);
 				ruleInstance = c.newInstance(new Object[] { token });
-			} catch (Throwable e) {
+			} catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
 				// ignore rule if it can not be instantiated
+				GtErrorLogger.log(Activator.PLUGIN_ID, "Unable to instantiate predicate rule for content type \""+ contentType + "\"", e);
 			}
 		}
 
-		if ((ruleInstance != null) && (ruleInstance instanceof IPredicateRule)) {
+		if (ruleInstance instanceof IPredicateRule) {
 			return (IPredicateRule) ruleInstance;
 		} else {
 			return null;
@@ -49,7 +54,7 @@ public class GtScanner extends RuleBasedPartitionScanner {
 	}
 
 	public static IToken getTokenForContentType(String contentType,
-			TokenType tokenType, HashMap<String, EnumMap<TokenType, Object>> contentTypes) {
+			TokenType tokenType, Map<String, EnumMap<TokenType, Object>> contentTypes) {
 		switch (tokenType) {
 		case CONTENT_TYPE:
 			return new Token(contentType);
@@ -63,16 +68,12 @@ public class GtScanner extends RuleBasedPartitionScanner {
 	}
 	
 	public GtScanner(TokenType tokenType) {
-		IToken defaultToken = null;
-		switch (tokenType) {
-		case CONTENT_TYPE:
-			defaultToken =  new Token(CT_DEFAULT);
-			break;
-		case TEXT_ATTRIBUTES:
-			defaultToken = new Token(new TextAttribute(new Color(Display.getCurrent(),
+		if (tokenType ==  TokenType.TEXT_ATTRIBUTES) {
+			fDefaultReturnToken = new Token(new TextAttribute(new Color(Display.getCurrent(),
 					ColorConstants.DEFAULT)));
+		} else {
+			fDefaultReturnToken =  new Token(CT_DEFAULT);
 		}
-		this.setDefaultReturnToken(defaultToken);
 	}
 
 	protected HashMap<String, IPredicateRule> rules = new HashMap<String, IPredicateRule>();
