@@ -7,8 +7,9 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.util.LinkedList;
 import java.util.List;
+
+import org.globaltester.logging.BasicLogger;
 
 /**
  * This class contains generic utilities that can not usefully be bundled
@@ -51,9 +52,9 @@ public class Utils {
 	 * @throws IOException
 	 */
 	public static long checkFilesForDifferences(InputStream expected, InputStream fileToCheck, int contextSize,
-			LinkedList<Byte> expectedContext, LinkedList<Byte> fileToCheckContext) throws IOException {
+			List<Byte> expectedContext, List<Byte> fileToCheckContext) throws IOException {
 		try (InputStreamReader currentlyMarshalledFileInputStreamReader = new InputStreamReader(fileToCheck);
-				InputStreamReader previousFileInputStreamReader = new InputStreamReader(expected);) {
+				InputStreamReader previousFileInputStreamReader = new InputStreamReader(expected)) {
 
 			int fileToCheckReadByte = 0;
 			int expectedReadByte = 0;
@@ -111,13 +112,12 @@ public class Utils {
 		InetSocketAddress inetSocketAddress = new InetSocketAddress(host, port);
 		if (inetSocketAddress.getAddress() != null && (inetSocketAddress.getAddress().isAnyLocalAddress()
 				|| inetSocketAddress.getAddress().isLoopbackAddress())) {
-			try {
-				ServerSocket socketTester = new ServerSocket();
+			try (ServerSocket socketTester = new ServerSocket()) {
 				socketTester.setSoTimeout(180);
 				socketTester.bind(inetSocketAddress);
-				socketTester.close();
 				return true;
 			} catch (IOException e) {
+				BasicLogger.logException(Utils.class, e);
 				return false;
 			}
 		} else {
