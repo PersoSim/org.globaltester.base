@@ -3,6 +3,7 @@ package org.globaltester.base;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * Helper class providing methods for accessing eclipse preferences.
@@ -43,5 +44,18 @@ public class PreferenceHelper {
 	public static void setPreferenceValue(String bundle, String key, String value) {
 		IEclipsePreferences preferences = context.getNode(bundle);
 		preferences.put(key, value);
+	}
+	
+	/**
+	 * Flush the preferences to the backingstore for a given bundle
+	 * @param bundle
+	 */
+	public static void flush(String bundle) {
+		IEclipsePreferences preferences = context.getNode(bundle);
+		try {
+			preferences.flush();
+		} catch (BackingStoreException e) {
+			throw new IllegalStateException("Writing to the preferences failed with exception", e);
+		}
 	}
 }
