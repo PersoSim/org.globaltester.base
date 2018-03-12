@@ -9,7 +9,7 @@ package org.globaltester.base;
  */
 public class PropertyElement {
 	private String key;
-	private Object value;
+	private String value;
 	private String representation;
 
 	/**
@@ -20,7 +20,7 @@ public class PropertyElement {
 	 * @param representation
 	 *            a simplified, human readable representation
 	 */
-	public PropertyElement(String name, Object value, String representation) {
+	public PropertyElement(String name, String value, String representation) {
 		super();
 		this.key = name;
 		this.value = value;
@@ -37,7 +37,7 @@ public class PropertyElement {
 	/**
 	 * @return the value of this element
 	 */
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
 
