@@ -1,11 +1,20 @@
 package org.globaltester.base.ui;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import javax.print.DocFlavor.INPUT_STREAM;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizard;
@@ -21,6 +30,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 import org.eclipse.ui.wizards.IWizardRegistry;
+import org.globaltester.logging.BasicLogger;
 import org.globaltester.logging.legacy.logger.GtErrorLogger;
 
 public class GtUiHelper {
@@ -130,6 +140,54 @@ public class GtUiHelper {
 		dialog.open();
 		
 	}
+	
+	/**
+	 * Get an {@link InputStream} for reading a file using a file open dialog.
+	 * 
+	 * @param shell
+	 *            parent {@link Shell} for the dialog
+	 * @param options
+	 *            the options for the dialog
+	 * @return the {@link INPUT_STREAM} on the file
+	 * @throws IOException
+	 */
+	public static InputStream getStreamWithDialog(Shell shell, DialogOptions options) throws IOException {
+		String selection = openFileDialog(shell, options, SWT.OPEN);
+		if (selection != null) {
+			Path path = Paths.get(selection);
+			return Files.newInputStream(path);
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * Write an {@link InputStream}s contents into a file chosen by file open dialog
+	 * 
+	 * @param shell
+	 *            parent {@link Shell} for the dialog
+	 * @param toWrite
+	 *            an {@link InputStream} as source for the data to be written
+	 * @param options
+	 *            the options for the dialog
+	 * @return true, iff writing was successful
+	 */
+	public static boolean writeFileWithDialog(Shell shell, InputStream toWrite , DialogOptions options) {
+		String selection = openFileDialog(shell, options, SWT.SAVE);
+		if (selection != null) {
+			Path path = Paths.get(selection);
+			if (Files.exists(path) && !MessageDialog.openQuestion(shell, "File already exists", "Do you want do overwrite the file at " + path.toString() + "?")) {
+				return false;
+			}
+			try {
+				Files.copy(toWrite, path, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				BasicLogger.logException(GtUiHelper.class, "Error during write of file " + path, e);
+				return false;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * This method allows to open a native dialog in a way that is compatible to
@@ -137,11 +195,12 @@ public class GtUiHelper {
 	 * 
 	 * @param shell
 	 * @param options
+	 * @param style SWT style for the underlying {@link FileDialog} 
 	 * @return
 	 */
-	public static String openFileDialog(Shell shell, DialogOptions options){
+	public static String openFileDialog(Shell shell, DialogOptions options, int style){
 		if (presetDialogResult  == null){
-			FileDialog dialog = new FileDialog(shell);
+			FileDialog dialog = new FileDialog(shell, style);
 			dialog.setFileName(options.getFileName());
 			dialog.setFilterExtensions(options.getFilterExtensions());
 			dialog.setFilterIndex(options.getFilterIndex());
