@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.globaltester.logging.BasicLogger;
 //import org.globaltester.logging.logger.GtErrorLogger;
 //import org.globaltester.logging.logger.TestLogger;
 import org.jdom.DocType;
@@ -83,29 +84,13 @@ public class XMLHelper {
 		serializer.setFormat(Format.getPrettyFormat());
 
 		// write the output to file
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(file);
+		try (FileOutputStream fos = new FileOutputStream(file)){
+			
 			serializer.output(doc, fos);
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-			// #833 Use proper logging mechanism
-			//TestLogger.error(e);
+			BasicLogger.logException(XMLHelper.class, e);
 			return;
-		} finally {
-			if (fos != null) {
-				try {
-
-					fos.close();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-					// #833 Use proper logging mechanism
-					//GtErrorLogger.log(Activator.PLUGIN_ID, e);
-
-				}
-			}
 		}
 	}
 
@@ -114,8 +99,7 @@ public class XMLHelper {
 		try {
 			iFile.refreshLocal(IFile.DEPTH_INFINITE, new NullProgressMonitor());
 		} catch (CoreException e) {
-			// #833 Use proper logging mechanism
-			//GtErrorLogger.log(Activator.PLUGIN_ID, e);
+			BasicLogger.logException(XMLHelper.class, e);
 		}
 	}
 

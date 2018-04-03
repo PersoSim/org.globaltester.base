@@ -1,13 +1,13 @@
 package org.globaltester.base.resources;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -139,9 +139,9 @@ public class GtResourceHelper {
 		if (!targetLocation.exists()){
 			targetLocation.createNewFile();
 		}
+		
 		if (targetLocation.isFile() && targetLocation.canWrite()){
-			FileOutputStream output = new FileOutputStream(targetLocation);
-			copyStream(source, output);
+			Files.copy(source, targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		}
 	}
 	
@@ -178,29 +178,8 @@ public class GtResourceHelper {
 						targetLocation, curChild));
 			}
 		} else {
-
-			InputStream in = null;
-			OutputStream out = null;
-
-			try {
-				in = new FileInputStream(sourceLocation);
-				out = new FileOutputStream(targetLocation);
-
-				byte[] buf = new byte[1024];
-				int len;
-				while ((len = in.read(buf)) > 0) {
-					out.write(buf, 0, len);
-				}
-			} finally {
-				try {
-					if (in != null) {
-						in.close();
-					}
-				} finally {
-					if (out != null) {
-						out.close();
-					}
-				}
+			try (InputStream inputStream = Files.newInputStream(sourceLocation.toPath())){
+				Files.copy(inputStream, targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);	
 			}
 		}
 	}
