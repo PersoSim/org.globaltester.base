@@ -13,7 +13,7 @@ public class GlobalTesterTestCase {
 
 	@BeforeClass
 	public static void setupClass(){
-		Crypto.setCryptoProvider(new ProviderBc().getCryptoProviderObject());
+		Crypto.setCryptoProvider(ProviderBc.getInstance().getCryptoProviderObject());
 	}
 
 }
