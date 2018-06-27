@@ -11,6 +11,7 @@ public class PropertyElement {
 	private String key;
 	private String value;
 	private String representation;
+	private boolean hidden;
 
 	/**
 	 * @param name
@@ -19,12 +20,15 @@ public class PropertyElement {
 	 *            the actual value of the property
 	 * @param representation
 	 *            a simplified, human readable representation
+	 * @param hidden
+	 *            this field is not essential and can be hidden to the user
 	 */
-	public PropertyElement(String name, String value, String representation) {
+	public PropertyElement(String name, String value, String representation, boolean hidden) {
 		super();
 		this.key = name;
 		this.value = value;
 		this.representation = representation;
+		this.hidden = hidden;
 	}
 
 	/**
@@ -47,4 +51,18 @@ public class PropertyElement {
 	public String getRepresentation() {
 		return representation;
 	}
+
+	/**
+	 * @return the human readable representation of this element
+	 */
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	@Override
+	public String toString() {
+		return "PropertyElement [key=" + key + ", value=" + value + ", representation=\"" + representation + "\", hidden=\"" + hidden + "\"]";
+	}
+	
+	
 }

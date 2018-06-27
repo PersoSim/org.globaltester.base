@@ -44,7 +44,7 @@ public class UserInteractionImpl implements UserInteraction {
 		if (properties != null && !properties.isEmpty()) {
 			builder.append("Test case data:");
 			for (PropertyElement element : properties) {
-				if (element.getRepresentation() != null && element.getRepresentation().equals("")){
+				if (element.isHidden()){
 					continue;
 				}
 				builder.append("\n\n");
