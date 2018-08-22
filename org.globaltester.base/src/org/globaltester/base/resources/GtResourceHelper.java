@@ -9,6 +9,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,11 +64,12 @@ public class GtResourceHelper {
 	 * 
 	 * @param destinationProject the IProject of the destination project
 	 * @param sourceBundleRoot the (absolute) root of the source
+	 * @param filter file names to filter (without path)
 	 * @param filesToCopy the source file names (without path)
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void copySelectedFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, String ... filesToCopy) throws IOException{
+	public static void copySelectedFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
 		File destinationBundleRoot = destinationProject.getLocation().toFile();
 		
 		// copy files
@@ -76,6 +79,9 @@ public class GtResourceHelper {
 		}
 		
 		for (String currentFilename : filesToCopy){
+			if (filter.contains(currentFilename)) {
+				continue;
+			}
 			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
 		}
 		
@@ -98,6 +104,8 @@ public class GtResourceHelper {
 	 *            the IProject of the destination project
 	 * @param pathRelativeToSourceBundleRoot
 	 *            the absolute path to the source files
+	 * @param filter
+	 *            file names to filter (without path)
 	 * @param filesToCopy
 	 *            the source file names (without path)
 	 * @throws IOException
@@ -106,7 +114,7 @@ public class GtResourceHelper {
 	 *             when the data to be copied can not be found in the given
 	 *             bundle
 	 */
-	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
 		// get source path
 		Bundle sourceBundle = Platform.getBundle(sourceBundleSymbolicName);
 		URL sourceBundleUrl = FileLocator.find(sourceBundle, new Path(pathRelativeToSourceBundleRoot), null);
@@ -118,8 +126,19 @@ public class GtResourceHelper {
 		// define files to be copied
 		File sourceBundleRoot = sourceBundlePath.toFile();
 		
-		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filesToCopy);
+		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filter, filesToCopy);
 	}
+	
+	/**
+	 * copy files from an installed plugin into a new project
+	 * 
+	 * @see #copyPluginFilesToWorkspaceProject(String, IProject, String, Collection, String...)
+	 * @throws IOException
+	 */
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
+		copyPluginFilesToWorkspaceProject(sourceBundleSymbolicName, destinationProject, pathRelativeToSourceBundleRoot, Collections.emptySet(), filesToCopy);
+	}
+		
 
 	/**
 	 * Copy from an input to an output stream. Both streams remain open.
