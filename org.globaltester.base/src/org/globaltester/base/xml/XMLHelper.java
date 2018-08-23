@@ -61,6 +61,7 @@ public class XMLHelper {
 			doc = b.build(file);
 		} catch (JDOMException | IOException e) {
 			// return null document
+			BasicLogger.logException(XMLHelper.class, e);
 		}
 
 		return doc;
