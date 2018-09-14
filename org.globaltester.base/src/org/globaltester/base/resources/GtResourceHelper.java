@@ -62,15 +62,15 @@ public class GtResourceHelper {
 	/**
 	 * copy files from a given source to a given project
 	 * 
-	 * @param destinationProject the IProject of the destination project
+	 * @param IContainer the IContainer of the destination
 	 * @param sourceBundleRoot the (absolute) root of the source
 	 * @param filter file names to filter (without path)
 	 * @param filesToCopy the source file names (without path)
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void copySelectedFilesToWorkspaceProject(IProject destinationProject, File sourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
-		File destinationBundleRoot = destinationProject.getLocation().toFile();
+	public static void copySelectedFilesToWorkspaceProject(IContainer destination, File sourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
+		File destinationBundleRoot = destination.getLocation().toFile();
 		
 		// copy files
 		
@@ -87,7 +87,7 @@ public class GtResourceHelper {
 		
 		// refresh the project
 		try {
-			destinationProject.refreshLocal(IResource.DEPTH_INFINITE, null);
+			destination.refreshLocal(IResource.DEPTH_INFINITE, null);
 		} catch (CoreException e) {
 			// refresh of project failed
 			// relevant CoreException will be in the eclipse log anyhow
@@ -114,7 +114,7 @@ public class GtResourceHelper {
 	 *             when the data to be copied can not be found in the given
 	 *             bundle
 	 */
-	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IContainer destinationProject, String pathRelativeToSourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
 		// get source path
 		Bundle sourceBundle = Platform.getBundle(sourceBundleSymbolicName);
 		URL sourceBundleUrl = FileLocator.find(sourceBundle, new Path(pathRelativeToSourceBundleRoot), null);
@@ -130,12 +130,12 @@ public class GtResourceHelper {
 	}
 	
 	/**
-	 * copy files from an installed plugin into a new project
+	 * copy files from an installed plugin into a given IContainer
 	 * 
-	 * @see #copyPluginFilesToWorkspaceProject(String, IProject, String, Collection, String...)
+	 * @see #copyPluginFilesToWorkspaceProject(String, IContainer, String, Collection, String...)
 	 * @throws IOException
 	 */
-	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IProject destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IContainer destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
 		copyPluginFilesToWorkspaceProject(sourceBundleSymbolicName, destinationProject, pathRelativeToSourceBundleRoot, Collections.emptySet(), filesToCopy);
 	}
 		
