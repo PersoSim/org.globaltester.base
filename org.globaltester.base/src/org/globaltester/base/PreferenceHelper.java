@@ -1,5 +1,6 @@
 package org.globaltester.base;
 
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
@@ -13,6 +14,7 @@ import org.osgi.service.prefs.BackingStoreException;
  */
 public class PreferenceHelper {
 	private static IScopeContext context = InstanceScope.INSTANCE;
+	private static IScopeContext contextDefault = DefaultScope.INSTANCE;
 
 	/**
 	 * Read the preference value from the {@link InstanceScope} of the given
@@ -26,7 +28,8 @@ public class PreferenceHelper {
 	 */
 	public static String getPreferenceValue(String bundle, String key) {
 		IEclipsePreferences preferences = context.getNode(bundle);
-		return preferences.get(key, null);
+		String candidate = preferences.get(key, contextDefault.getNode(bundle).get(key, null));
+		return candidate;
 	}
 
 	/**
