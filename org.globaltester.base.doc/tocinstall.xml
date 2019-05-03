@@ -8,4 +8,7 @@
    </topic>
    <topic href="html/getstarted_checkinstall.html" label="Checking installation">
    </topic>
+   <anchor id="additionalSetup"/>
+   <topic href="html/getstarted_updates.html" label="Update (offline)">
+   </topic>
 </toc>

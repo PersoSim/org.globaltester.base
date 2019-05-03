@@ -21,9 +21,6 @@
             primary="true">
       </toc>
       <toc
-            file="tocupdate.xml">
-      </toc>
-      <toc
             file="tocinstall.xml">
       </toc>
       <toc
