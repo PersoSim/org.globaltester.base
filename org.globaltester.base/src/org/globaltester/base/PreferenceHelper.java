@@ -27,8 +27,24 @@ public class PreferenceHelper {
 	 * @return the value of the preference or <code>null</code> if not existent
 	 */
 	public static String getPreferenceValue(String bundle, String key) {
+		return getPreferenceValue(bundle, key, null);
+	}
+
+	/**
+	 * Read the preference value from the {@link InstanceScope} of the given
+	 * bundle.
+	 * 
+	 * @param bundle
+	 *            the bundle ID to use
+	 * @param key
+	 *            the preference key
+	 * @param defaultValue
+	 *            the default value returned when bundle/key can not be found
+	 * @return the value of the preference or defaultValue if not existent
+	 */
+	public static String getPreferenceValue(String bundle, String key, String defaultValue) {
 		IEclipsePreferences preferences = context.getNode(bundle);
-		String candidate = preferences.get(key, contextDefault.getNode(bundle).get(key, null));
+		String candidate = preferences.get(key, contextDefault.getNode(bundle).get(key, defaultValue));
 		return candidate;
 	}
 
