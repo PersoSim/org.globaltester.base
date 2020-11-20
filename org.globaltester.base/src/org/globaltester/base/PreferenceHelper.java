@@ -47,7 +47,26 @@ public class PreferenceHelper {
 		String candidate = preferences.get(key, contextDefault.getNode(bundle).get(key, defaultValue));
 		return candidate;
 	}
-
+	
+	
+	/**
+	 * Set the preference default value from the {@link DefaultScope} of the given
+	 * bundle.
+	 * 
+	 * @param bundle
+	 *            the bundle ID to use
+	 * @param key
+	 *            the preference key
+	 * @param value
+	 *            the {@link String} representation of the value to set
+	 * @return the value of the preference or <code>null</code> if not existent
+	 */
+	public static void setPreferenceDefaultValue(String bundle, String key, String value) {
+		IEclipsePreferences preferences = contextDefault.getNode(bundle);
+		preferences.put(key, value);
+	}
+	
+	
 	/**
 	 * Set the preference value from the {@link InstanceScope} of the given
 	 * bundle.
