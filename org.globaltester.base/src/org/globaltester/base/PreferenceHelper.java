@@ -84,6 +84,24 @@ public class PreferenceHelper {
 		preferences.put(key, value);
 	}
 	
+	
+	/**
+	 * Remove the preference value from the {@link InstanceScope} of the given
+	 * bundle.
+	 * 
+	 * @param bundle
+	 *            the bundle ID to use
+	 * @param key
+	 *            the preference key
+	 * @param value
+	 *            the {@link String} representation of the value to set
+	 * @return the value of the preference or <code>null</code> if not existent
+	 */
+	public static void unsetPreferenceValue(String bundle, String key) {
+		IEclipsePreferences preferences = context.getNode(bundle);
+		preferences.remove(key);
+	}
+	
 	/**
 	 * Flush the preferences to the backingstore for a given bundle
 	 * @param bundle
