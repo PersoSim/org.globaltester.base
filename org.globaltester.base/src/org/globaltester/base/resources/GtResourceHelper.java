@@ -29,6 +29,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.globaltester.logging.BasicLogger;
+import org.globaltester.logging.tags.LogLevel;
 import org.osgi.framework.Bundle;
 
 public class GtResourceHelper {
@@ -176,6 +178,7 @@ public class GtResourceHelper {
 			throws IOException {
 		
 		if(!sourceLocation.exists()) {
+			BasicLogger.log("File " + sourceLocation.toString() + " not found", LogLevel.ERROR);
 			return; // prevents FileNotFoundException if dir/file does not exist
 		}
 		
