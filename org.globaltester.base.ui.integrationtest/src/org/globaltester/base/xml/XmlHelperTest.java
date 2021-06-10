@@ -8,7 +8,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.globaltester.base.resources.GtResourceHelper;
-import org.globaltester.base.xml.XMLHelper;
 import org.globaltester.junit.JUnitHelper;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -22,7 +21,7 @@ public class XmlHelperTest {
 	public void testReadDocument() throws IOException, CoreException{
 		IProject project =JUnitHelper.createEmptyProject("testProject");
 		String file = "testSpecification.gtspec";
-		GtResourceHelper.copyPluginFilesToWorkspaceProject("org.globaltester.base.test", project, "files/SuccessfullExportFiles", file);
+		GtResourceHelper.copyPluginFilesToWorkspaceProject("org.globaltester.base.test", project, "files/SuccessfulExportFiles", file);
 		Document doc = XMLHelper.readDocument(project.getFile(file));
 		assertTrue(doc.getRootElement().getName().equals("TestSpecification"));
 	}
