@@ -7,7 +7,6 @@ Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.help,
  org.eclipse.ui,
- org.eclipse.help.base;bundle-version="3.5.3",
  org.eclipse.ui.cheatsheets
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.globaltester.base.doc.Activator
