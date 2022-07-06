@@ -5,11 +5,11 @@ Bundle-SymbolicName: org.globaltester.base;singleton:=true
 Bundle-Version: 3.9.0.qualifier
 Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime,
- org.globaltester.lib.domparser,
  org.globaltester.cryptoprovider,
  org.globaltester.base.doc;resolution:=optional,
  org.eclipse.core.resources,
- org.globaltester.logging
+ org.globaltester.logging,
+ org.globaltester.lib.domparser
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 DynamicImport-Package: *
