@@ -1,5 +1,6 @@
 package org.globaltester.base.resources;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -420,4 +421,25 @@ public class GtResourceHelper {
 		}
 	}
 	
+	public static byte[] readFileFromBundle(String bundleSymbolicName, String path) throws IOException {
+		Bundle bundle = Platform.getBundle(bundleSymbolicName);
+		URL url = bundle.getEntry(path);
+		//URL url = new URL("platform:/plugin/"+ bundleSymbolicName + "/" + path);
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		
+		
+		try (InputStream in = url.openConnection().getInputStream()) {
+			while (true) {
+				int r = in.read(buffer);
+				if (r == -1) break;
+				out.write(buffer, 0, r);
+			}
+		
+			in.close();
+		}
+		
+		return out.toByteArray();
+	}
 }
