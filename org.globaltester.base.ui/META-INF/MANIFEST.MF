@@ -27,3 +27,4 @@ Export-Package: org.globaltester.base.ui,
  org.globaltester.base.ui.perspective,
  org.globaltester.base.ui.preferences,
  org.globaltester.base.ui.views
+Automatic-Module-Name: org.globaltester.base.ui
