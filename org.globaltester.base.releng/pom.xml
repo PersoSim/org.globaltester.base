@@ -30,7 +30,6 @@
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc</module>
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc.legacy_1_46</module>
     <module>../../org.globaltester.junit/org.globaltester.junit</module>
-    <module>../../org.globaltester.lib.jmockit/org.globaltester.lib.jmockit</module>
     <module>../../org.globaltester.logging.logfileeditor/org.globaltester.logging.logfileeditor.ui</module>
     <module>../../org.globaltester.logging.logfileeditor/org.globaltester.logging.logfileeditor.ui.test</module>
     <module>../../org.globaltester.logging/org.globaltester.logging</module>
