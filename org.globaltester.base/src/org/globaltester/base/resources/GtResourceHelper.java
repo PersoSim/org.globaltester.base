@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
@@ -35,6 +36,11 @@ import org.globaltester.logging.tags.LogLevel;
 import org.osgi.framework.Bundle;
 
 public class GtResourceHelper {
+	
+	private GtResourceHelper() {
+		// hide implicit public constructor
+	}
+	
 	/**
 	 * create an resource together with all parents
 	 * 
@@ -43,9 +49,7 @@ public class GtResourceHelper {
 	 */
 	public static void createWithAllParents(IResource resource)
 			throws CoreException {
-		if (resource.exists()) {
-			return;
-		} else {
+		if (!resource.exists()) {
 			// make sure parent exists
 			IContainer parent = resource.getParent();
 			createWithAllParents(parent);
@@ -59,7 +63,6 @@ public class GtResourceHelper {
 				((IProject) resource).open(null);
 			}
 		}
-
 	}
 	
 	/**
@@ -184,12 +187,10 @@ public class GtResourceHelper {
 		}
 		
 		if (sourceLocation.isDirectory()) {
-			if (!targetLocation.exists()) {
-				if (!targetLocation.mkdir()) {
+			if (!targetLocation.exists() && !targetLocation.mkdir()) {
 					throw new IOException("Target directory \""
 							+ targetLocation.getAbsolutePath()
 							+ "\" can not be created.");
-				}
 			}
 
 			String[] children = sourceLocation.list();
@@ -201,8 +202,25 @@ public class GtResourceHelper {
 						targetLocation, curChild));
 			}
 		} else {
-			try (InputStream inputStream = Files.newInputStream(sourceLocation.toPath())){
-				Files.copy(inputStream, targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);	
+			//System.out.println("sourceLocation Path: " + sourceLocation.toPath().toString());
+			//System.out.println("targetLocation Path: " + targetLocation.toPath().toString());
+			for (int i = 0; i < 3; i++)
+			{
+				try (InputStream inputStream = Files.newInputStream(sourceLocation.toPath())) {
+					Files.copy(inputStream, targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					break;
+				} catch (FileSystemException e)	{
+					if (i == 2)
+						throw e;
+					else {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+							Thread.currentThread().interrupt();
+						}
+					}
+				}
 			}
 		}
 	}
@@ -215,7 +233,8 @@ public class GtResourceHelper {
 	 * @throws IOException 
 	 */
 	public static void copyFilesToDir(List<String> sourceFiles, String destinationDir) throws IOException {
-		File fileFrom, fileTo;
+		File fileFrom;
+		File fileTo;
 		for(String currentFileName:sourceFiles) {
 			if (currentFileName == null){
 				continue;
@@ -338,7 +357,7 @@ public class GtResourceHelper {
 	public static Set<String> getProjectNamesWithNature(String natureId) {
 		IProject[] availableProjects = ResourcesPlugin.getWorkspace().getRoot()
 				.getProjects();
-		HashSet<String> returnSet = new HashSet<String>();
+		HashSet<String> returnSet = new HashSet<>();
 
 		for (IProject curProject : availableProjects) {
 			try {
@@ -436,8 +455,6 @@ public class GtResourceHelper {
 				if (r == -1) break;
 				out.write(buffer, 0, r);
 			}
-		
-			in.close();
 		}
 		
 		return out.toByteArray();
