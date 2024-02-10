@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class ExecutorServiceHelperTest {
 		System.out.println("Begin: " + Instant.now());
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-		List<Integer> numbers = IntStream.rangeClosed(1, 4).boxed().toList();
+		List<Integer> numbers = IntStream.rangeClosed(1, 4).boxed().collect(Collectors.toList());
 		for (Integer number : numbers) {
 			executorService.submit(() -> {
 				Thread.currentThread().setName("Thread #" + number);
@@ -34,7 +35,7 @@ public class ExecutorServiceHelperTest {
 
 		//ExecutorServiceHelper.shutdownAndAwaitTermination(
 		//	executorService, ExecutorServiceHelper.DEFAULT_WAIT_FOR_TERMINATION_DURATION, "OptionalID"); // all threads finished
-		ExecutorServiceHelper.shutdownAndAwaitTermination(executorService, Duration.ofSeconds(numbers.size() - 1L), "OptionalID"); // thread(s) interruption
+		ExecutorServiceHelper.shutdownAndAwaitTermination(executorService, Duration.ofSeconds(numbers.size() - 2L), "OptionalID"); // task interruption
 		System.out.println("End: " + Instant.now());
 	}
 }
