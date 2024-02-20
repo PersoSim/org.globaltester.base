@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.globaltester.base.ui.integrationtest
 Bundle-Version: 3.9.0.qualifier
 Bundle-Vendor: secunet Security Networks AG
 Fragment-Host: org.globaltester.base.ui
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.junit,
  org.globaltester.base,
  org.globaltester.junit,
