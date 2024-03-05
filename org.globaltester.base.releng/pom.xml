@@ -13,7 +13,6 @@
 
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider</module>
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc</module>
-    <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc.legacy_1_46</module>
 	  <!--
     <module>../../org.globaltester.base/org.globaltester.base.ui</module>		
     <module>../../org.globaltester.dev/org.globaltester.dev.tools</module>
@@ -27,8 +26,6 @@
     <module>../../org.globaltester.control.soap/org.globaltester.control.soap.sample.client</module>
     <module>../../org.globaltester.control.soap/org.globaltester.control.soap.sample.service</module>
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider</module>
-    <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc</module>
-    <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc.legacy_1_46</module>
     <module>../../org.globaltester.junit/org.globaltester.junit</module>
     <module>../../org.globaltester.logging.logfileeditor/org.globaltester.logging.logfileeditor.ui</module>
     <module>../../org.globaltester.logging.logfileeditor/org.globaltester.logging.logfileeditor.ui.test</module>
