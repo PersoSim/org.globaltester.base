@@ -14,7 +14,7 @@ import org.globaltester.logging.BasicLogger;
 /**
  * This class contains generic utilities that can not usefully be bundled
  * elsewhere.
- * 
+ *
  * @author mboonk
  *
  */
@@ -22,7 +22,7 @@ public class Utils {
 	/**
 	 * This method reads the stack trace that the given {@link Exception} would
 	 * print and returns it as a {@link String}.
-	 * 
+	 *
 	 * @param exception
 	 * @return the stack trace as string
 	 */
@@ -35,7 +35,7 @@ public class Utils {
 	/**
 	 * Method for reading and checking input streams for differences at byte
 	 * level.
-	 * 
+	 *
 	 * @param expected
 	 *            the {@link InputStream} which contains the expected content
 	 * @param fileToCheck
@@ -86,7 +86,7 @@ public class Utils {
 
 	/**
 	 * Converts a list of bytes to a string using UTF-8
-	 * 
+	 *
 	 * @param list
 	 * @return
 	 */
@@ -101,7 +101,7 @@ public class Utils {
 	/**
 	 * This method makes a quick check if the given Socket is already in use or
 	 * not.
-	 * 
+	 *
 	 * @param host
 	 *            as String
 	 * @param port
@@ -132,7 +132,7 @@ public class Utils {
 	 * will work with high probability when used for opening sockets without the
 	 * direct possibility to use ephemeral ports.
 	 * @see ServerSocket#ServerSocket(int)
-	 * 
+	 *
 	 * @return the probably free port
 	 * @throws IOException
 	 */
@@ -141,5 +141,13 @@ public class Utils {
 		int port = socket.getLocalPort();
 		socket.close();
 		return port;
+	}
+
+	/**
+	 * Simple log to console for temporary debugging purposes
+	 * @param toLog Log message
+	 */
+	public static void logErrToConsole(String toLog) {
+		System.err.println(toLog);
 	}
 }
