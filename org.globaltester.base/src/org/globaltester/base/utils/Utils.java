@@ -144,8 +144,8 @@ public class Utils {
 	}
 
 	/**
-	 * Simple log to console for temporary debugging purposes
-	 * @param toLog Log message
+	 *
+	 * @param toLog
 	 */
 	public static void logErrToConsole(String toLog) {
 		System.err.println(toLog);
