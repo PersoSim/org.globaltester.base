@@ -9,5 +9,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.junit,
  org.globaltester.base,
  org.globaltester.junit,
- org.globaltester.lib.domparser
+ wrapped.org.jdom.jdom2
 Automatic-Module-Name: org.globaltester.base.ui.integrationtest

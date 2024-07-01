@@ -9,7 +9,6 @@
     <module>../../org.globaltester.base/org.globaltester.base</module>
     <module>../../org.globaltester.base/org.globaltester.base.doc</module>
     <module>../../org.globaltester.base/org.globaltester.base.test</module>
-    <module>../../org.globaltester.lib.domparser/org.globaltester.lib.domparser</module>
 
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider</module>
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc</module>

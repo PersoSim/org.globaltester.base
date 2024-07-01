@@ -24,7 +24,7 @@ public class BCProvider {
 	public static Provider getProvider() {
 		String filterString = "(&(" + Constants.OBJECTCLASS + "=" + Cryptoprovider.class.getName() + ")" +
 		"(" + Cryptoprovider.NAME + "=" + "BC" + ")" +
-		"(" + Cryptoprovider.VERSION + "=1.77))";
+		"(" + Cryptoprovider.VERSION + "=1.7801))";
 		
 		return Crypto.getCryptoProvider(filterString);
 	}
