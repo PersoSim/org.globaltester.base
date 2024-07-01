@@ -2,14 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Base Doc
 Bundle-SymbolicName: org.globaltester.base.doc;singleton:=true
-Bundle-Version: 3.9.0.qualifier
+Bundle-Version: 3.10.0.qualifier
 Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.help,
  org.eclipse.ui,
- org.eclipse.help.base;bundle-version="3.5.3",
  org.eclipse.ui.cheatsheets
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.globaltester.base.doc.Activator
 Export-Package: org.globaltester.base.doc.help
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.globaltester.base.doc
