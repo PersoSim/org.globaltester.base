@@ -10,14 +10,14 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.globaltester.logging.BasicLogger;
 //import org.globaltester.logging.logger.GtErrorLogger;
 //import org.globaltester.logging.logger.TestLogger;
-import org.jdom.DocType;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.ProcessingInstruction;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.ProcessingInstruction;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 /**
  * This class provides some convenience functions for handling XMl files within
