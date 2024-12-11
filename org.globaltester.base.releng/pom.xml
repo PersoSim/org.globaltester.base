@@ -13,7 +13,7 @@
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider</module>
     <module>../../org.globaltester.cryptoprovider/org.globaltester.cryptoprovider.bc</module>
 	  <!--
-    <module>../../org.globaltester.base/org.globaltester.base.ui</module>		
+    <module>../../org.globaltester.base/org.globaltester.base.ui</module>
     <module>../../org.globaltester.dev/org.globaltester.dev.tools</module>
     <module>../../org.globaltester.sampleconfiguration/org.globaltester.sampleconfiguration</module>
     <module>../../org.globaltester.sampleconfiguration/org.globaltester.sampleconfiguration.doc</module>
@@ -37,8 +37,6 @@
     <module>../../org.globaltester.platform/org.globaltester.platform.integrationtest</module>
     <module>../../org.globaltester.platform/org.globaltester.platform.site</module>
     <module>../../org.globaltester.platform/org.globaltester.platform.product</module>
-    <module>../../org.globaltester.protocol/org.globaltester.protocol</module>
-    <module>../../org.globaltester.protocol/org.globaltester.protocol.ui</module>
     <module>../../org.globaltester.service/org.globaltester.service</module>
     <module>../../org.globaltester.service/org.globaltester.service.doc</module>
     <module>../../org.globaltester.service/org.globaltester.service.ui</module>
@@ -68,7 +66,7 @@
 	<module>../../org.globaltester.lib.apache.fop/org.globaltester.lib.apache.fop</module>
 	<module>../../org.globaltester.lib.apache.fop/org.globaltester.lib.apache.fop.test</module>
 	<module>../../org.globaltester.lib.apache.xml/org.globaltester.lib.apache.xml</module>
-	<module>../../org.globaltester.lib.xstream/org.globaltester.lib.xstream</module>	
+	<module>../../org.globaltester.lib.xstream/org.globaltester.lib.xstream</module>
  -->
   </modules>
 </project>
