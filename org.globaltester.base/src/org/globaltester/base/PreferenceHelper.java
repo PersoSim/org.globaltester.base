@@ -8,7 +8,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * Helper class providing methods for accessing eclipse preferences.
- * 
+ *
  * @author mboonk
  *
  */
@@ -19,7 +19,7 @@ public class PreferenceHelper {
 	/**
 	 * Read the preference value from the {@link InstanceScope} of the given
 	 * bundle.
-	 * 
+	 *
 	 * @param bundle
 	 *            the bundle ID to use
 	 * @param key
@@ -33,7 +33,7 @@ public class PreferenceHelper {
 	/**
 	 * Read the preference value from the {@link InstanceScope} of the given
 	 * bundle.
-	 * 
+	 *
 	 * @param bundle
 	 *            the bundle ID to use
 	 * @param key
@@ -47,12 +47,25 @@ public class PreferenceHelper {
 		String candidate = preferences.get(key, contextDefault.getNode(bundle).get(key, defaultValue));
 		return candidate;
 	}
-	
-	
+
+	/**
+	 * Read the preference value from the {@link InstanceScope} of the given
+	 * bundle as boolean.
+	 *
+	 * @param bundle
+	 *            the bundle ID to use
+	 * @param key
+	 *            the preference key
+	 * @return the value of the preference or false if not existent
+	 */
+	public boolean getPreferenceValueAsBoolean(String bundle, String key) {
+		return Boolean.parseBoolean(getPreferenceValue(bundle, key));
+	}
+
 	/**
 	 * Set the preference default value from the {@link DefaultScope} of the given
 	 * bundle.
-	 * 
+	 *
 	 * @param bundle
 	 *            the bundle ID to use
 	 * @param key
@@ -65,12 +78,12 @@ public class PreferenceHelper {
 		IEclipsePreferences preferences = contextDefault.getNode(bundle);
 		preferences.put(key, value);
 	}
-	
-	
+
+
 	/**
 	 * Set the preference value from the {@link InstanceScope} of the given
 	 * bundle.
-	 * 
+	 *
 	 * @param bundle
 	 *            the bundle ID to use
 	 * @param key
@@ -83,12 +96,12 @@ public class PreferenceHelper {
 		IEclipsePreferences preferences = context.getNode(bundle);
 		preferences.put(key, value);
 	}
-	
-	
+
+
 	/**
 	 * Remove the preference value from the {@link InstanceScope} of the given
 	 * bundle.
-	 * 
+	 *
 	 * @param bundle
 	 *            the bundle ID to use
 	 * @param key
@@ -101,7 +114,7 @@ public class PreferenceHelper {
 		IEclipsePreferences preferences = context.getNode(bundle);
 		preferences.remove(key);
 	}
-	
+
 	/**
 	 * Flush the preferences to the backingstore for a given bundle
 	 * @param bundle
