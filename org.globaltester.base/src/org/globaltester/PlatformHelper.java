@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
@@ -12,6 +14,7 @@ import org.eclipse.core.runtime.Path;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.FrameworkUtil;
 
 public class PlatformHelper {
 	
@@ -221,4 +224,20 @@ public class PlatformHelper {
 		}
 	}
 	
+	/**
+	 * Gets a list of all bundles known to the platform helper bundles BundleContext.
+	 * @param prefixes The prefixes used when filtering bundles
+	 * @return the filtered 
+	 */
+	public static Collection<String> getBundleNames(String... prefixes) {
+		BundleContext bc = FrameworkUtil.getBundle(PlatformHelper.class).getBundleContext();
+
+		return Arrays.asList(bc.getBundles()).stream().filter(b -> {
+			for (var p : prefixes) {
+				if (b.getSymbolicName().startsWith(p))
+					return true;
+			}
+			return false;
+		}).map(b -> b.getSymbolicName()).toList();
+	}
 }

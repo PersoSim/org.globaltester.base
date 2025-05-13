@@ -4,6 +4,8 @@ import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.globaltester.PlatformHelper;
+import org.globaltester.logging.BasicLogger;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**
@@ -28,6 +30,25 @@ public class PreferenceHelper {
 	 */
 	public static String getPreferenceValue(String bundle, String key) {
 		return getPreferenceValue(bundle, key, null);
+	}
+	
+	
+	/**
+	 * Remove all custom values for the bundle preferences with the given prefixes.
+	 * 
+	 * @param prefixes
+	 */
+	public static void tryUnsetAllPreferences(String ... prefixes) {
+		for (var bundle : PlatformHelper.getBundleNames(prefixes)) {
+			var node = context.getNode(bundle);
+			try {
+				for (var key : node.keys()) {
+						node.remove(key);
+				}
+			} catch (BackingStoreException e) {
+				BasicLogger.logException(PreferenceHelper.class, "Could not reset preferences for " + bundle, e);
+			}
+		}
 	}
 
 	/**
