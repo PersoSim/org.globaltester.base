@@ -75,7 +75,7 @@ public class GtResourceHelper {
 	 * @throws IOException
 	 * @throws CoreException 
 	 */
-	public static void copySelectedFilesToWorkspaceProject(IContainer destination, File sourceBundleRoot, Collection<String> filter, String ... filesToCopy) throws IOException{
+	public static void copySelectedFilesToWorkspaceProject(IContainer destination, File sourceBundleRoot, Collection<String> filter, String [] filesToCopy, String [] newNames) throws IOException{
 		File destinationBundleRoot = destination.getLocation().toFile();
 		
 		// copy files
@@ -84,11 +84,15 @@ public class GtResourceHelper {
 			filesToCopy = sourceBundleRoot.list();
 		}
 		
-		for (String currentFilename : filesToCopy){
+		if (newNames == null)
+			newNames = filesToCopy;
+		
+		for (int i = 0; i < filesToCopy.length; i++){
+			String currentFilename = filesToCopy[i];
 			if (filter.contains(currentFilename)) {
 				continue;
 			}
-			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, currentFilename));
+			copyFiles(new File(sourceBundleRoot, currentFilename), new File(destinationBundleRoot, newNames[i]));
 		}
 		
 		// refresh the project
@@ -99,6 +103,40 @@ public class GtResourceHelper {
 			// relevant CoreException will be in the eclipse log anyhow
 			// users most probably will ignore this behavior and refresh manually 
 		}
+	}
+	
+	/**
+	 * copy files from an installed plugin into a new project
+	 * 
+	 * @param sourceBundleSymbolicName
+	 *            the Bundle Symbolic Name of the source bundle
+	 * @param destinationProject
+	 *            the IProject of the destination project
+	 * @param pathRelativeToSourceBundleRoot
+	 *            the absolute path to the source files
+	 * @param filter
+	 *            file names to filter (without path)
+	 * @param filesToCopy
+	 *            the source file names (without path)
+	 * @throws IOException
+	 * @throws CoreException
+	 * @throws RuntimeException
+	 *             when the data to be copied can not be found in the given
+	 *             bundle
+	 */
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IContainer destinationProject, String pathRelativeToSourceBundleRoot, Collection<String> filter, String [] filesToCopy, String [] newNames) throws IOException{
+		// get source path
+		Bundle sourceBundle = Platform.getBundle(sourceBundleSymbolicName);
+		URL sourceBundleUrl = FileLocator.find(sourceBundle, new Path(pathRelativeToSourceBundleRoot), null);
+		if (sourceBundleUrl == null){
+			throw new RuntimeException("Files in " + pathRelativeToSourceBundleRoot + " in bundle " + sourceBundleSymbolicName + " not found. ");
+		}
+		IPath sourceBundlePath = new Path(FileLocator.toFileURL(sourceBundleUrl).getPath());
+		
+		// define files to be copied
+		File sourceBundleRoot = sourceBundlePath.toFile();
+		
+		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filter, filesToCopy, newNames);
 	}
 	
 	/**
@@ -132,17 +170,27 @@ public class GtResourceHelper {
 		// define files to be copied
 		File sourceBundleRoot = sourceBundlePath.toFile();
 		
-		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filter, filesToCopy);
+		copySelectedFilesToWorkspaceProject(destinationProject, sourceBundleRoot, filter, filesToCopy, null);
 	}
 	
 	/**
 	 * copy files from an installed plugin into a given IContainer
 	 * 
-	 * @see #copyPluginFilesToWorkspaceProject(String, IContainer, String, Collection, String...)
+	 * @see #copyPluginFilesToWorkspaceProject(String, IContainer, String, Collection, String ...)
 	 * @throws IOException
 	 */
 	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IContainer destinationProject, String pathRelativeToSourceBundleRoot, String ... filesToCopy) throws IOException{
 		copyPluginFilesToWorkspaceProject(sourceBundleSymbolicName, destinationProject, pathRelativeToSourceBundleRoot, Collections.emptySet(), filesToCopy);
+	}
+	
+	/**
+	 * copy files from an installed plugin into a given IContainer while renaming them
+	 * 
+	 * @see #copyPluginFilesToWorkspaceProject(String, IContainer, String, Collection, String [], String [])
+	 * @throws IOException
+	 */
+	public static void copyPluginFilesToWorkspaceProject(String sourceBundleSymbolicName, IContainer destinationProject, String pathRelativeToSourceBundleRoot, String [] filesToCopy, String [] newNames) throws IOException{
+		copyPluginFilesToWorkspaceProject(sourceBundleSymbolicName, destinationProject, pathRelativeToSourceBundleRoot, Collections.emptySet(), filesToCopy, newNames);
 	}
 		
 
