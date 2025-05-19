@@ -490,8 +490,7 @@ public class GtResourceHelper {
 	
 	public static byte[] readFileFromBundle(String bundleSymbolicName, String path) throws IOException {
 		Bundle bundle = Platform.getBundle(bundleSymbolicName);
-		URL url = bundle.getEntry(path);
-		//URL url = new URL("platform:/plugin/"+ bundleSymbolicName + "/" + path);
+		URL url = FileLocator.find(bundle, new Path(path));
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
