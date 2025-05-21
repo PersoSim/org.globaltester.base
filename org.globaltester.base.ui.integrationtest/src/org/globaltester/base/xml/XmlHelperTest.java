@@ -13,6 +13,7 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaders;
 import org.junit.After;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class XmlHelperTest {
 		IFile destination = project.getFile(dest);
 		XMLHelper.saveDoc(destination, new Element("root"));
 		assertTrue(destination.exists());
-		SAXBuilder b = new SAXBuilder(false);
+		SAXBuilder b = new SAXBuilder(XMLReaders.NONVALIDATING);
 		Document result = b.build(destination.getLocation().toFile());
 		assertTrue(result.getRootElement().getName().equals("root"));
 	}

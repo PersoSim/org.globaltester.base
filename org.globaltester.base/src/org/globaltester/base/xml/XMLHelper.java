@@ -16,6 +16,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.ProcessingInstruction;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaders;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -57,7 +58,7 @@ public class XMLHelper {
 		}
 
 		try {
-			SAXBuilder b = new SAXBuilder(validate);
+			SAXBuilder b = new SAXBuilder(XMLReaders.NONVALIDATING);
 			doc = b.build(file);
 		} catch (JDOMException | IOException e) {
 			// return null document
@@ -114,7 +115,6 @@ public class XMLHelper {
 		saveDoc(iFile.getLocation().toFile(), doc);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static void saveDoc(IFile iFile, Element root, DocType docType, ProcessingInstruction pi) {
 		Document doc = new Document(root, docType);
 		doc.getContent().add(0, pi);
